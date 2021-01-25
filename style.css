@@ -1,0 +1,47 @@
+#header {
+    background-color: burlywood;
+    position: relative;
+    width: 50%;
+    height: 100px;
+    margin: 10px 25%;
+    padding: 10px;
+}
+
+#main {
+    background-color: burlywood;
+    position: relative;
+    width: 50%;
+    height: 480px;
+    margin: 10px 25%;
+    padding: 10px;
+}
+
+.button {
+    border: black 2px solid;
+    background-color: lightgoldenrodyellow;
+    width: 10%;
+    float: left;
+    text-decoration: none;
+    text-align: center;
+    padding: 4px;
+    margin: 4px;
+}
+
+.button:hover {
+    background-color: dodgerblue;
+}
+
+#footer {
+    background-color: burlywood;
+    position: relative;
+    width: 50%;
+    height: 50px;
+    margin: 10px 25%;
+    padding: 10px;
+}
+
+h1 {
+    color: black;
+    size: 16pt;
+    font-weight: bold;
+}
