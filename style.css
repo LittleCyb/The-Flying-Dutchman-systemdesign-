@@ -1,26 +1,45 @@
+body {
+	margin: 0px;
+}
+
+#outer_main {
+	width: 50%;
+	margin: 0px auto;
+	margin-top: 20px;
+}
+
+#header, #main, #footer {
+	margin-bottom: 20px;
+}
+
 #header {
     background-color: burlywood;
     position: relative;
-    width: 50%;
-    height: 100px;
-    margin: 10px 25%;
+    /*width: 50%;*/
+    /*height: 100px;*/
+    /*margin: 10px 25%;*/
     padding: 10px;
 }
 
 #main {
     background-color: burlywood;
     position: relative;
-    width: 50%;
+    /*width: 50%;*/
     height: 480px;
-    margin: 10px 25%;
+    /*margin: 10px 25%;*/
     padding: 10px;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .button {
     border: black 2px solid;
     background-color: lightgoldenrodyellow;
-    width: 10%;
-    float: left;
+	/*width: 10%;*/
+    /*float: left;*/
     text-decoration: none;
     text-align: center;
     padding: 4px;
@@ -34,9 +53,9 @@
 #footer {
     background-color: burlywood;
     position: relative;
-    width: 50%;
+    /*width: 50%;*/
     height: 50px;
-    margin: 10px 25%;
+    /*margin: 10px 25%;*/
     padding: 10px;
 }
 
