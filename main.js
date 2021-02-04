@@ -37,34 +37,40 @@ $("#menu").append('<div id="menu_view"></div>');
 
 $("#menu_view").append('<p> Lorem ipsum doltie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commod </p>');
 
+/*
+
+=======
+// CHEAT: get random items in menu and in customer order
+>>>>>>> 613f1e6889220a0bceb48d33f3582716bba19d26
+for (var i = 0; i < 4; i++) {
 
 /*
 
-for (var i = 0; i < 4; i++) {
-	var dom_menu_item = document.createElement("div");
-	dom_menu.appendChild(dom_menu_item);
-	dom_menu_item.classList.add("menu_item");
-	dom_menu_item.textContent = "beer " + (i+1);
 
-	var dom_order_item = document.createElement("div");
-	dom_order.appendChild(dom_order_item);
-	dom_order_item.classList.add("order_item");
-	dom_order_item.textContent = "beer " + (i+1) + " x1";
+	var item = $('<div class="menu_item"></div>');
+	$(item).attr("id", "item_" + i);
+	$(item).text("beer " + (i+1));
+	$("#menu").append(item);
+
+	var item_order = $('<div class="order_item"></div>');
+	$(item_order).attr("id", "item_order_" + i);
+	$(item_order).text("beer " + (i+1) + " x1");
+	$("#order").append(item_order);
 }
 
-var dom_balance = document.createElement("div");
-dom_guest.appendChild(dom_balance);
-dom_balance.id = "balance";
-dom_balance.textContent = "Money: " + 123; */
+// Checkout
+$("#guest").append('<div id="checkout"></div>');
 
 
-
-
+var total_cost = $('<p id="total_cost"></p>')
+$(total_cost).text("Total: " + get_total());
+$("#checkout").append(total_cost);
 
 function login_menu_login() {
 	$("#login").css("display", "none");
 	$("#menu").css("display", "block");
 }
+*/
 
 //updates view with text in Swedish or English
 function update_view() {
@@ -74,6 +80,12 @@ function update_view() {
 		$("#" + key).text(get_string(key));
 	}
 }
+
+// Return total cost of order
+function get_total() {
+	return 100; // CHEAT
+}
+
 // ===========================================================================
 // INITIALIZATION OF HTML AND MODEL DATA.
 // ===========================================================================
