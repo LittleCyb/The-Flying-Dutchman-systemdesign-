@@ -22,15 +22,6 @@ img {
 
 /* Classes */
 
-.main {
-    background-color: burlywood;
-    border: 2px solid black;
-    display: none;
-    width: 75%;
-    margin: 20px auto;
-    height: 640px;
-}
-
 .menu_item {
     display: flex;
     flex-wrap: wrap;
@@ -47,37 +38,19 @@ img {
     padding: 4px;
 }
 
-/* ID:s */
-
-#guest {
-}
+/* Menu ID:s */
 
 #menu {
-    display: block;
+    background-color: burlywood;
     border: 2px solid black;
-    float: left;
-    width: 55%;
-    height: 500px;
-    margin: 4px;
+    display: none;
+    width: 75%;
+    margin: 20px auto;
+    height: 640px;
 }
 
-#order {
-    display: block;
-    border: 2px solid black;
-    float: right;
-    width: 40%;
-    height: 294px;
-    margin: 4px;
-}
-
-#balance {
-    display: block;
-    border: 2px solid black;
-    float: right;
-    width: 40%;
-    height: 192px;
-    margin: 4px;
-    text-align: center;
+#menu_bar_item {
+    background-color: #ffd29a;
 }
 
 /* Login ID:s */
