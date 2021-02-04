@@ -20,7 +20,7 @@ $("#login_input").attr("contentEditable", "true");
 
 $("#login").append('<span id="login_button"></span>');
 
-// guest
+/* guest screen, temporary */
 
 
 $('body').append('<div id="menu"></div>')
@@ -35,32 +35,36 @@ $("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_spirits"></div>')
 
 /*
 
-
+// CHEAT: get random items in menu and in customer order
 for (var i = 0; i < 4; i++) {
-	var dom_menu_item = document.createElement("div");
-	dom_menu.appendChild(dom_menu_item);
-	dom_menu_item.classList.add("menu_item");
-	dom_menu_item.textContent = "beer " + (i+1);
 
-	var dom_order_item = document.createElement("div");
-	dom_order.appendChild(dom_order_item);
-	dom_order_item.classList.add("order_item");
-	dom_order_item.textContent = "beer " + (i+1) + " x1";
+/*
+
+
+	var item = $('<div class="menu_item"></div>');
+	$(item).attr("id", "item_" + i);
+	$(item).text("beer " + (i+1));
+	$("#menu").append(item);
+
+	var item_order = $('<div class="order_item"></div>');
+	$(item_order).attr("id", "item_order_" + i);
+	$(item_order).text("beer " + (i+1) + " x1");
+	$("#order").append(item_order);
 }
 
-var dom_balance = document.createElement("div");
-dom_guest.appendChild(dom_balance);
-dom_balance.id = "balance";
-dom_balance.textContent = "Money: " + 123; */
+// Checkout
+$("#guest").append('<div id="checkout"></div>');
 
 
-
-
+var total_cost = $('<p id="total_cost"></p>')
+$(total_cost).text("Total: " + get_total());
+$("#checkout").append(total_cost);
 
 function login_menu_login() {
 	$("#login").css("display", "none");
 	$("#menu").css("display", "block");
 }
+*/
 
 //updates view with text in Swedish or English
 function update_view() {
@@ -70,6 +74,12 @@ function update_view() {
 		$("#" + key).text(get_string(key));
 	}
 }
+
+// Return total cost of order
+function get_total() {
+	return 100; // CHEAT
+}
+
 // ===========================================================================
 // INITIALIZATION OF HTML AND MODEL DATA.
 // ===========================================================================
