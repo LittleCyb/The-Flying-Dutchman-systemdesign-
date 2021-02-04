@@ -1,3 +1,14 @@
+/*
+
+File: style.css
+
+Version 0.5
+Author: TODO: add our names
+
+A style sheet to customize and refine the appearance of the pub's application.
+*/
+
+/* Tags */
 body {
 	margin: 0;
 }
@@ -8,6 +19,14 @@ img {
     margin: 0 auto;
 }
 
+input {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px auto;
+}
+
+/* Classes */
+
 .main {
     background-color: burlywood;
     border: 2px solid black;
@@ -16,6 +35,24 @@ img {
     margin: 20px auto;
     height: 640px;
 }
+
+.menu_item {
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid black;
+    margin: 4px;
+    padding: 4px;
+}
+
+.order_item {
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid black;
+    margin: 4px;
+    padding: 4px;
+}
+
+/* ID:s */
 
 #guest {
 }
@@ -29,14 +66,6 @@ img {
     margin: 4px;
 }
 
-.menu_item {
-    display: flex;
-    flex-wrap: wrap;
-    border: 2px solid black;
-    margin: 4px;
-    padding: 4px;
-}
-
 #order {
     display: block;
     border: 2px solid black;
@@ -44,14 +73,6 @@ img {
     width: 40%;
     height: 294px;
     margin: 4px;
-}
-
-.order_item {
-    display: flex;
-    flex-wrap: wrap;
-    border: 2px solid black;
-    margin: 4px;
-    padding: 4px;
 }
 
 #balance {
@@ -78,8 +99,3 @@ img {
     width: 128px;
 }
 
-input {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 10px auto;
-}
