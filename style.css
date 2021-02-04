@@ -94,11 +94,12 @@ img {
 
 #login_button {
     display: flex;
+    justify-content: center;
+    border: 2px solid black;
     margin-left: 40%;
     margin-right: 40%;
-    margin-top: 2%;
-    height: 1.5em;
-    border: 2px solid black;
+    margin-top: 5px;
+    border-radius: 5px;
     background-color: #ffd29a;
 }
 
@@ -115,9 +116,10 @@ img {
     display: flex;
     flex-wrap: wrap;
     margin-top: -2%;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 30%;
+    margin-right: 30%;
     border: 2px solid black;
+    border-radius: 5px;
     background-color: #ffd29a;
 }
 

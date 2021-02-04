@@ -10,14 +10,16 @@
 var language = 'en'
 
 dict = {
-    'keys': ['login_text'],
+    'keys': ['login_text', 'login_button'],
 
     'en' : {
-        'login_text': "Login as admin, enter password below"
+        'login_text': "Login as admin, enter password below",
+        'login_button': "Login"
     },
 
     'sv' : {
-        'login_text': "Logga in som admin, ange lösenord nedan"
+        'login_text': "Logga in som admin, ange lösenord nedan",
+        'login_button': "Logga in"
     }
 }
 

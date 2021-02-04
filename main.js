@@ -29,7 +29,6 @@ dom_login_username.id = "login_input";
 var dom_login_button = document.createElement("span");
 dom_login.appendChild(dom_login_button);
 dom_login_button.id = "login_button";
-dom_login_button.addEventListener("click", login_menu_login);
 
 // guest
 
@@ -71,20 +70,18 @@ dom_balance.textContent = "Money: " + 123;
 
 
 
-// jquery from earlier
 function login_menu_login() {
-	$("#login_button").click(function() {
-		$("#login").css("display", "none");
-		$(".main").css("display", "block");
-	});
+	$("#login").css("display", "none");
+	$(".main").css("display", "block");
 }
 
+//updates view with text in Swedish or English
 function update_view() {
 	keys = dict['keys'];
 	for (idx in keys) {
 		key = keys[idx];
 		$("#" + key).text(get_string(key));
-	};
+	}
 }
 // ===========================================================================
 // INITIALIZATION OF HTML AND MODEL DATA.
@@ -102,10 +99,12 @@ function update_view() {
 //
 
 $(document).ready(function() {
-		update_view();
-		$("#login").css("display", "block");
+	update_view();
+	$("#login").css("display", "block");
+	document.getElementById("login_button").addEventListener("click", login_menu_login);
 	}
 );
+
 
 // ===========================================================================
 // END OF FILE
