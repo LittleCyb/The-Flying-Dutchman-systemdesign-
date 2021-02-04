@@ -1,28 +1,34 @@
-// document ready not needed, since script tag is at the end of the document
+/*
+ File: main.js
 
-// login
+ Author: TODO: add names
+
+
+ this js document contains the control logic for the application
+ */
+
+/* login admin screen */
 
 var dom_login = document.createElement("div");
 document.body.appendChild(dom_login);
 dom_login.id = "login";
 
-var dom_image_0 = document.createElement("img");
-dom_login.appendChild(dom_image_0);
-dom_image_0.src = "logo.png";
+var dom_login_image_0 = document.createElement("img");
+dom_login.appendChild(dom_login_image_0);
+dom_login_image_0.src = "logo.png";
 
-var dom_username = document.createElement("input");
-dom_login.appendChild(dom_username);
-dom_username.placeholder = "Enter username";
+var dom_login_text = document.createElement("p");
+dom_login.appendChild(dom_login_text);
+dom_login_text.id = "login_text";
 
-var dom_password = document.createElement("input");
-dom_login.appendChild(dom_password);
-dom_password.placeholder = "Enter password";
+var dom_login_username = document.createElement("span");
+dom_login.appendChild(dom_login_username);
+dom_login_username.contentEditable = "true";
+dom_login_username.id = "login_input";
 
-var dom_login_button = document.createElement("input");
+var dom_login_button = document.createElement("span");
 dom_login.appendChild(dom_login_button);
 dom_login_button.id = "login_button";
-dom_login_button.type = "button";
-dom_login_button.value = "Log in";
 
 // guest
 
@@ -64,10 +70,42 @@ dom_balance.textContent = "Money: " + 123;
 
 
 
-// jquery from earlier
-
-$("#login_button").click(function() {
+function login_menu_login() {
 	$("#login").css("display", "none");
 	$(".main").css("display", "block");
-	// TODO: different logins for different user types ...
-});
+}
+
+//updates view with text in Swedish or English
+function update_view() {
+	keys = dict['keys'];
+	for (idx in keys) {
+		key = keys[idx];
+		$("#" + key).text(get_string(key));
+	}
+}
+// ===========================================================================
+// INITIALIZATION OF HTML AND MODEL DATA.
+// ===========================================================================
+// This construct ensures that the document is finished loading before
+// the code below is executed. This is essentially the initialisation
+// of the HTML-page, which should be completely empty of content in the
+// program before start.
+//
+// The initialisation data could just as well have been fetched from a
+// file or other storage.
+//
+// Note that we make use of two dictionaries, the storage for constant values,
+// and a dictionary for strings. Both these will be useful later.
+//
+
+$(document).ready(function() {
+	update_view();
+	$("#login").css("display", "block");
+	document.getElementById("login_button").addEventListener("click", login_menu_login);
+	}
+);
+
+
+// ===========================================================================
+// END OF FILE
+// ===========================================================================

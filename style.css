@@ -11,18 +11,13 @@ A style sheet to customize and refine the appearance of the pub's application.
 /* Tags */
 body {
 	margin: 0;
+    font-family: 'Vollkorn', serif;
 }
 
 img {
     display: flex;
     width: 320px;
     margin: 0 auto;
-}
-
-input {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 10px auto;
 }
 
 /* Classes */
@@ -85,17 +80,47 @@ input {
     text-align: center;
 }
 
+/* Login ID:s */
+
 #login {
     background-color: burlywood;
     border: 2px solid black;
     display: block;
-    width: 50%;
-    margin: 20px auto;
-    height: 280px;
+    width: 60%;
+    margin: auto;
+    margin-top: 200px;
+    height: 300px;
 }
 
 #login_button {
-    height: 32px;
-    width: 128px;
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: #ffd29a;
 }
 
+#login_button:hover {
+    background-color: #ffb686
+}
+
+#login_text {
+    text-align: center;
+}
+
+
+#login_input {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -2%;
+    margin-left: 30%;
+    margin-right: 30%;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #ffd29a;
+}
+
+/* END OF FILE */
