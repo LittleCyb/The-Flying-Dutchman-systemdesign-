@@ -45,6 +45,17 @@ dom_menu_image_0.src = "logo.png";
 let dom_menu_bar = document.createElement("div");
 dom_menu.appendChild(dom_menu_bar);
 dom_menu_bar.id = "menu_bar";
+
+let dom_menu_bar_beers = document.createElement("div");
+dom_menu_bar.appendChild(dom_menu_bar_beers);
+dom_menu_bar_beers.classList.add("menu_bar_item");
+dom_menu_bar_beers.id = "menu_bar_beers";
+
+let dom_menu_bar_spirits = document.createElement("div");
+dom_menu_bar.appendChild(dom_menu_bar_spirits);
+dom_menu_bar_spirits.classList.add("menu_bar_item");
+dom_menu_bar_spirits.id = "menu_bar_spirits";
+
 /*
 var dom_image_1 = document.createElement("img");
 dom_guest.appendChild(dom_image_1);
@@ -63,7 +74,7 @@ for (var i = 0; i < 4; i++) {
 	dom_menu.appendChild(dom_menu_item);
 	dom_menu_item.classList.add("menu_item");
 	dom_menu_item.textContent = "beer " + (i+1);
-	
+
 	var dom_order_item = document.createElement("div");
 	dom_order.appendChild(dom_order_item);
 	dom_order_item.classList.add("order_item");
@@ -109,7 +120,7 @@ function update_view() {
 
 $(document).ready(function() {
 	update_view();
-	$("#login").css("display", "block");
+	$("#menu").css("display", "block");
 	document.getElementById("login_button").addEventListener("click", login_menu_login);
 	}
 );
