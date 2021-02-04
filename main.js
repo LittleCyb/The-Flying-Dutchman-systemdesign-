@@ -9,66 +9,46 @@
 
 /* login admin screen */
 
-var dom_login = document.createElement("div");
-document.body.appendChild(dom_login);
-dom_login.id = "login";
+$('body').append('<div id="login"></div>');
 
-var dom_login_image_0 = document.createElement("img");
-dom_login.appendChild(dom_login_image_0);
-dom_login_image_0.src = "logo.png";
+$("#login").append('<img id="logo" src="logo.png">');
 
-var dom_login_text = document.createElement("p");
-dom_login.appendChild(dom_login_text);
-dom_login_text.id = "login_text";
+$("#login").append('<p id="login_text"></p>');
 
-var dom_login_username = document.createElement("span");
-dom_login.appendChild(dom_login_username);
-dom_login_username.contentEditable = "true";
-dom_login_username.id = "login_input";
+$("#login").append('<span id="login_input"></span>');
+$("#login_input").attr("contentEditable", "true");
 
-var dom_login_button = document.createElement("span");
-dom_login.appendChild(dom_login_button);
-dom_login_button.id = "login_button";
+$("#login").append('<span id="login_button"></span>');
 
-// guest
+/* guest screen, temporary */
 
-var dom_guest = document.createElement("div");
-document.body.appendChild(dom_guest);
-dom_guest.id = "guest";
-dom_guest.classList.add("main")
+$('body').append('<div id="guest" class="main"></div>');
 
-var dom_image_1 = document.createElement("img");
-dom_guest.appendChild(dom_image_1);
-dom_image_1.src = "logo.png";
+$("#guest").append('<img id="logo" src="logo.png">');
 
-var dom_menu = document.createElement("div");
-dom_guest.appendChild(dom_menu);
-dom_menu.id = "menu";
+$("#guest").append('<div id="menu"></div>');
 
-var dom_order = document.createElement("div");
-dom_guest.appendChild(dom_order);
-dom_order.id = "order";
+$("#guest").append('<div id="order"></div>');
 
+// CHEAT: get random items in menu and in customer order
 for (var i = 0; i < 4; i++) {
-	var dom_menu_item = document.createElement("div");
-	dom_menu.appendChild(dom_menu_item);
-	dom_menu_item.classList.add("menu_item");
-	dom_menu_item.textContent = "beer " + (i+1);
-	
-	var dom_order_item = document.createElement("div");
-	dom_order.appendChild(dom_order_item);
-	dom_order_item.classList.add("order_item");
-	dom_order_item.textContent = "beer " + (i+1) + " x1";
+	var item = $('<div class="menu_item"></div>');
+	$(item).attr("id", "item_" + i);
+	$(item).text("beer " + (i+1));
+	$("#menu").append(item);
+
+	var item_order = $('<div class="order_item"></div>');
+	$(item_order).attr("id", "item_order_" + i);
+	$(item_order).text("beer " + (i+1) + " x1");
+	$("#order").append(item_order);
 }
 
-var dom_balance = document.createElement("div");
-dom_guest.appendChild(dom_balance);
-dom_balance.id = "balance";
-dom_balance.textContent = "Money: " + 123;
+// Checkout
+$("#guest").append('<div id="checkout"></div>');
 
-
-
-
+var total_cost = $('<p id="total_cost"></p>')
+$(total_cost).text("Total: " + get_total());
+$("#checkout").append(total_cost);
 
 function login_menu_login() {
 	$("#login").css("display", "none");
@@ -83,6 +63,12 @@ function update_view() {
 		$("#" + key).text(get_string(key));
 	}
 }
+
+// Return total cost of order
+function get_total() {
+	return 100; // CHEAT
+}
+
 // ===========================================================================
 // INITIALIZATION OF HTML AND MODEL DATA.
 // ===========================================================================
