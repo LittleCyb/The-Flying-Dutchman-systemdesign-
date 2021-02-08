@@ -30,13 +30,20 @@ $("#login").append('<span id="login_button"></span>');
 
 $('body').append('<div id="menu"></div>');
 
+$("#menu").append('<div id="menu_topbar"></div>');
+$("#menu_topbar").append('<span id="login_vip"></span>');
+
 $("#menu").append('<img id="logo" src="logo.png">');
 
 $("#menu").append('<div id="menu_bar"></div>');
 
 $("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_beers"></div>');
 
-$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_spirits"></div>');
+$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_cocktails"></div>');
+
+$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_wine"></div>');
+
+$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
 
 $("#menu").append('<div id="menu_view"></div>');
 

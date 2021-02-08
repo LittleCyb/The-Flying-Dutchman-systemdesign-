@@ -1,5 +1,5 @@
 var DB = {
-    "spirits" : [
+    "cocktails" : [
         {
             "name_sv" : "Vodka",
             "name_en" : "Vodka",

@@ -47,6 +47,30 @@ img {
     height: 30em;
 }
 
+#menu_topbar {
+	display: flex;
+	justify-content: flex-end;
+}
+
+
+#login_vip {
+    display: flex;
+	justify-content: center;
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: #ffd29a;
+	margin-right: 0.4em;
+	width: auto;
+	font-size: 0.7em;
+    padding: 4px;
+}
+
+
+#login_vip:hover {
+    background-color: #ffb686
+}
+
 #menu_bar {
 	display: flex;
 	justify-content: flex-start;
@@ -60,7 +84,7 @@ img {
 	margin: auto;
 	margin-top: 0.5em;
 	width: 90%;
-	height: 70%;
+	height: 60%;
 	overflow-y: scroll;
 }
 
@@ -94,11 +118,17 @@ img {
 
 #login_manager {
     display: flex;
+	justify-content: center;
     border: 1px solid black;
     margin-top: 5px;
     border-radius: 5px;
     background-color: #ffd29a;
+	margin-right: 0.4em;
+	width: auto;
+	font-size: 0.7em;
+    padding: 4px;
 }
+
 
 #login_manager:hover {
     background-color: #ffb686
@@ -126,16 +156,9 @@ img {
     justify-content: flex-end;
 }
 
-#login_manager {
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
-    font-size: 0.45em;
-    width: auto;
-    padding: 4px;
-    margin-right: 1em;
 
-}
+
+/* login ID:s */
 
 #language_bar {
     display: flex;
@@ -146,6 +169,9 @@ img {
     width: 5%;
     margin: 1em;
 }
+
+
+/* manager ID:s */
 
 #manager {
     background-color: burlywood;
