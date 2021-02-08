@@ -1,10 +1,7 @@
 /*
-
 File: style.css
-
 Version 0.5
 Author: TODO: add our names
-
 A style sheet to customize and refine the appearance of the pub's application.
 */
 
@@ -21,7 +18,8 @@ img {
     margin: 0 auto;
 }
 
-/* Classes */
+
+/* Menu Classes */
 
 .menu_bar_item {
 	display: flex;
@@ -97,9 +95,21 @@ img {
     background-color: #ffb686
 }
 
+#login_manager {
+    display: flex;
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: #ffd29a;
+}
+
+#login_manager:hover {
+    background-color: #ffb686
+}
+
 #login_text {
     text-align: center;
-	margin-top: 5px;
+    margin-top: 0px;
 }
 
 
@@ -112,6 +122,32 @@ img {
     border: 1px solid black;
     border-radius: 5px;
     background-color: #ffd29a;
+}
+
+#login_topbar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#login_manager {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    font-size: 0.45em;
+    width: auto;
+    padding: 4px;
+    margin-right: 1em;
+
+}
+
+#language_bar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#language {
+    width: 5%;
+    margin: 1em;
 }
 
 /* Scrollbar customisation */
