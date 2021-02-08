@@ -14,7 +14,7 @@ var DB = {
             "alcohol" : "50%",
             "volume" : "4cl",
             "price" : "70",
-            "glutan_free" : false
+            "gluten_free" : false
         }
     ],
     "beers" : [
@@ -32,7 +32,7 @@ var DB = {
             "alcohol" : "7.5%",
             "volume" : "50cl",
             "price" : "89",
-            "glutan_free" : false
+            "gluten_free" : false
         }
     ]
 }
