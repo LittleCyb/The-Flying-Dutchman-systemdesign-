@@ -112,7 +112,7 @@ img {
 
 #login_text {
     text-align: center;
-	margin-top: 5px;
+    margin-top: 0px;
 }
 
 
@@ -135,7 +135,8 @@ img {
 #login_manager {
     display: flex;
     justify-content: center;
-    font-size: 12;
+    margin-top: 8px;
+    font-size: 0.45em;
     width: auto;
     padding: 4px;
     margin-right: 1em;
