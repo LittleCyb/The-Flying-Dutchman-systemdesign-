@@ -38,8 +38,34 @@ function load_frame_login(old_frame) {
 	$("#login_input").attr("contentEditable", "true");
 
 	$("#login").append('<span id="login_button"></span>');
-	$("#login_button").attr("onclick", 'load_frame_menu("#login")');
+	$("#login_button").attr("onclick", 'load_frame_choose("#login")');
 
+	update_view();
+}
+
+/**
+ * load_frame_choose
+ * @desc Creates a choose table frame
+ * @param old_frame Old frame to be removed
+ */
+function load_frame_choose(old_frame) {
+	// Removes the old frame
+	if (old_frame) {
+		$(old_frame).remove();
+	}
+	// Adds the new frame
+	$('body').append('<div id="choose_screen"></div>');
+	$("#choose_screen").append('<img id="logo" src="logo.png">');
+	// Add tables
+	for (i = 1; i <= 9; i++) {
+		var table = $('<div class="table"></div>');
+		$(table).attr("id", "table_" + i);
+		$(table).attr("onclick", 'load_frame_menu("#choose_screen")');
+		$(table).text("Table " + i)
+		$("#choose_screen").append(table);
+	}
+	// Add bar
+	$('#choose_screen').append('<div class="table" id="table_bar"> Bar </div>');
 	update_view();
 }
 
