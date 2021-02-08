@@ -7,11 +7,19 @@
  this js document contains the control logic for the application
  */
 
+
+/* language selector */
+$('body').append('<div id="language_bar"</div>');
+$("#language_bar").append('<img id="language" src="">');
+
 /* login admin screen */
 
 $('body').append('<div id="login"></div>');
 
-$("#login").append('<img id="logo" src="logo.png">');
+$("#login").append('<div id="login_topbar"></div>');
+$("#login_topbar").append('<span id="login_manager"></span>');
+
+$("#login").append('<img id="logo" src="">');
 
 $("#login").append('<p id="login_text"></p>');
 
@@ -20,15 +28,30 @@ $("#login_input").attr("contentEditable", "true");
 
 $("#login").append('<span id="login_button"></span>');
 
-/* guest screen, temporary */
+// menu
 
-$('body').append('<div id="guest" class="main"></div>');
 
-$("#guest").append('<img id="logo" src="logo.png">');
+$('body').append('<div id="menu"></div>');
 
-$("#guest").append('<div id="menu"></div>');
+$("#menu").append('<img id="logo" src="logo.png">');
 
-$("#guest").append('<div id="order"></div>');
+$("#menu").append('<div id="menu_bar"></div>');
+
+$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_beers"></div>');
+
+$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_spirits"></div>');
+
+$("#menu").append('<div id="menu_view"></div>');
+
+$("#menu_view").append('<p> Lorem ipsum doltie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commod </p>');
+
+//manager
+$('body').append('<div id="manager"></div>');
+
+$("menu").append('<p>Manager Site</p>');
+
+
+/*
 
 // CHEAT: get random items in menu and in customer order
 for (var i = 0; i < 4; i++) {
@@ -50,9 +73,22 @@ var total_cost = $('<p id="total_cost"></p>')
 $(total_cost).text("Total: " + get_total());
 $("#checkout").append(total_cost);
 
+// Return total cost of order
+function get_total() {
+	return 100; // CHEAT
+}
+*/
+
 function login_menu_login() {
 	$("#login").css("display", "none");
-	$(".main").css("display", "block");
+	$("#menu").css("display", "block");
+	update_view();
+}
+
+function login_manager() {
+	$("#login").css("display", "none");
+	$("#manager").css("display", "block");
+	update_view();
 }
 
 //updates view with text in Swedish or English
@@ -62,12 +98,14 @@ function update_view() {
 		key = keys[idx];
 		$("#" + key).text(get_string(key));
 	}
+	pics = dict['pics'];
+	for (idx in pics) {
+		pic = pics[idx];
+		$("#" + pic).attr('src', get_string(pic));
+	}
 }
 
-// Return total cost of order
-function get_total() {
-	return 100; // CHEAT
-}
+
 
 // ===========================================================================
 // INITIALIZATION OF HTML AND MODEL DATA.
@@ -86,8 +124,11 @@ function get_total() {
 
 $(document).ready(function() {
 	update_view();
+	$("#language_bar").css("display", "flex");
 	$("#login").css("display", "block");
+	document.getElementById("language").addEventListener("click", change_language);
 	document.getElementById("login_button").addEventListener("click", login_menu_login);
+	document.getElementById("login_manager").addEventListener("click", login_manager);
 	}
 );
 
