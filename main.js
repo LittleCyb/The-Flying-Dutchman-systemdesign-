@@ -20,40 +20,64 @@ $("#login_input").attr("contentEditable", "true");
 
 $("#login").append('<span id="login_button"></span>');
 
-/* guest screen, temporary */
-
-$('body').append('<div id="guest" class="main"></div>');
-
-$("#guest").append('<img id="logo" src="logo.png">');
-
-$("#guest").append('<div id="menu"></div>');
-
-$("#guest").append('<div id="order"></div>');
-
-// CHEAT: get random items in menu and in customer order
-for (var i = 0; i < 4; i++) {
-	var item = $('<div class="menu_item"></div>');
-	$(item).attr("id", "item_" + i);
-	$(item).text("beer " + (i+1));
-	$("#menu").append(item);
-
-	var item_order = $('<div class="order_item"></div>');
-	$(item_order).attr("id", "item_order_" + i);
-	$(item_order).text("beer " + (i+1) + " x1");
-	$("#order").append(item_order);
-}
-
-// Checkout
-$("#guest").append('<div id="checkout"></div>');
-
-var total_cost = $('<p id="total_cost"></p>')
-$(total_cost).text("Total: " + get_total());
-$("#checkout").append(total_cost);
+/* Choose table/bar screen */
 
 function login_menu_login() {
-	$("#login").css("display", "none");
-	$(".main").css("display", "block");
+	// TODO: Admin password should redirect to admin_screen
+	$("#login").remove();
+	$('body').append('<div id="choose_screen"></div>');
+	$("#choose_screen").append('<img id="logo" src="logo.png">');
+	// Add tables
+	for (i = 1; i <= 9; i++) {
+		var table = $('<div class="table"></div>');
+		$(table).attr("id", "table_" + i);
+		$(table).attr("onclick", "go_to_guest_screen()");
+		$(table).text("Table " + i)
+		$("#choose_screen").append(table);
+	}
+	// Add bar
+	$('#choose_screen').append('<div class="table" id="table_bar"> Bar </div>');
 }
+
+/* Admin screen */
+
+/* guest screen, temporary */
+
+function go_to_guest_screen() {
+	$("#choose_screen").remove();
+
+	$('body').append('<div id="guest" class="main"></div>');
+
+	$("#guest").append('<img id="logo" src="logo.png">');
+
+	$("#guest").append('<div id="menu"></div>');
+
+	$("#guest").append('<div id="order"></div>');
+
+	// CHEAT: get random items in menu and in customer order
+	for (var i = 0; i < 4; i++) {
+		var item = $('<div class="menu_item"></div>');
+		$(item).attr("id", "item_" + i);
+		$(item).text("beer " + (i+1));
+		$("#menu").append(item);
+
+		var item_order = $('<div class="order_item"></div>');
+		$(item_order).attr("id", "item_order_" + i);
+		$(item_order).text("beer " + (i+1) + " x1");
+		$("#order").append(item_order);
+	}
+
+	// Checkout
+	$("#guest").append('<div id="checkout"></div>');
+
+	var total_cost = $('<p id="total_cost"></p>')
+	$(total_cost).text("Total: " + get_total());
+	$("#checkout").append(total_cost);
+
+}
+
+
+
 
 //updates view with text in Swedish or English
 function update_view() {
