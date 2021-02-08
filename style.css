@@ -7,7 +7,6 @@ A style sheet to customize and refine the appearance of the pub's application.
 
 /* Tags */
 body {
-	margin: 0;
     font-family: 'Vollkorn', serif;
 }
 
@@ -33,7 +32,7 @@ img {
 }
 
 .menu_bar_item:hover {
-    background-color: #ffdfb8
+    background-color:  #ffb686
 }
 
 /* Menu ID:s */
@@ -45,7 +44,7 @@ img {
     width: 75%;
     margin: 20px auto;
 	margin-top: 50px;
-    height: 85%;
+    height: 30em;
 }
 
 #menu_bar {
@@ -58,8 +57,6 @@ img {
 }
 
 #menu_view {
-	display: flex;
-	justify-content: center;
 	margin: auto;
 	margin-top: 0.5em;
 	width: 90%;
@@ -149,6 +146,17 @@ img {
     width: 5%;
     margin: 1em;
 }
+
+#manager {
+    background-color: burlywood;
+    border: 2px solid black;
+    display: none;
+    width: 75%;
+    margin: 20px auto;
+	margin-top: 50px;
+    height: 30em;
+}
+
 
 /* Scrollbar customisation */
 ::-webkit-scrollbar {
