@@ -18,6 +18,7 @@ img {
 }
 
 
+
 /* Menu Classes */
 
 .menu_bar_item {
@@ -35,12 +36,33 @@ img {
     background-color:  #ffb686
 }
 
+/* Choose table classes */
+
+.table {
+	float: left;
+	border: 2px solid black;
+	background-color: saddlebrown;
+	width: 10%;
+	height: 10%;
+	margin-left: 17.5%;
+	margin-top: 5%;
+	text-align: center;
+	color: #ffd29a;
+}
+.table:hover {
+	background-color: sienna;
+	}
+	#table_bar {
+	width: 20%;
+	margin-left: 40%;
+}
+
+
 /* Menu ID:s */
 
 #menu {
     background-color: burlywood;
     border: 2px solid black;
-    display: none;
     width: 75%;
     margin: 20px auto;
 	margin-top: 50px;
@@ -176,14 +198,13 @@ img {
 #manager {
     background-color: burlywood;
     border: 2px solid black;
-    display: none;
     width: 75%;
     margin: 20px auto;
 	margin-top: 50px;
     height: 30em;
 }
 
-/* choose table frame */
+/* choose table ID:s */
 #choose_screen {
 	background-color: burlywood;
 	border: 2px solid black;
@@ -192,24 +213,6 @@ img {
 	margin: auto;
 	margin-top: 100px;
 	height: 500px;
-}
-.table {
-	float: left;
-	border: 2px solid black;
-	background-color: saddlebrown;
-	width: 10%;
-	height: 10%;
-	margin-left: 17.5%;
-	margin-top: 5%;
-	text-align: center;
-	color: #ffd29a;
-}
-.table:hover {
-	background-color: sienna;
-	}
-	#table_bar {
-	width: 20%;
-	margin-left: 40%;
 }
 
 
