@@ -1,9 +1,6 @@
 /*
  File: dictionary.js
-
  Author: TODO: add names
-
-
  this js document contains the language data and related functions for the application
  */
 
@@ -13,8 +10,11 @@ dict = {
     'keys': ['login_text',
             'login_button',
             'menu_bar_beers',
-            'menu_bar_spirits',
-            'login_manager'],
+            'menu_bar_cocktails',
+            'menu_bar_wine',
+            'menu_bar_vip',
+            'login_manager',
+            'login_vip'],
     'pics': ['language',
             'logo'],
 
@@ -24,8 +24,11 @@ dict = {
         'login_text': "Login as admin, enter password below",
         'login_button': "Login",
         'menu_bar_beers': "Beer",
-        'menu_bar_spirits': "Spirits",
-        'login_manager': "Login as manager"
+        'menu_bar_cocktails': "Cocktails",
+        'menu_bar_wine': "Wine",
+        'menu_bar_vip': "VIP",
+        'login_manager': "Login as manager",
+        'login_vip': "VIP login"
     },
 
     'sv' : {
@@ -34,8 +37,11 @@ dict = {
         'login_text': "Logga in som admin, ange lösenord nedan",
         'login_button': "Logga in",
         'menu_bar_beers': "Öl",
-        'menu_bar_spirits': "Sprit",
-        'login_manager': "Logga in som manager"
+        'menu_bar_cocktails': "Cocktails",
+        'menu_bar_wine': "Vin",
+        'menu_bar_vip': "VIP",
+        'login_manager': "Logga in som manager",
+        'login_vip': "VIP login"
     }
 }
 

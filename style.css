@@ -1,16 +1,12 @@
 /*
-
 File: style.css
-
 Version 0.5
 Author: TODO: add our names
-
 A style sheet to customize and refine the appearance of the pub's application.
 */
 
 /* Tags */
 body {
-	margin: 0;
     font-family: 'Vollkorn', serif;
 }
 
@@ -20,6 +16,7 @@ img {
     width: 340px;
     margin: 0 auto;
 }
+
 
 
 /* Menu Classes */
@@ -36,8 +33,30 @@ img {
 }
 
 .menu_bar_item:hover {
-    background-color: #ffdfb8
+    background-color:  #ffb686
 }
+
+/* Choose table classes */
+
+.table {
+	float: left;
+	border: 2px solid black;
+	background-color: saddlebrown;
+	width: 10%;
+	height: 10%;
+	margin-left: 17.5%;
+	margin-top: 5%;
+	text-align: center;
+	color: #ffd29a;
+}
+.table:hover {
+	background-color: sienna;
+	}
+	#table_bar {
+	width: 20%;
+	margin-left: 40%;
+}
+
 
 /* Menu ID:s */
 
@@ -47,7 +66,31 @@ img {
     width: 75%;
     margin: 20px auto;
 	margin-top: 50px;
-    height: 85%;
+    height: 30em;
+}
+
+#menu_topbar {
+	display: flex;
+	justify-content: flex-end;
+}
+
+
+#login_vip {
+    display: flex;
+	justify-content: center;
+    border: 1px solid black;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: #ffd29a;
+	margin-right: 0.4em;
+	width: auto;
+	font-size: 0.7em;
+    padding: 4px;
+}
+
+
+#login_vip:hover {
+    background-color: #ffb686
 }
 
 #menu_bar {
@@ -60,12 +103,10 @@ img {
 }
 
 #menu_view {
-	display: flex;
-	justify-content: center;
 	margin: auto;
 	margin-top: 0.5em;
 	width: 90%;
-	height: 70%;
+	height: 60%;
 	overflow-y: scroll;
 }
 
@@ -99,11 +140,17 @@ img {
 
 #login_manager {
     display: flex;
+	justify-content: center;
     border: 1px solid black;
     margin-top: 5px;
     border-radius: 5px;
     background-color: #ffd29a;
+	margin-right: 0.4em;
+	width: auto;
+	font-size: 0.7em;
+    padding: 4px;
 }
+
 
 #login_manager:hover {
     background-color: #ffb686
@@ -131,50 +178,9 @@ img {
     justify-content: flex-end;
 }
 
-#login_manager {
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
-    font-size: 0.45em;
-    width: auto;
-    padding: 4px;
-    margin-right: 1em;
 
-}
 
-/* choose table frame */
-
-#choose_screen {
-    background-color: burlywood;
-    border: 2px solid black;
-    display: block;
-    width: 60%;
-    margin: auto;
-    margin-top: 100px;
-    height: 500px;
-}
-
-.table {
-    float: left;
-    border: 2px solid black;
-    background-color: saddlebrown;
-    width: 10%;
-    height: 10%;
-    margin-left: 17.5%;
-    margin-top: 5%;
-
-    text-align: center;
-    color: #ffd29a;
-}
-
-.table:hover {
-    background-color: sienna;
-}
-
-#table_bar {
-    width: 20%;
-    margin-left: 40%;
-}
+/* login ID:s */
 
 #language_bar {
     display: flex;
@@ -185,6 +191,30 @@ img {
     width: 5%;
     margin: 1em;
 }
+
+
+/* manager ID:s */
+
+#manager {
+    background-color: burlywood;
+    border: 2px solid black;
+    width: 75%;
+    margin: 20px auto;
+	margin-top: 50px;
+    height: 30em;
+}
+
+/* choose table ID:s */
+#choose_screen {
+	background-color: burlywood;
+	border: 2px solid black;
+	display: block;
+	width: 60%;
+	margin: auto;
+	margin-top: 100px;
+	height: 500px;
+}
+
 
 /* Scrollbar customisation */
 ::-webkit-scrollbar {
