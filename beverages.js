@@ -1,38 +1,38 @@
-var DB = {
+/*
+ File: beverages.js
+ Author: TODO: add names
+ this js document contains the beverages served at the pub.
+ */
+
+var drink = 'beers';
+
+db = {
     "cocktails" : [
-        {
-            "name_sv" : "Vodka",
-            "name_en" : "Vodka",
-            "alochol" : "37.5%",
-            "volume" : "4cl",
-            "price" : "45",
-            "gluten_free" : true
-        },
-        {
-            "name_sv" : "Whisky",
-            "name_en" : "Whisky",
-            "alcohol" : "50%",
-            "volume" : "4cl",
-            "price" : "70",
-            "gluten_free" : false
-        }
     ],
     "beers" : [
-        {
-            "name_sv" : "Ljus öl",
-            "name_en" : "Light beer",
-            "alochol" : "3.5%",
-            "volume" : "50cl",
-            "price" : "70",
-            "gluten_free" : false
-        },
-        {
-            "name_sv" : "Mörk öl",
-            "name_en" : "Dark beer",
-            "alcohol" : "7.5%",
-            "volume" : "50cl",
-            "price" : "89",
-            "gluten_free" : false
-        }
+    ],
+    "wine" : [
+    ],
+    "vip" : [
     ]
+}
+
+function get_drink_string(key) {
+    return db[drink][key];
+}
+
+function display_beers() {
+    drink = 'beers';
+}
+
+function display_wine() {
+    drink = 'wine';
+}
+
+function display_cocktails() {
+    drink = 'cocktails';
+}
+
+function display_vip() {
+    drink = "vip";
 }
