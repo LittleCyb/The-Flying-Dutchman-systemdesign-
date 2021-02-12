@@ -1,10 +1,23 @@
 /*
  File: beverages.js
  Author: TODO: add names
- this js document contains the beverages served at the pub.
+This js document contains the beverages served at the pub.
  */
 
 var drink = 'beers';
+
+beverages_pics = {
+    "Flaska": "bottle.jpg",
+    "Burk": "can.jpg",
+    "Nederländerna": "nl.jpg",
+    "Storbrittaninen": "eng.jpg",
+    "Sverige": "sv.jpg",
+    "Folkrepubliken Kina": "ch.jpg",
+    "Tjeckien": "cz.jpg",
+    "Italien": "it.jpg",
+    "Österrike": "au.jpg",
+    "Nya Zeeland": "nz.jpg"
+}
 
 db = {
     "cocktails" : [
@@ -75,7 +88,7 @@ db = {
             "forpackning": "Flaska",
             "forslutning": "Skruvkapsyl",
             "ursprung": "",
-            "ursprunglandnamn": "Internationellt märke",
+            "ursprunglandnamn": "Sverige",
             "producent": "Bacardi",
             "leverantor": "Bacardi AB",
             "argang": "",
