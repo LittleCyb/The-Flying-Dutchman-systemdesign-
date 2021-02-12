@@ -12,7 +12,16 @@
 function load_topbar_language() {
 	$('body').append('<div id="language_bar"</div>');
 	$("#language_bar").append('<img id="language" src="">');
-	document.getElementById("language").addEventListener("click", change_language);
+	document.getElementById("language").addEventListener("click", change_language_control);
+}
+
+/**
+*	change_language_control
+*	@desc updates language
+*/
+function change_language_control() {
+	change_language();
+	update_view();
 }
 
 /**
@@ -90,19 +99,67 @@ function load_frame_menu(old_frame) {
 	$("#menu").append('<div id="menu_bar"></div>');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_beers"></div>');
+	$("#menu_bar_beers").attr("onclick", 'view_menu_items("beers")');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_cocktails"></div>');
+	$("#menu_bar_cocktails").attr("onclick", 'view_menu_items("cocktails")');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_wine"></div>');
+	$("#menu_bar_wine").attr("onclick", 'view_menu_items("wine")');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
+	$("#menu_bar_vip").attr("onclick", 'view_menu_items("vip")');
 
-	$("#menu").append('<div id="menu_view"></div>');
-
-	$("#menu_view").append('<p> Lorem ipsum doltie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commodtie, mollis ut elit. Aenean arcu velit, congue non rhoncus ac, malesuada bibendum ipsum. Sed pretium imperdiet mattis. Phasellus sed felis erat. Phasellus nec neque felis. Morbi nec ante libero. Nullam eget tellus consectetur, elementum purus sit amet, efficitur nunc. Sed mattis nisi at dolor cursus, vel dignissim neque cursus. Vestibulum elementum lacinia quam, in elementum nunc consectetur consectetur. Phasellus sollicitudin ipsum metus, vitae faucibus nulla venenatis non. Fusce quis nisi lacus. Integer semper diam nec libero blandit, a finibus felis maximus. Nulla interdum commod </p>');
-
+	load_menu_view();
+	view_menu_items("beers"); //shows beer by default
 	update_view();
 }
+
+/**
+ * view_menu_items
+ * @desc Displays chosen menu items in menu view frame
+ */
+function view_menu_items(item) {
+	hide_menu_views();
+
+	$("#menu_view_" + item).css("display", "block");
+	update_view();
+}
+
+/**
+ * load_menu_view
+ * @desc loads menu view frame
+ */
+function load_menu_view() {
+	//loads div for menu_view to put items in
+	$("#menu").append('<div id="menu_view"></div>');
+
+	//adds new menu view content
+	$("#menu_view").append('<div id="menu_view_beers"></div>');
+	$("#menu_view_beers").append('<p>Beers</p>');
+
+	$("#menu_view").append('<div id="menu_view_cocktails"></div>');
+	$("#menu_view_cocktails").append('<p>Cocktails</p>');
+
+	$("#menu_view").append('<div id="menu_view_wine"></div>');
+	$("#menu_view_wine").append('<p>Wine</p>');
+
+	$("#menu_view").append('<div id="menu_view_vip"></div>');
+	$("#menu_view_vip").append('<p>VIP</p>');
+
+	hide_menu_views();
+}
+
+/**
+*	hide_menu_views
+* @desc hides all menu views
+*/
+function hide_menu_views() {
+	for(idx in db) {
+		$("#menu_view_" + idx).css("display", "none");
+	}
+}
+
 
 /**
  * load_frame_manager
@@ -111,7 +168,7 @@ function load_frame_menu(old_frame) {
  */
 function load_frame_manager(old_frame) {
 	// Removes the old frame
-	if (old_frame) {
+	if (old_frame) { //FIXME do we need to add "#" + old_frame to make it a valid statement?
 		$("#" + old_frame).remove();
 	}
 

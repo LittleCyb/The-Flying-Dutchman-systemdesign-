@@ -53,7 +53,6 @@ function change_language() {
     if (language =='en') {
         language = 'sv';
     } else { language = 'en'};
-    update_view();
 }
 
 /* END OF FILE */
