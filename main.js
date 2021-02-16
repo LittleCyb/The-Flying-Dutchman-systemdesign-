@@ -99,32 +99,35 @@ function load_frame_menu(old_frame) {
 	$("#menu").append('<div id="menu_bar"></div>');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_beers"></div>');
-	$("#menu_bar_beers").attr("onclick", 'view_menu_items("beers")');
+	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_cocktails"></div>');
-	$("#menu_bar_cocktails").attr("onclick", 'view_menu_items("cocktails")');
+	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_wine"></div>');
-	$("#menu_bar_wine").attr("onclick", 'view_menu_items("wine")');
+	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
-	$("#menu_bar_vip").attr("onclick", 'view_menu_items("vip")');
+	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
 
 	load_menu_view();
-	view_menu_items("beers"); //shows beer by default
+	display_menu_items("beers"); //shows beer by default
 	update_view();
 }
 
 /**
- * view_menu_items
+ * display_menu_items
  * @desc Displays chosen menu items in menu view frame
+ * @arg item type to dislay
  */
-function view_menu_items(item) {
+function display_menu_items(item) {
 	hide_menu_views();
 
 	$("#menu_view_" + item).css("display", "block");
 	update_view();
 }
+
+
 
 /**
  * load_menu_view
@@ -137,6 +140,13 @@ function load_menu_view() {
 	//adds new menu view content
 	$("#menu_view").append('<div id="menu_view_beers"></div>');
 	$("#menu_view_beers").append('<p>Beers</p>');
+
+	var beer_selection = db["beers"];
+	for(idx in beer_selection) {
+		$("#menu_view_beers").append(beer_selection[idx]["namn"] +  '<br>'); // used <br> because \n doesn't seem to work.
+
+	}
+
 
 	$("#menu_view").append('<div id="menu_view_cocktails"></div>');
 	$("#menu_view_cocktails").append('<p>Cocktails</p>');
