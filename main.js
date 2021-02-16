@@ -63,8 +63,10 @@ function load_frame_choose(old_frame) {
 		$("#" + old_frame).remove();
 	}
 	// Adds the new frame
-	$('body').append('<div id="choose_screen"></div>');
-	$("#choose_screen").append('<img id="logo" src="">');
+	$('body').append('<div id="main_frame"></div>');
+	$("#main_frame").append('<img id="logo" src="">');
+
+	$('#main_frame').append('<div id="choose_screen"></div>');
 	// Add tables
 	for (i = 1; i <= 9; i++) {
 		var table = $('<div class="table"></div>');
@@ -89,12 +91,11 @@ function load_frame_menu(old_frame) {
 		$("#" + old_frame).remove();
 	}
 	// Adds the new frame
-	$('body').append('<div id="menu"></div>');
+	$('#main_frame').append('<div id="menu"></div>');
+
+	$("#menu").append('<span id="login_vip"></span>');
 
 	$("#menu").append('<div id="menu_topbar"></div>');
-	$("#menu_topbar").append('<span id="login_vip"></span>');
-
-	$("#menu").append('<img id="logo" src="logo.png">');
 
 	$("#menu").append('<div id="menu_bar"></div>');
 
