@@ -4,8 +4,6 @@
 This js document contains the beverages served at the pub.
  */
 
-var drink = 'beers';
-
 beverages_pics = {
     "Flaska": "bottle.jpg",
     "Burk": "can.jpg",
@@ -19,6 +17,15 @@ beverages_pics = {
     "Nya Zeeland": "nz.jpg"
 }
 
+
+const cocktail_info = ["namn", "alkoholhalt", "volym", "prisinklmoms"];
+const beer_info = ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"];
+const wine_info = ["namn", "saljstart", "producent", "varugrupp", "volym", "prisinklmoms", "tanniner"];
+const vip_info = ["namn", "producent", "volym", "prisinklmoms"];
+
+
+
+
 db = {
     "cocktails" : [
         {
@@ -27,7 +34,7 @@ db = {
             "varnummer": "766",
             "namn": "Margarita Cocktail",
             "namn2": "",
-            "prisinklmoms": "130.00",
+            "prisinklmoms": "130.00 SEK",
             "volymiml": null,
             "prisperliter": null,
             "saljstart": "2011-04-01",
@@ -45,7 +52,8 @@ db = {
             "modul": "",
             "sortiment": "BS",
             "ekologisk": "0",
-            "koscher": "0"
+            "koscher": "0",
+            "volym": "33cl",
         },
         {
             "nr": "76814",
@@ -53,7 +61,7 @@ db = {
             "varnummer": "768",
             "namn": "3rd Rock Green Apple",
             "namn2": "",
-            "prisinklmoms": "24.10",
+            "prisinklmoms": "24.10 SEK",
             "volymiml": null,
             "prisperliter": null,
             "saljstart": "2011-10-01",
@@ -71,7 +79,8 @@ db = {
             "modul": "",
             "sortiment": "FS",
             "ekologisk": "0",
-            "koscher": "0"
+            "koscher": "0",
+            "volym": "40cl",
         },
         {
             "nr": "76901",
@@ -79,7 +88,7 @@ db = {
             "varnummer": "769",
             "namn": "Bacardi",
             "namn2": "Mojito Classic",
-            "prisinklmoms": "130.00",
+            "prisinklmoms": "130.00 SEK",
             "volymiml": null,
             "prisperliter": null,
             "saljstart": "2010-03-24",
@@ -97,7 +106,8 @@ db = {
             "modul": "",
             "sortiment": "FS",
             "ekologisk": "0",
-            "koscher": "0"
+            "koscher": "0",
+            "volym": "50cl",
         }
     ],
     "beers" : [
@@ -107,7 +117,7 @@ db = {
         "varnummer": "89006",
         "namn": "Hong Kong Dragon's Back",
         "namn2": "IPA",
-        "prisinklmoms": "38.70",
+        "prisinklmoms": "38.70 SEK",
         "volymiml": null,
         "prisperliter": null,
         "saljstart": "2012-03-01",
@@ -125,7 +135,8 @@ db = {
         "modul": "",
         "sortiment": "BS",
         "ekologisk": "0",
-        "koscher": "0"
+        "koscher": "0",
+        "volym": "33cl",
     },
     {
         "nr": "8966503",
@@ -133,7 +144,7 @@ db = {
         "varnummer": "89665",
         "namn": "Södra",
         "namn2": "Lager",
-        "prisinklmoms": "20.20",
+        "prisinklmoms": "20.20 SEK",
         "volymiml": null,
         "prisperliter": null,
         "saljstart": "2012-06-01",
@@ -151,7 +162,8 @@ db = {
         "modul": "",
         "sortiment": "BS",
         "ekologisk": "0",
-        "koscher": "0"
+        "koscher": "0",
+        "volym" : "33cl",
     },
     {
         "nr": "8968101",
@@ -159,7 +171,7 @@ db = {
         "varnummer": "89681",
         "namn": "Praga",
         "namn2": "Dark Lager",
-        "prisinklmoms": "17.90",
+        "prisinklmoms": "17.90 SEK",
         "volymiml": null,
         "prisperliter": null,
         "saljstart": "2012-08-01",
@@ -177,7 +189,8 @@ db = {
         "modul": "",
         "sortiment": "BS",
         "ekologisk": "0",
-        "koscher": "0"
+        "koscher": "0",
+        "volym": "33cl",
     }
     ],
     "wine" : [
@@ -187,7 +200,7 @@ db = {
             "varnummer": "89701",
             "namn": "Barberino",
             "namn2": "Grappa da Vinacce di Vernaccia",
-            "prisinklmoms": "450.00",
+            "prisinklmoms": "450.00 SEK",
             "volymiml": null,
             "prisperliter": null,
             "saljstart": "2008-06-02",
@@ -205,7 +218,9 @@ db = {
             "modul": "",
             "sortiment": "BS",
             "ekologisk": "0",
-            "koscher": "0"
+            "koscher": "0",
+            "volym": "75cl",
+            "tanniner": "5",
         },
         {
             "nr": "8974301",
@@ -213,7 +228,7 @@ db = {
             "varnummer": "89743",
             "namn": "Edition Chremisa",
             "namn2": "Blauer Zweigelt",
-            "prisinklmoms": "167.00",
+            "prisinklmoms": "167.00 SEK",
             "volymiml": null,
             "prisperliter": null,
             "saljstart": "2008-06-02",
@@ -231,7 +246,9 @@ db = {
             "modul": "",
             "sortiment": "BS",
             "ekologisk": "0",
-            "koscher": "0"
+            "koscher": "0",
+            "volym": "15cl",
+            "tanniner": "4",
         },
         {
             "nr": "9001201",
@@ -239,7 +256,7 @@ db = {
             "varnummer": "90012",
             "namn": "Cloudy Bay",
             "namn2": "Chardonnay",
-            "prisinklmoms": "221.00",
+            "prisinklmoms": "221.00 SEK",
             "volymiml": null,
             "prisperliter": null,
             "saljstart": "2013-12-02",
@@ -257,7 +274,9 @@ db = {
             "modul": "",
             "sortiment": "TSE",
             "ekologisk": "0",
-            "koscher": "0"
+            "koscher": "0",
+            "volym": "15cl",
+            "tanniner": "1",
         },
 
     ],
@@ -267,7 +286,7 @@ db = {
         "artikelid": "666666",
         "namn": "Mellanmjölk",
         "namn2": "Mjölk",
-        "prisinklmoms": "5.00",
+        "prisinklmoms": "5.00 SEK",
         "volymiml": null,
         "prisperliter": null,
         "saljstart": "2013-12-02",
@@ -285,27 +304,12 @@ db = {
         "modul": "",
         "sortiment": "HAHA",
         "ekologisk": "1",
-        "koscher": "0"
+        "koscher": "0",
+        "volym": "25cl",
     }
     ]
 }
 
-function get_drink_string(key) {
-    return db[drink][key];
-}
-
-function display_beers() {
-    drink = 'beers';
-}
-
-function display_wine() {
-    drink = 'wine';
-}
-
-function display_cocktails() {
-    drink = 'cocktails';
-}
-
-function display_vip() {
-    drink = "vip";
+function get_drink_string(drink, index, key) {
+    return db[drink][index][key];
 }

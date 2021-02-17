@@ -122,7 +122,6 @@ function load_frame_menu(old_frame) {
  */
 function display_menu_items(item) {
 	hide_menu_views();
-
 	$("#menu_view_" + item).css("display", "block");
 	update_view();
 }
@@ -134,28 +133,50 @@ function display_menu_items(item) {
  * @desc loads menu view frame
  */
 function load_menu_view() {
+
 	//loads div for menu_view to put items in
 	$("#menu").append('<div id="menu_view"></div>');
 
-	//adds new menu view content
 	$("#menu_view").append('<div id="menu_view_beers"></div>');
-	$("#menu_view_beers").append('<p>Beers</p>');
-
-	var beer_selection = db["beers"];
-	for(idx in beer_selection) {
-		$("#menu_view_beers").append(beer_selection[idx]["namn"] +  '<br>'); // used <br> because \n doesn't seem to work.
-
+	for(idx in db["beers"]) {
+		for(const info of beer_info) {
+			$("#menu_view_beers").append(get_drink_string("beers", idx, info) +  '<br>');
+		}
+		$("#menu_view_beers").append('<div class="add_item_button" id="temp_id">+ 1</div>');
+		document.getElementById('temp_id').id = get_drink_string("beers", idx, "namn");
+		$("#menu_view_beers").append('<br>');
 	}
 
 
 	$("#menu_view").append('<div id="menu_view_cocktails"></div>');
-	$("#menu_view_cocktails").append('<p>Cocktails</p>');
+	for(idx in db["cocktails"]) {
+		for(const info of cocktail_info) {
+			$("#menu_view_cocktails").append(get_drink_string("cocktails", idx, info) +  '<br>');
+		}
+		$("#menu_view_cocktails").append('<div class="add_item_button" id="temp_id">+ 1</div>');
+		document.getElementById('temp_id').id = get_drink_string("cocktails", idx, "namn");
+		$("#menu_view_cocktails").append('<br>');
+	}
 
 	$("#menu_view").append('<div id="menu_view_wine"></div>');
-	$("#menu_view_wine").append('<p>Wine</p>');
+	for(idx in db["wine"]) {
+		for(const info of wine_info) {
+			$("#menu_view_wine").append(get_drink_string("wine", idx, info) +  '<br>');
+		}
+		$("#menu_view_wine").append('<div class="add_item_button" id="temp_id">+ 1</div>');
+		document.getElementById('temp_id').id = get_drink_string("wine", idx, "namn");
+		$("#menu_view_wine").append('<br>');
+	}
 
 	$("#menu_view").append('<div id="menu_view_vip"></div>');
-	$("#menu_view_vip").append('<p>VIP</p>');
+	for(idx in db["vip"]) {
+		for(const info of vip_info) {
+			$("#menu_view_vip").append(get_drink_string("vip", idx, info) +  '<br>');
+		}
+		$("#menu_view_vip").append('<div class="add_item_button" id="temp_id">+ 1</div>');
+		document.getElementById('temp_id').id = get_drink_string("beers", idx, "namn");
+		$("#menu_view_vip").append('<br>');
+	}
 
 	hide_menu_views();
 }
@@ -218,7 +239,7 @@ function update_view() {
 
 $(document).ready(function() {
 	load_topbar_language();
-	load_frame_login();
+	load_frame_menu(); //FIXME return to load_frame_login()
 });
 
 

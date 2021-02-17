@@ -7,7 +7,7 @@ A style sheet to customize and refine the appearance of the pub's application.
 
 /* Tags */
 body {
-    font-family: 'Vollkorn', serif;
+    font-family: 'Calibri', serif;
 }
 
 img {
@@ -17,7 +17,20 @@ img {
     margin: 0 auto;
 }
 
+/*button classes*/
+.add_item_button {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    margin-right: 70%;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: #ffd29a;
+}
 
+.add_item_button:hover {
+    background-color: #ffb686
+}
 
 /* Menu Classes */
 
@@ -104,7 +117,7 @@ img {
 
 #menu_view {
 	margin: auto;
-	margin-top: 0.5em;
+	margin-top: 1em;
 	width: 90%;
 	height: 60%;
 	overflow-y: scroll;
