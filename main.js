@@ -110,6 +110,9 @@ function load_frame_menu(old_frame) {
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
 
+	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_order"></div>');
+	$("#menu_bar_order").attr("onclick", 'display_menu_items("order")');
+
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
 	update_view();
@@ -177,6 +180,9 @@ function load_menu_view() {
 		document.getElementById('temp_id').id = get_drink_string("beers", idx, "namn");
 		$("#menu_view_vip").append('<br>');
 	}
+
+	$("#menu_view").append('<div id="menu_view_order"></div>');
+	
 
 	hide_menu_views();
 }
