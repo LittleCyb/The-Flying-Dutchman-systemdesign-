@@ -6,6 +6,8 @@
 
 var language = 'sv'
 
+var current_table = '1'; //TODO make correspond to what table one selects
+
 dict = {
     'keys': ['login_text',
             'login_button',

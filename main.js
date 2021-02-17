@@ -146,7 +146,10 @@ function load_menu_view() {
 			$("#menu_view_beers").append(get_drink_string("beers", idx, info) +  '<br>');
 		}
 		$("#menu_view_beers").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		document.getElementById('temp_id').id = get_drink_string("beers", idx, "namn");
+		var new_id = get_drink_string("beers", idx, "namn");
+		document.getElementById('temp_id').id = new_id;
+		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false); //TODO only adds "Praga" beer to orders database
+
 		$("#menu_view_beers").append('<br>');
 	}
 
@@ -182,7 +185,7 @@ function load_menu_view() {
 	}
 
 	$("#menu_view").append('<div id="menu_view_order"></div>');
-	
+
 
 	hide_menu_views();
 }
@@ -195,6 +198,16 @@ function hide_menu_views() {
 	for(idx in db) {
 		$("#menu_view_" + idx).css("display", "none");
 	}
+}
+
+/**
+*	add_item_to_order
+*	@desc adds a an item to the table's order
+*	@arg item to add to table's order
+*/
+function add_item_to_order(item) {
+	var order = orders[current_table];
+	order.push(item);
 }
 
 
@@ -226,6 +239,13 @@ function update_view() {
 	}
 }
 
+/** clear_orders
+*	@desc to clear unfinished orders if user refreshes the page/exits page
+*/
+function clear_orders() {
+	orders[current_table] = [];
+}
+
 
 
 // ===========================================================================
@@ -244,9 +264,11 @@ function update_view() {
 //
 
 $(document).ready(function() {
+	clear_orders(); //so a new instance gets doesn't have old order information. Might remove if we add functionality with BAR menu being able to delete orders. //FIXME in that case
 	load_topbar_language();
 	load_frame_menu(); //FIXME return to load_frame_login()
 });
+
 
 
 // ===========================================================================
