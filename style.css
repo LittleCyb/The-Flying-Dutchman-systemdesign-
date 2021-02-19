@@ -19,18 +19,30 @@ img {
 }
 
 /* Main frame
-   Contains logo image and appends a frame below logo
+   Contains logo image and appends a frame below logo.
+   Only used with desktops or wide screens
 */
-
 @media only screen and (max-height: 1080px) {
     #main_frame {
         background-color: burlywood;
+        background-image: url("ship.png");
+        background-repeat: no-repeat;
+        background-size: cover;
         border: 2px solid black;
         width: 75%;
         max-width: 1600px;
         margin: 0 auto;
         height: 800px;
     }
+}
+/* When using a iPad or cellphone or other screen with a "high-screen" view */
+@media only screen and (min-height: 1081px) {
+   body {
+        background-color: burlywood;
+        background-image: url("ship.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+   }
 }
 
 /* Menu Classes */
@@ -47,10 +59,15 @@ img {
 }
 
 .menu_bar_item:hover {
-    background-color:  #ffb686
+    background-color:  #ffb686;
 }
 
 /* Choose table classes */
+
+#choose_welcome {
+    text-align: center;
+    margin: 10px;
+}
 
 .table {
 	float: left;
@@ -58,11 +75,16 @@ img {
 	background-color: saddlebrown;
 	width: 10%;
 	height: 10%;
-	margin-left: 17.5%;
-	margin-top: 5%;
+	margin: 2.5% 0 2.5% 17.5%;
 	text-align: center;
 	color: #ffd29a;
     cursor: pointer;
+}
+
+@media only screen and (min-height: 1081px) {
+    .table {
+        height: 100px;
+    }
 }
 .table:hover {
 	background-color: sienna;
@@ -72,7 +94,6 @@ img {
 	width: 20%;
 	margin-left: 40%;
 }
-
 
 /* Menu ID:s */
 /* If using a desktop */
@@ -95,10 +116,7 @@ img {
 
 #login_vip {
     display: flex;
-    position: relative;
     float: right;
-    top: -137px; /* lösa detta på något snyggare sätt? */
-    right: -12px; /* lösa detta på något snyggare sätt? */
     border: 1px solid black;
     border-radius: 5px;
     background-color: #ffd29a;
@@ -141,6 +159,17 @@ img {
     #login {
         background-color: burlywood;
         border: 2px solid black;
+        display: block;
+        width: 60%;
+        max-width: 640px;
+        margin: auto;
+        margin-top: 200px;
+        height: 320px;
+    }
+}
+
+@media only screen and (min-height: 1081px) {
+    #login {
         display: block;
         width: 60%;
         max-width: 640px;

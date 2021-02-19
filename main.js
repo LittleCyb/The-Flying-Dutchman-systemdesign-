@@ -67,6 +67,9 @@ function load_frame_choose(old_frame) {
 	$("#main_frame").append('<img id="logo" src="">');
 
 	$('#main_frame').append('<div id="choose_screen"></div>');
+	// Welcoming text
+	$('#choose_screen').append('<h1 id="choose_welcome"></h1>')
+	$('#choose_welcome').text("Please seat yourself at a table");
 	// Add tables
 	for (i = 1; i <= 9; i++) {
 		var table = $('<div class="table"></div>');
@@ -93,7 +96,6 @@ function load_frame_menu(old_frame) {
 	// Adds the new frame
 	$('#main_frame').append('<div id="menu"></div>');
 
-	$("#menu").append('<span id="login_vip"></span>');
 
 	$("#menu").append('<div id="menu_topbar"></div>');
 
@@ -111,6 +113,8 @@ function load_frame_menu(old_frame) {
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
 	$("#menu_bar_vip").attr("onclick", 'view_menu_items("vip")');
 
+	$("#menu").append('<span id="login_vip"></span>');
+
 	load_menu_view();
 	view_menu_items("beers"); //shows beer by default
 	update_view();
@@ -122,8 +126,9 @@ function load_frame_menu(old_frame) {
  */
 function view_menu_items(item) {
 	hide_menu_views();
-
 	$("#menu_view_" + item).css("display", "block");
+	// Make a button appear active
+	$("#menu_bar_" + item).css("background-color", "#ffb686");
 	update_view();
 }
 
@@ -158,6 +163,8 @@ function load_menu_view() {
 function hide_menu_views() {
 	for(idx in db) {
 		$("#menu_view_" + idx).css("display", "none");
+		// Reset active buttons
+		$("#menu_bar_" + idx).css("background-color", "");
 	}
 }
 
