@@ -67,7 +67,7 @@ function load_frame_choose(old_frame) {
 	$("#choose_screen").append('<img id="logo" src="">');
 	// Add tables
 	for (i = 1; i <= 9; i++) {
-		var table = $('<div class="table"></div>');
+		let table = $('<div class="table"></div>');
 		$(table).attr("id", "table_" + i);
 		$(table).attr("onclick", 'load_frame_menu("choose_screen")');
 		$(table).text("Table " + i)
@@ -146,9 +146,9 @@ function load_menu_view() {
 			$("#menu_view_beers").append(get_drink_string("beers", idx, info) +  '<br>');
 		}
 		$("#menu_view_beers").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		var new_id = get_drink_string("beers", idx, "namn");
+		let new_id = get_drink_string("beers", idx, "namn");
 		document.getElementById('temp_id').id = new_id;
-		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false); //TODO only adds "Praga" beer to orders database
+		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
 
 		$("#menu_view_beers").append('<br>');
 	}
@@ -160,7 +160,9 @@ function load_menu_view() {
 			$("#menu_view_cocktails").append(get_drink_string("cocktails", idx, info) +  '<br>');
 		}
 		$("#menu_view_cocktails").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		document.getElementById('temp_id').id = get_drink_string("cocktails", idx, "namn");
+		let new_id = get_drink_string("cocktails", idx, "namn");
+		document.getElementById('temp_id').id = new_id;
+		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
 		$("#menu_view_cocktails").append('<br>');
 	}
 
@@ -170,7 +172,9 @@ function load_menu_view() {
 			$("#menu_view_wine").append(get_drink_string("wine", idx, info) +  '<br>');
 		}
 		$("#menu_view_wine").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		document.getElementById('temp_id').id = get_drink_string("wine", idx, "namn");
+		let new_id = get_drink_string("wine", idx, "namn");
+		document.getElementById('temp_id').id = new_id;
+		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
 		$("#menu_view_wine").append('<br>');
 	}
 
@@ -180,7 +184,9 @@ function load_menu_view() {
 			$("#menu_view_vip").append(get_drink_string("vip", idx, info) +  '<br>');
 		}
 		$("#menu_view_vip").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		document.getElementById('temp_id').id = get_drink_string("beers", idx, "namn");
+		let new_id = get_drink_string("vip", idx, "namn");
+		document.getElementById('temp_id').id = new_id;
+		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
 		$("#menu_view_vip").append('<br>');
 	}
 
@@ -206,7 +212,7 @@ function hide_menu_views() {
 *	@arg item to add to table's order
 */
 function add_item_to_order(item) {
-	var order = orders[current_table];
+	let order = orders[current_table];
 	order.push(item);
 }
 
