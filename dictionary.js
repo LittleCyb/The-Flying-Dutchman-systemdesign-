@@ -6,6 +6,8 @@
 
 var language = 'sv'
 
+var current_table = '1'; //TODO make correspond to what table one selects
+
 dict = {
     'keys': ['login_text',
             'login_button',
@@ -13,6 +15,7 @@ dict = {
             'menu_bar_cocktails',
             'menu_bar_wine',
             'menu_bar_vip',
+            'menu_bar_order',
             'login_manager',
             'login_vip'],
     'pics': ['language',
@@ -27,6 +30,7 @@ dict = {
         'menu_bar_cocktails': "Cocktails",
         'menu_bar_wine': "Wine",
         'menu_bar_vip': "VIP",
+        'menu_bar_order': "My Order",
         'login_manager': "Login as manager",
         'login_vip': "VIP login"
     },
@@ -40,6 +44,7 @@ dict = {
         'menu_bar_cocktails': "Cocktails",
         'menu_bar_wine': "Vin",
         'menu_bar_vip': "VIP",
+        'menu_bar_order': "Beställning",
         'login_manager': "Logga in som manager",
         'login_vip': "VIP login"
     }

@@ -63,11 +63,16 @@ function load_frame_choose(old_frame) {
 		$("#" + old_frame).remove();
 	}
 	// Adds the new frame
-	$('body').append('<div id="choose_screen"></div>');
-	$("#choose_screen").append('<img id="logo" src="">');
+	$('body').append('<div id="main_frame"></div>');
+	$("#main_frame").append('<img id="logo" src="">');
+	$("#main_frame").append('<div id="choose_screen"></div>');
+	// Welcoming text
+	$('#choose_screen').append('<h1 id="choose_welcome"></h1>')
+	$('#choose_welcome').text("Please seat yourself at a table");
+
 	// Add tables
 	for (i = 1; i <= 9; i++) {
-		var table = $('<div class="table"></div>');
+		let table = $('<div class="table"></div>');
 		$(table).attr("id", "table_" + i);
 		$(table).attr("onclick", 'load_frame_menu("choose_screen")');
 		$(table).text("Table " + i)
@@ -89,63 +94,109 @@ function load_frame_menu(old_frame) {
 		$("#" + old_frame).remove();
 	}
 	// Adds the new frame
-	$('body').append('<div id="menu"></div>');
+	$("#main_frame").append('<div id="menu"></div>');
 
 	$("#menu").append('<div id="menu_topbar"></div>');
 	$("#menu_topbar").append('<span id="login_vip"></span>');
 
-	$("#menu").append('<img id="logo" src="logo.png">');
-
 	$("#menu").append('<div id="menu_bar"></div>');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_beers"></div>');
-	$("#menu_bar_beers").attr("onclick", 'view_menu_items("beers")');
+	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_cocktails"></div>');
-	$("#menu_bar_cocktails").attr("onclick", 'view_menu_items("cocktails")');
+	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_wine"></div>');
-	$("#menu_bar_wine").attr("onclick", 'view_menu_items("wine")');
+	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
-	$("#menu_bar_vip").attr("onclick", 'view_menu_items("vip")');
+	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
+
+	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_order"></div>');
+	$("#menu_bar_order").attr("onclick", 'display_menu_items("order")');
 
 	load_menu_view();
-	view_menu_items("beers"); //shows beer by default
+	display_menu_items("beers"); //shows beer by default
 	update_view();
 }
 
 /**
- * view_menu_items
+ * display_menu_items
  * @desc Displays chosen menu items in menu view frame
+ * @arg item type to dislay
  */
-function view_menu_items(item) {
+function display_menu_items(item) {
 	hide_menu_views();
-
 	$("#menu_view_" + item).css("display", "block");
+	// Make a button appear active
+	$("#menu_bar_" + item).css("background-color", "#ffb686");
 	update_view();
 }
+
+
 
 /**
  * load_menu_view
  * @desc loads menu view frame
  */
 function load_menu_view() {
+
 	//loads div for menu_view to put items in
 	$("#menu").append('<div id="menu_view"></div>');
 
-	//adds new menu view content
 	$("#menu_view").append('<div id="menu_view_beers"></div>');
-	$("#menu_view_beers").append('<p>Beers</p>');
+	for(idx in db["beers"]) {
+		for(const info of beer_info) {
+			$("#menu_view_beers").append(get_drink_string("beers", idx, info) +  '<br>');
+		}
+		$("#menu_view_beers").append('<div class="add_item_button" id="temp_id">+ 1</div>');
+		let new_id = get_drink_string("beers", idx, "namn");
+		document.getElementById('temp_id').id = new_id;
+		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
+
+		$("#menu_view_beers").append('<br>');
+	}
+
 
 	$("#menu_view").append('<div id="menu_view_cocktails"></div>');
-	$("#menu_view_cocktails").append('<p>Cocktails</p>');
+	for(idx in db["cocktails"]) {
+		for(const info of cocktail_info) {
+			$("#menu_view_cocktails").append(get_drink_string("cocktails", idx, info) +  '<br>');
+		}
+		$("#menu_view_cocktails").append('<div class="add_item_button" id="temp_id">+ 1</div>');
+		let new_id = get_drink_string("cocktails", idx, "namn");
+		document.getElementById('temp_id').id = new_id;
+		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
+		$("#menu_view_cocktails").append('<br>');
+	}
 
 	$("#menu_view").append('<div id="menu_view_wine"></div>');
-	$("#menu_view_wine").append('<p>Wine</p>');
+	for(idx in db["wine"]) {
+		for(const info of wine_info) {
+			$("#menu_view_wine").append(get_drink_string("wine", idx, info) +  '<br>');
+		}
+		$("#menu_view_wine").append('<div class="add_item_button" id="temp_id">+ 1</div>');
+		let new_id = get_drink_string("wine", idx, "namn");
+		document.getElementById('temp_id').id = new_id;
+		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
+		$("#menu_view_wine").append('<br>');
+	}
 
 	$("#menu_view").append('<div id="menu_view_vip"></div>');
-	$("#menu_view_vip").append('<p>VIP</p>');
+	for(idx in db["vip"]) {
+		for(const info of vip_info) {
+			$("#menu_view_vip").append(get_drink_string("vip", idx, info) +  '<br>');
+		}
+		$("#menu_view_vip").append('<div class="add_item_button" id="temp_id">+ 1</div>');
+		let new_id = get_drink_string("vip", idx, "namn");
+		document.getElementById('temp_id').id = new_id;
+		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
+		$("#menu_view_vip").append('<br>');
+	}
+
+	$("#menu_view").append('<div id="menu_view_order"></div>');
+
 
 	hide_menu_views();
 }
@@ -157,7 +208,19 @@ function load_menu_view() {
 function hide_menu_views() {
 	for(idx in db) {
 		$("#menu_view_" + idx).css("display", "none");
+		$("#menu_bar_" + idx).css("background-color", "");
 	}
+	$("#menu_bar_order").css("background-color", "");
+}
+
+/**
+*	add_item_to_order
+*	@desc adds a an item to the table's order
+*	@arg item to add to table's order
+*/
+function add_item_to_order(item) {
+	let order = orders[current_table];
+	order.push(item);
 }
 
 
@@ -189,6 +252,13 @@ function update_view() {
 	}
 }
 
+/** clear_orders
+*	@desc to clear unfinished orders if user refreshes the page/exits page
+*/
+function clear_orders() {
+	orders[current_table] = [];
+}
+
 
 
 // ===========================================================================
@@ -207,9 +277,11 @@ function update_view() {
 //
 
 $(document).ready(function() {
+	clear_orders(); //so a new instance gets doesn't have old order information. Might remove if we add functionality with BAR menu being able to delete orders. //FIXME in that case
 	load_topbar_language();
-	load_frame_login();
+	load_frame_login(); //FIXME return to load_frame_login()
 });
+
 
 
 // ===========================================================================
