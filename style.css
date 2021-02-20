@@ -12,9 +12,36 @@ body {
 
 img {
     display: flex;
-	align-self: center;
+	position: relative;
     width: 340px;
     margin: 0 auto;
+}
+
+/* Main frame
+   Contains logo image and appends a frame below logo.
+   Only used with desktops or wide screens
+*/
+@media only screen and (max-height: 1080px) {
+    #main_frame {
+        background-color: burlywood;
+        background-image: url("ship.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: 2px solid black;
+        width: 75%;
+        max-width: 1600px;
+        margin: 0 auto;
+        height: 800px;
+    }
+}
+/* When using a iPad or cellphone or other screen with a "high-screen" view */
+@media only screen and (min-height: 1081px) {
+   body {
+        background-color: burlywood;
+        background-image: url("ship.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+   }
 }
 
 /*button classes*/
@@ -46,7 +73,7 @@ img {
 }
 
 .menu_bar_item:hover {
-    background-color:  #ffb686
+    background-color:  #ffb686;
 }
 
 /* Choose table classes */
@@ -57,30 +84,33 @@ img {
 	background-color: saddlebrown;
 	width: 10%;
 	height: 10%;
-	margin-left: 17.5%;
-	margin-top: 5%;
+    margin: 2.5% 0 2.5% 17.5%;
 	text-align: center;
 	color: #ffd29a;
+    cursor: pointer;
 }
 .table:hover {
 	background-color: sienna;
-	}
-	#table_bar {
-	width: 20%;
-	margin-left: 40%;
 }
+
+@media only screen and (min-height: 1081px) {
+    .table {
+        height: 100px;
+    }
+}
+
 
 
 /* Menu ID:s */
-
-#menu {
-    background-color: burlywood;
-    border: 2px solid black;
-    width: 75%;
-    margin: 20px auto;
-	margin-top: 50px;
-    height: 30em;
+@media only screen and (max-height: 1080px) {
+    #menu {
+        display: block;
+        margin: auto;
+        width: 97.5%;
+        height: 80%;
+    }
 }
+
 
 #menu_topbar {
 	display: flex;
@@ -89,15 +119,13 @@ img {
 
 
 #login_vip {
-    display: flex;
-	justify-content: center;
+    display: flex
+    float: right;
     border: 1px solid black;
-    margin-top: 5px;
     border-radius: 5px;
     background-color: #ffd29a;
-	margin-right: 0.4em;
+	margin-right: 1.65em;
 	width: auto;
-	font-size: 0.7em;
     padding: 4px;
 }
 
@@ -113,6 +141,7 @@ img {
 	margin-top: 0.7em;
 	width: 90%;
 	height: 4%;
+    cursor: pointer;
 }
 
 #menu_view {
@@ -126,18 +155,33 @@ img {
 
 
 /* Login ID:s */
+@media only screen and (max-height: 1080px) {
+    #login {
+        background-color: burlywood;
+        border: 2px solid black;
+        display: block;
+        width: 60%;
+        max-width: 640px;
+        margin: auto;
+        margin-top: 200px;
+        height: 320px;
+    }
+}
 
-#login {
-    background-color: burlywood;
-    border: 2px solid black;
-    display: block;
-    width: 60%;
-    margin: auto;
-    margin-top: 200px;
-    height: 300px;
+
+@media only screen and (min-height: 1081px) {
+    #login {
+        display: block;
+        width: 60%;
+        max-width: 640px;
+        margin: auto;
+        margin-top: 200px;
+        height: 320px;
+    }
 }
 
 #login_button {
+    background-color: #ffd29a;
     display: flex;
     justify-content: center;
     border: 1px solid black;
@@ -145,7 +189,7 @@ img {
     margin-right: 40%;
     margin-top: 5px;
     border-radius: 5px;
-    background-color: #ffd29a;
+    cursor: pointer;
 }
 
 #login_button:hover {
@@ -161,8 +205,8 @@ img {
     background-color: #ffd29a;
 	margin-right: 0.4em;
 	width: auto;
-	font-size: 0.7em;
     padding: 4px;
+    cursor: pointer;
 }
 
 
@@ -182,6 +226,7 @@ img {
     margin-top: -2%;
     margin-left: 30%;
     margin-right: 30%;
+    padding-left: 4px; /* for inlining text */
     border: 1px solid black;
     border-radius: 5px;
     background-color: #ffd29a;
@@ -191,7 +236,6 @@ img {
     display: flex;
     justify-content: flex-end;
 }
-
 
 
 /* login ID:s */
@@ -219,14 +263,24 @@ img {
 }
 
 /* choose table ID:s */
-#choose_screen {
-	background-color: burlywood;
-	border: 2px solid black;
-	display: block;
-	width: 60%;
-	margin: auto;
-	margin-top: 100px;
-	height: 500px;
+@media only screen and (max-height: 1080px) {
+    #choose_screen {
+    	border: 2px solid black;
+    	display: block;
+    	width: 97.5%;
+    	margin: auto;
+    	height: 80%;
+    }
+}
+
+#table_bar {
+    width: 20%;
+    margin-left: 40%;
+}
+
+#choose_welcome {
+    text-align: center;
+    margin: 10px;
 }
 
 

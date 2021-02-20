@@ -17,7 +17,13 @@ beverages_pics = {
     "Nya Zeeland": "nz.jpg"
 }
 
-
+const menu_types = ["beers", "cocktails", "wine", "vip"];
+const information = {
+    "beers" : ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"],
+    "cocktails": ["namn", "alkoholhalt", "volym", "prisinklmoms"],
+    "wine": ["namn", "saljstart", "producent", "varugrupp", "volym", "prisinklmoms", "tanniner"],
+    "vip": ["namn", "producent", "volym", "prisinklmoms"]
+}
 const cocktail_info = ["namn", "alkoholhalt", "volym", "prisinklmoms"];
 const beer_info = ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"];
 const wine_info = ["namn", "saljstart", "producent", "varugrupp", "volym", "prisinklmoms", "tanniner"];

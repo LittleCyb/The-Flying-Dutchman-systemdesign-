@@ -63,8 +63,13 @@ function load_frame_choose(old_frame) {
 		$("#" + old_frame).remove();
 	}
 	// Adds the new frame
-	$('body').append('<div id="choose_screen"></div>');
-	$("#choose_screen").append('<img id="logo" src="">');
+	$('body').append('<div id="main_frame"></div>');
+	$("#main_frame").append('<img id="logo" src="">');
+	$("#main_frame").append('<div id="choose_screen"></div>');
+	// Welcoming text
+	$('#choose_screen').append('<h1 id="choose_welcome"></h1>')
+	$('#choose_welcome').text("Please seat yourself at a table");
+
 	// Add tables
 	for (i = 1; i <= 9; i++) {
 		let table = $('<div class="table"></div>');
@@ -89,12 +94,10 @@ function load_frame_menu(old_frame) {
 		$("#" + old_frame).remove();
 	}
 	// Adds the new frame
-	$('body').append('<div id="menu"></div>');
+	$("#main_frame").append('<div id="menu"></div>');
 
 	$("#menu").append('<div id="menu_topbar"></div>');
 	$("#menu_topbar").append('<span id="login_vip"></span>');
-
-	$("#menu").append('<img id="logo" src="logo.png">');
 
 	$("#menu").append('<div id="menu_bar"></div>');
 
@@ -126,6 +129,8 @@ function load_frame_menu(old_frame) {
 function display_menu_items(item) {
 	hide_menu_views();
 	$("#menu_view_" + item).css("display", "block");
+	// Make a button appear active
+	$("#menu_bar_" + item).css("background-color", "#ffb686");
 	update_view();
 }
 
@@ -203,7 +208,9 @@ function load_menu_view() {
 function hide_menu_views() {
 	for(idx in db) {
 		$("#menu_view_" + idx).css("display", "none");
+		$("#menu_bar_" + idx).css("background-color", "");
 	}
+	$("#menu_bar_order").css("background-color", "");
 }
 
 /**
@@ -272,7 +279,7 @@ function clear_orders() {
 $(document).ready(function() {
 	clear_orders(); //so a new instance gets doesn't have old order information. Might remove if we add functionality with BAR menu being able to delete orders. //FIXME in that case
 	load_topbar_language();
-	load_frame_menu(); //FIXME return to load_frame_login()
+	load_frame_login(); //FIXME return to load_frame_login()
 });
 
 
