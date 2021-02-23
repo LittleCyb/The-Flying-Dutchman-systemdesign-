@@ -119,7 +119,7 @@ img {
 
 
 #login_vip {
-    display: flex
+    display: flex;
     float: right;
     border: 1px solid black;
     border-radius: 5px;
@@ -281,6 +281,14 @@ img {
 #choose_welcome {
     text-align: center;
     margin: 10px;
+}
+
+#ipad {
+    display: flex;
+    position: relative;
+    float: right;
+    right: 64px;
+    cursor: grabbing;
 }
 
 

@@ -74,12 +74,32 @@ function load_frame_choose(old_frame) {
 	for (i = 1; i <= 9; i++) {
 		let table = $('<div class="table"></div>');
 		$(table).attr("id", "table_" + i);
-		$(table).attr("onclick", 'load_frame_menu("choose_screen")');
-		$(table).text("Table " + i)
+		$(table).attr("ondrop","drop_ipad(event)");
+		$(table).attr("ondragover","allow_drop(event)");
+		let str = "Table " + i
+		$(table).text(str);
+		$(table).attr("onclick", 'load_frame_menu("choose_screen", this)');
 		$("#choose_screen").append(table);
 	}
 	// Add bar
 	$('#choose_screen').append('<div class="table" id="table_bar"> Bar </div>');
+	
+	// Add iPad
+	$('#choose_screen').append('<canvas id="ipad" width="64" height="96"> Cannot show ipad-canvas</canvas>');
+	$('#ipad').attr("draggable", "true");
+	$('#ipad').attr("ondragstart", "drag_ipad(event)");
+
+	// Draw ipad
+	let ipd = document.getElementById("ipad").getContext("2d");
+	ipd.beginPath();
+	ipd.fillStyle = "#ebe8eb";
+	ipd.fillRect(0,0,64,96);
+	ipd.fillStyle = "white";
+	ipd.fillRect(4,4,56,80);
+	ipd.strokeStyle = "white";
+	ipd.arc(32, 90, 3, 0, 2 * Math.PI);
+	ipd.stroke();
+
 	update_view();
 }
 
@@ -88,11 +108,14 @@ function load_frame_choose(old_frame) {
  * @desc Creates a menu frame
  * @param old_frame Old frame to be removed
  */
-function load_frame_menu(old_frame) {
+function load_frame_menu(old_frame, caller) {
 	// Removes the old frame
 	if (old_frame) {
 		$("#" + old_frame).remove();
 	}
+	// Get number of current table
+	table_number = caller.id.charAt(6);
+
 	// Adds the new frame
 	$("#main_frame").append('<div id="menu"></div>');
 
@@ -115,6 +138,9 @@ function load_frame_menu(old_frame) {
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_order"></div>');
 	$("#menu_bar_order").attr("onclick", 'display_menu_items("order")');
+
+	// TODO: Move this to a proper position! :)
+	$("#menu").append('<p> ' + 'Table ' + table_number + ' </p>');
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
@@ -197,7 +223,6 @@ function load_menu_view() {
 
 	$("#menu_view").append('<div id="menu_view_order"></div>');
 
-
 	hide_menu_views();
 }
 
@@ -259,6 +284,25 @@ function clear_orders() {
 	orders[current_table] = [];
 }
 
+/* drag-n-drop */
+function drop_ipad(ev) {
+	ev.preventDefault();
+	load_frame_menu("choose_screen", ev.target)
+	// Get data from temp drag-buffer, might be used later
+	//var data = ev.dataTransfer.getData("text");
+	//ev.target.appendChild(document.getElementById(data));
+}
+
+function drag_ipad(ev) {
+	// Move data to temp drag-buffer, might be used later
+	//ev.dataTransfer.setData("text", ev.target.id);
+}
+
+
+
+function allow_drop(ev) {
+	ev.preventDefault();
+}
 
 
 // ===========================================================================
@@ -282,7 +326,7 @@ $(document).ready(function() {
 	load_frame_login(); //FIXME return to load_frame_login()
 });
 
-
+var table_number = 0;
 
 // ===========================================================================
 // END OF FILE
