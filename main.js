@@ -20,7 +20,7 @@ function load_topbar_language() {
 
 
 	$("#language_bar").append('<img id="language" src="">');
-	document.getElementById("language").addEventListener("click", change_language_control);
+	$("#language").attr("onclick", 'change_language_control()');
 }
 
 
@@ -41,7 +41,7 @@ function change_language_control() {
 function load_frame_login(old_frame) {
 	remove_old_frame(old_frame);
 
-	//FIXME niche case when we already have a main_frame and attempt to create another one
+	//niche case when we already have a main_frame and attempt to create another one, eg. in choose screen and want to return to login screen
 	$("#main_frame").remove();
 
 	// Adds the new frame
@@ -185,61 +185,24 @@ function display_menu_items(item) {
  */
 function load_menu_view() {
 
-	//loads div for menu_view to put items in
-	$("#menu").append('<div id="menu_view"></div>');
+	for(const type of menu_types) {
+		//loads div for menu_view to put items in
+		$("#menu").append('<div id="menu_view"></div>');
 
-	$("#menu_view").append('<div id="menu_view_beers"></div>');
-	for(idx in db["beers"]) {
-		for(const info of beer_info) {
-			$("#menu_view_beers").append(get_drink_string("beers", idx, info) +  '<br>');
+		$("#menu_view").append('<div id="menu_view_' + type + '"></div>');
+		for(idx in db[type]) {
+			for(const info of beverages_info[type]) {
+				$("#menu_view_" + type).append(get_drink_string(type, idx, info) +  '<br>');
+			}
+			$("#menu_view_" + type).append('<div class="add_item_button" id="temp_id">+ 1</div>');
+			let new_id = get_drink_string(type, idx, "namn"); //FIXME change namn -> id eller artikelnummer
+			document.getElementById('temp_id').id = new_id;
+			document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
+
+			$("#menu_view" + type).append('<br>');
 		}
-		$("#menu_view_beers").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		let new_id = get_drink_string("beers", idx, "namn");
-		document.getElementById('temp_id').id = new_id;
-		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
-
-		$("#menu_view_beers").append('<br>');
 	}
-
-
-	$("#menu_view").append('<div id="menu_view_cocktails"></div>');
-	for(idx in db["cocktails"]) {
-		for(const info of cocktail_info) {
-			$("#menu_view_cocktails").append(get_drink_string("cocktails", idx, info) +  '<br>');
-		}
-		$("#menu_view_cocktails").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		let new_id = get_drink_string("cocktails", idx, "namn");
-		document.getElementById('temp_id').id = new_id;
-		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
-		$("#menu_view_cocktails").append('<br>');
-	}
-
-	$("#menu_view").append('<div id="menu_view_wine"></div>');
-	for(idx in db["wine"]) {
-		for(const info of wine_info) {
-			$("#menu_view_wine").append(get_drink_string("wine", idx, info) +  '<br>');
-		}
-		$("#menu_view_wine").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		let new_id = get_drink_string("wine", idx, "namn");
-		document.getElementById('temp_id').id = new_id;
-		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
-		$("#menu_view_wine").append('<br>');
-	}
-
-	$("#menu_view").append('<div id="menu_view_vip"></div>');
-	for(idx in db["vip"]) {
-		for(const info of vip_info) {
-			$("#menu_view_vip").append(get_drink_string("vip", idx, info) +  '<br>');
-		}
-		$("#menu_view_vip").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		let new_id = get_drink_string("vip", idx, "namn");
-		document.getElementById('temp_id').id = new_id;
-		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
-		$("#menu_view_vip").append('<br>');
-	}
-
-	$("#menu_view").append('<div id="menu_view_order"></div>');
-
+	
 	hide_menu_views();
 }
 

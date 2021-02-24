@@ -24,10 +24,39 @@ const information = {
     "wine": ["namn", "saljstart", "producent", "varugrupp", "volym", "prisinklmoms", "tanniner"],
     "vip": ["namn", "producent", "volym", "prisinklmoms"]
 }
-const cocktail_info = ["namn", "alkoholhalt", "volym", "prisinklmoms"];
-const beer_info = ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"];
-const wine_info = ["namn", "saljstart", "producent", "varugrupp", "volym", "prisinklmoms", "tanniner"];
-const vip_info = ["namn", "producent", "volym", "prisinklmoms"];
+
+const beverages_info = {
+    "cocktails" : [
+        "namn",
+        "alkoholhalt",
+        "volym",
+        "prisinklmoms"
+    ],
+    "beers" : [
+        "namn",
+        "namn2",
+        "producent",
+        "alkoholhalt",
+        "volym",
+        "prisinklmoms"
+    ],
+    "wine" : [
+        "namn",
+        "saljstart",
+        "producent",
+        "varugrupp",
+        "volym",
+        "prisinklmoms",
+        "tanniner"
+    ],
+    "vip": [
+        "namn",
+        "producent",
+        "volym",
+        "prisinklmoms"
+    ]
+
+}
 
 
 
