@@ -4,6 +4,7 @@
  this js document contains the control logic for the application
  */
 
+var current_table_number; // represents the current table number
 
  /**
   * load_topbar_language
@@ -11,9 +12,17 @@
   */
 function load_topbar_language() {
 	$('body').append('<div id="language_bar"</div>');
+
+
+	/*FIXME (for testing purposes, remove later)*/
+	$("#language_bar").append('<div id="login_from_menu">back to login</div>');
+	$("#language_bar").attr("onclick", 'load_frame_login("menu")');
+
+
 	$("#language_bar").append('<img id="language" src="">');
-	document.getElementById("language").addEventListener("click", change_language_control);
+	$("#language").attr("onclick", 'change_language_control()');
 }
+
 
 /**
 *	change_language_control
@@ -30,12 +39,14 @@ function change_language_control() {
  * @param old_frame Old frame to be removed
  */
 function load_frame_login(old_frame) {
-	// Removes the old frame
-	if (old_frame) {
-		$("#" + old_frame).remove();
-	}
+	remove_old_frame(old_frame);
+
+	//niche case when we already have a main_frame and attempt to create another one, eg. in choose screen and want to return to login screen
+	$("#main_frame").remove();
+
 	// Adds the new frame
-	$('body').append('<div id="login"></div>');
+	$('body').append('<div id="main_frame"></div>');
+	$("#main_frame").append('<div id="login"></div>');
 	$("#login").append('<div id="login_topbar"></div>');
 	$("#login_topbar").append('<span id="login_manager"></span>');
 	$("#login_manager").attr("onclick", 'load_frame_manager("login")');
@@ -53,17 +64,25 @@ function load_frame_login(old_frame) {
 }
 
 /**
+ * remove_old_frame(old_frame)
+ * @desc removes old frame
+ * @param old_frame to remove
+ */
+function remove_old_frame(old_frame) {
+	if (old_frame) {
+		$("#" + old_frame).remove();
+	}
+}
+
+/**
  * load_frame_choose
  * @desc Creates a choose table frame
  * @param old_frame Old frame to be removed
  */
 function load_frame_choose(old_frame) {
-	// Removes the old frame
-	if (old_frame) {
-		$("#" + old_frame).remove();
-	}
-	// Adds the new frame
-	$('body').append('<div id="main_frame"></div>');
+	remove_old_frame(old_frame);
+
+	// adds new content to main_frame
 	$("#main_frame").append('<img id="logo" src="">');
 	$("#main_frame").append('<div id="choose_screen"></div>');
 	// Welcoming text
@@ -83,7 +102,7 @@ function load_frame_choose(old_frame) {
 	}
 	// Add bar
 	$('#choose_screen').append('<div class="table" id="table_bar"> Bar </div>');
-	
+
 	// Add iPad
 	$('#choose_screen').append('<canvas id="ipad" width="64" height="96"> Cannot show ipad-canvas</canvas>');
 	$('#ipad').attr("draggable", "true");
@@ -107,15 +126,13 @@ function load_frame_choose(old_frame) {
  * load_frame_login
  * @desc Creates a menu frame
  * @param old_frame Old frame to be removed
+ * @param caller The table/bar on which the iPad was dropped
  */
 function load_frame_menu(old_frame, caller) {
-	// Removes the old frame
-	if (old_frame) {
-		$("#" + old_frame).remove();
-	}
-	// Get number of current table
-	table_number = caller.id.charAt(6);
+	remove_old_frame(old_frame);
 
+	// Get number of current table
+	current_table_number = caller.id.charAt(6);
 	// Adds the new frame
 	$("#main_frame").append('<div id="menu"></div>');
 
@@ -140,7 +157,7 @@ function load_frame_menu(old_frame, caller) {
 	$("#menu_bar_order").attr("onclick", 'display_menu_items("order")');
 
 	// TODO: Move this to a proper position! :)
-	$("#menu").append('<p> ' + 'Table ' + table_number + ' </p>');
+	$("#menu").append('<p> ' + 'Table ' + current_table_number + ' </p>');
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
@@ -171,57 +188,20 @@ function load_menu_view() {
 	//loads div for menu_view to put items in
 	$("#menu").append('<div id="menu_view"></div>');
 
-	$("#menu_view").append('<div id="menu_view_beers"></div>');
-	for(idx in db["beers"]) {
-		for(const info of beer_info) {
-			$("#menu_view_beers").append(get_drink_string("beers", idx, info) +  '<br>');
+	for(const type of menu_types) {
+		$("#menu_view").append('<div id="menu_view_' + type + '"></div>');
+		for(idx in db[type]) {
+			for(const info of beverages_info[type]) {
+				$("#menu_view_" + type).append(get_drink_string(type, idx, info) +  '<br>');
+			}
+			$("#menu_view_" + type).append('<div class="add_item_button" id="temp_id">+ 1</div>');
+			let new_id = get_drink_string(type, idx, "namn"); //FIXME change namn -> id eller artikelnummer
+			document.getElementById('temp_id').id = new_id;
+			document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
+
+			$("#menu_view" + type).append('<br>');
 		}
-		$("#menu_view_beers").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		let new_id = get_drink_string("beers", idx, "namn");
-		document.getElementById('temp_id').id = new_id;
-		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
-
-		$("#menu_view_beers").append('<br>');
 	}
-
-
-	$("#menu_view").append('<div id="menu_view_cocktails"></div>');
-	for(idx in db["cocktails"]) {
-		for(const info of cocktail_info) {
-			$("#menu_view_cocktails").append(get_drink_string("cocktails", idx, info) +  '<br>');
-		}
-		$("#menu_view_cocktails").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		let new_id = get_drink_string("cocktails", idx, "namn");
-		document.getElementById('temp_id').id = new_id;
-		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
-		$("#menu_view_cocktails").append('<br>');
-	}
-
-	$("#menu_view").append('<div id="menu_view_wine"></div>');
-	for(idx in db["wine"]) {
-		for(const info of wine_info) {
-			$("#menu_view_wine").append(get_drink_string("wine", idx, info) +  '<br>');
-		}
-		$("#menu_view_wine").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		let new_id = get_drink_string("wine", idx, "namn");
-		document.getElementById('temp_id').id = new_id;
-		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
-		$("#menu_view_wine").append('<br>');
-	}
-
-	$("#menu_view").append('<div id="menu_view_vip"></div>');
-	for(idx in db["vip"]) {
-		for(const info of vip_info) {
-			$("#menu_view_vip").append(get_drink_string("vip", idx, info) +  '<br>');
-		}
-		$("#menu_view_vip").append('<div class="add_item_button" id="temp_id">+ 1</div>');
-		let new_id = get_drink_string("vip", idx, "namn");
-		document.getElementById('temp_id').id = new_id;
-		document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
-		$("#menu_view_vip").append('<br>');
-	}
-
-	$("#menu_view").append('<div id="menu_view_order"></div>');
 
 	hide_menu_views();
 }
@@ -244,7 +224,7 @@ function hide_menu_views() {
 *	@arg item to add to table's order
 */
 function add_item_to_order(item) {
-	let order = orders[current_table];
+	let order = orders[current_table_number];
 	order.push(item);
 }
 
@@ -255,12 +235,10 @@ function add_item_to_order(item) {
  * @param old_frame Old frame to be removed
  */
 function load_frame_manager(old_frame) {
-	// Removes the old frame
-	if (old_frame) { //FIXME do we need to add "#" + old_frame to make it a valid statement?
-		$("#" + old_frame).remove();
-	}
+	remove_old_frame(old_frame);
 
-$('body').append('<div id="manager"></div>');
+	// adds new content to main_frame
+	$("#main_frame").append('<div id="manager"></div>');
 }
 
 //updates view with text in Swedish or English
@@ -281,7 +259,7 @@ function update_view() {
 *	@desc to clear unfinished orders if user refreshes the page/exits page
 */
 function clear_orders() {
-	orders[current_table] = [];
+	orders[current_table_number] = [];
 }
 
 /* drag-n-drop */
@@ -325,8 +303,6 @@ $(document).ready(function() {
 	load_topbar_language();
 	load_frame_login(); //FIXME return to load_frame_login()
 });
-
-var table_number = 0;
 
 // ===========================================================================
 // END OF FILE
