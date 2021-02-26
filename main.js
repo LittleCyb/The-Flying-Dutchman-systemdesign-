@@ -185,10 +185,10 @@ function display_menu_items(item) {
  */
 function load_menu_view() {
 
-	for(const type of menu_types) {
-		//loads div for menu_view to put items in
-		$("#menu").append('<div id="menu_view"></div>');
+	//loads div for menu_view to put items in
+	$("#menu").append('<div id="menu_view"></div>');
 
+	for(const type of menu_types) {
 		$("#menu_view").append('<div id="menu_view_' + type + '"></div>');
 		for(idx in db[type]) {
 			for(const info of beverages_info[type]) {
@@ -202,7 +202,7 @@ function load_menu_view() {
 			$("#menu_view" + type).append('<br>');
 		}
 	}
-	
+
 	hide_menu_views();
 }
 
