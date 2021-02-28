@@ -76,6 +76,12 @@ img {
     background-color:  #ffb686;
 }
 
+.menu_flag_icon {
+    margin-right: 100%;
+    width : 2em;
+    height: auto;
+}
+
 /* Choose table classes */
 
 .table {
@@ -145,11 +151,15 @@ img {
 }
 
 #menu_view {
-	margin: auto;
-	margin-top: 1em;
-	width: 90%;
+    float: left;
+	width: 70%;
 	height: 75%;
 	overflow-y: scroll;
+}
+
+#menu_order {
+    margin-right: 10%;
+    overflow-y: scroll;
 }
 
 
