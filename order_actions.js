@@ -61,11 +61,4 @@ function add_item_to_order(item) {
     return values;
 }
 
-/** clear_orders
- *	@desc to clear unfinished orders if user refreshes the page/exits page
- */
-function clear_orders() {
-    orders[current_table_number] = [];
-}
-
 /* END OF FILE */
