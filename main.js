@@ -153,14 +153,38 @@ function load_frame_menu(old_frame, caller) {
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
 
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_order"></div>');
-	$("#menu_bar_order").attr("onclick", 'display_menu_items("order")');
-
 	// TODO: Move this to a proper position! :)
 	$("#menu").append('<p> ' + 'Table ' + current_table_number + ' </p>');
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
+
+	load_current_order();
+
+	update_view();
+}
+
+/**
+ * load_current_order
+ * @desc loads the current order for the selected VIP customer (TODO) or current table.
+ */
+
+function load_current_order() {
+	$("#menu").append('<div id="menu_order"></div>');
+}
+
+/**
+ * update_order_view
+ * @desc updates view of current order
+ */
+function update_order_view() {
+	$("#menu_order").remove();
+	$("#menu").append('<div id="menu_order"></div>');
+
+	for(item of orders[current_table_number]) {
+		$("#menu_order").append('<p> "' + item + '"</p>');
+	} //TODO continue here.
+
 	update_view();
 }
 
@@ -239,6 +263,8 @@ function hide_menu_views() {
 function add_item_to_order(item) {
 	let order = orders[current_table_number];
 	order.push(item);
+
+	update_order_view();
 }
 
 
