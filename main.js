@@ -16,7 +16,7 @@ function load_topbar_language() {
 
 	/*FIXME (for testing purposes, remove later)*/
 	$("#language_bar").append('<div id="login_from_menu">back to login</div>');
-	$("#language_bar").attr("onclick", 'load_frame_login("menu")');
+	$("#login_from_menu").attr("onclick", 'load_frame_login("menu")');
 
 
 	$("#language_bar").append('<img id="language" src="">');
