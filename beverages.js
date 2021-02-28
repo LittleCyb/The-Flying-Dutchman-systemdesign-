@@ -344,7 +344,3 @@ db = {
     }
     ]
 }
-
-function get_drink_string(drink, index, key) {
-    return db[drink][index][key];
-}

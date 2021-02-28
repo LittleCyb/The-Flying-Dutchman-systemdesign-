@@ -1,7 +1,7 @@
 /*
  File: main.js
  Author: TODO: add names
- this js document contains the control logic for the application
+ this js document contains the control logic
  */
 
 var current_table_number; // represents the current table number
@@ -19,7 +19,7 @@ function load_topbar_language() {
 	$("#language_bar").attr("onclick", 'load_frame_login("menu")');
 
 
-	$("#language_bar").append('<img id="language" src="">');
+	$("#language_bar").append('<img id="language" alt="current language" src="">');
 	$("#language").attr("onclick", 'change_language_control()');
 }
 
@@ -123,7 +123,7 @@ function load_frame_choose(old_frame) {
 }
 
 /**
- * load_frame_login
+ * load_frame_menu
  * @desc Creates a menu frame
  * @param old_frame Old frame to be removed
  * @param caller The table/bar on which the iPad was dropped
@@ -161,6 +161,13 @@ function load_frame_menu(old_frame, caller) {
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
+
+	// TODO: fix some actual buttons for undo/redo
+	$("#menu_bar").append('<div id="undo_button"> UNDO </div>');
+	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
+	$("#menu_bar").append('<div id="redo_button" onclick="do_action(action_redo())"> REDO </div>');
+	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
+
 	update_view();
 }
 
@@ -195,9 +202,9 @@ function load_menu_view() {
 				$("#menu_view_" + type).append(get_drink_string(type, idx, info) +  '<br>');
 			}
 			$("#menu_view_" + type).append('<div class="add_item_button" id="temp_id">+ 1</div>');
-			let new_id = get_drink_string(type, idx, "namn"); //FIXME change namn -> id eller artikelnummer
-			document.getElementById('temp_id').id = new_id;
-			document.getElementById(new_id).addEventListener('click', function add() {add_item_to_order(new_id)}, false);
+			let new_id = get_drink_string(type, idx, "artikelid");
+			document.getElementById('temp_id').id = new_id; // VICTOR: Gör vad?
+			document.getElementById(new_id).addEventListener('click', function add() {do_action('add', new_id)}, false);
 
 			$("#menu_view" + type).append('<br>');
 		}
@@ -217,17 +224,6 @@ function hide_menu_views() {
 	}
 	$("#menu_bar_order").css("background-color", "");
 }
-
-/**
-*	add_item_to_order
-*	@desc adds a an item to the table's order
-*	@arg item to add to table's order
-*/
-function add_item_to_order(item) {
-	let order = orders[current_table_number];
-	order.push(item);
-}
-
 
 /**
  * load_frame_manager
@@ -255,11 +251,33 @@ function update_view() {
 	}
 }
 
-/** clear_orders
-*	@desc to clear unfinished orders if user refreshes the page/exits page
-*/
-function clear_orders() {
-	orders[current_table_number] = [];
+/** TODO
+ *	get_string_drink
+ *	@desc returns information about a drink
+ *	@drink what kind of dring
+ *  @index
+ *  @key
+ */
+function get_drink_string(drink, index, key) {
+	return db[drink][index][key];
+}
+
+/**
+ *	do_action
+ *	@desc calls for an action in the backend
+ *	@fun function to call
+ *  @arg argument for function
+ */
+function do_action(fun, arg) {
+	if (fun == 'add') {
+		action_exe(add_item_to_order(arg));
+	}
+	if (fun == 'undo') {
+		action_undo();
+	}
+	if (fun == 'redo') {
+		action_redo();
+	}
 }
 
 /* drag-n-drop */
@@ -280,6 +298,13 @@ function drag_ipad(ev) {
 
 function allow_drop(ev) {
 	ev.preventDefault();
+}
+
+/** clear_orders
+ *	@desc to clear unfinished orders if user refreshes the page/exits page
+ */
+function clear_orders() {
+	orders[current_table_number] = [];
 }
 
 

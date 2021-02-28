@@ -152,6 +152,14 @@ img {
 	overflow-y: scroll;
 }
 
+#undo_button {
+    background-color: red;
+    margin: 2px;
+}
+#redo_button {
+    background-color: red;
+    margin: 2px;
+}
 
 
 /* Login ID:s */
