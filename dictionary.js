@@ -20,7 +20,7 @@ dict = {
             'logo'],
 
     'en' : {
-        'language' : "sv.jpg",
+        'language' : "flags/sv.gif",
         'logo' : "logo.png",
         'login_text': "Login as admin, enter password below",
         'login_button': "Login",
@@ -34,7 +34,7 @@ dict = {
     },
 
     'sv' : {
-        'language': "eng.jpg",
+        'language': "flags/en.gif",
         'logo' : "logo.png",
         'login_text': "Logga in som admin, ange lösenord nedan",
         'login_button': "Logga in",

@@ -191,9 +191,12 @@ function load_menu_view() {
 	for(const type of menu_types) {
 		$("#menu_view").append('<div id="menu_view_' + type + '"></div>');
 		for(idx in db[type]) {
-			for(const info of beverages_info[type]) {
-				$("#menu_view_" + type).append(get_drink_string(type, idx, info) +  '<br>');
+			for(const info_point of beverages_info[type]) {
+				$("#menu_view_" + type).append(get_drink_string(type, idx, info_point) +  '<br>');
 			}
+			var country = get_country_of_origin(type, idx);
+			var flag_src = get_flag(country);
+			$("#menu_view_" + type).append('<img class="menu_flag_icon" src="' + flag_src + '">');
 			$("#menu_view_" + type).append('<div class="add_item_button" id="temp_id">+ 1</div>');
 			let new_id = get_drink_string(type, idx, "namn"); //FIXME change namn -> id eller artikelnummer
 			document.getElementById('temp_id').id = new_id;
@@ -204,6 +207,16 @@ function load_menu_view() {
 	}
 
 	hide_menu_views();
+}
+
+/**
+*	get_country_of_origin
+*	@desc retrieves the country of origin for a given beverage
+*	@arg type of drink from data base
+*	@arg index of the drink in the given "type" category
+*/
+function get_country_of_origin(type, index) {
+	return get_drink_string(type, index, "ursprunglandnamn");
 }
 
 /**

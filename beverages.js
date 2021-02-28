@@ -4,17 +4,15 @@
 This js document contains the beverages served at the pub.
  */
 
-beverages_pics = {
-    "Flaska": "bottle.jpg",
-    "Burk": "can.jpg",
-    "Nederländerna": "nl.jpg",
-    "Storbrittaninen": "eng.jpg",
-    "Sverige": "sv.jpg",
-    "Folkrepubliken Kina": "ch.jpg",
-    "Tjeckien": "cz.jpg",
-    "Italien": "it.jpg",
-    "Österrike": "au.jpg",
-    "Nya Zeeland": "nz.jpg"
+flags = {
+    "Nederländerna": "flags/nl.gif",
+    "Storbritannien": "flags/en.gif",
+    "Sverige": "flags/sv.gif",
+    "Folkrepubliken Kina": "flags/ch.gif",
+    "Tjeckien": "flags/cz.gif",
+    "Italien": "flags/it.gif",
+    "Österrike": "flags/au.gif",
+    "Nya Zeeland": "flags/nz.gif"
 }
 
 const menu_types = ["beers", "cocktails", "wine", "vip"];
@@ -347,4 +345,8 @@ db = {
 
 function get_drink_string(drink, index, key) {
     return db[drink][index][key];
+}
+
+function get_flag(country) {
+    return flags[country];
 }

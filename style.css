@@ -76,6 +76,12 @@ img {
     background-color:  #ffb686;
 }
 
+.menu_flag_icon {
+    margin-right: 93%;
+    width : 2em;
+    height: auto;
+}
+
 /* Choose table classes */
 
 .table {
