@@ -60,19 +60,4 @@ function action_redo() {
     }
 }
 
-/**
- *	find_item_in_order
- *	@desc find item object in order
- *  @order an order-list from a table
- *  @item item id
- */
-function find_item_in_order(order, item) {
-    for (i in order) {
-        if (order[i].id == item) {
-            return order[i];
-        }
-    }
-    return null;
-}
-
 /* END OF FILE */

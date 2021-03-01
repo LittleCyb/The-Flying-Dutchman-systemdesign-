@@ -16,7 +16,7 @@ function load_topbar_language() {
 
 	/*FIXME (for testing purposes, remove later)*/
 	$("#language_bar").append('<div id="login_from_menu">back to login</div>');
-	$("#language_bar").attr("onclick", 'load_frame_login("menu")');
+	$("#login_from_menu").attr("onclick", 'load_frame_login("menu")');
 
 
 	$("#language_bar").append('<img id="language" alt="current language" src="">');
@@ -153,21 +153,44 @@ function load_frame_menu(old_frame, caller) {
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
 
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_order"></div>');
-	$("#menu_bar_order").attr("onclick", 'display_menu_items("order")');
-
 	// TODO: Move this to a proper position! :)
 	$("#menu").append('<p> ' + 'Table ' + current_table_number + ' </p>');
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
 
+
 	// TODO: fix some actual buttons for undo/redo
 	$("#menu_bar").append('<div id="undo_button"> UNDO </div>');
 	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
-	$("#menu_bar").append('<div id="redo_button" onclick="do_action(action_redo())"> REDO </div>');
+	$("#menu_bar").append('<div id="redo_button"> REDO </div>');
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
 
+	load_current_order();
+
+	update_view();
+}
+
+/**
+ * load_current_order
+ * @desc loads the current order for the selected VIP customer (TODO) or current table.
+ */
+
+function load_current_order() {
+	$("#menu").append('<div id="menu_order"></div>');
+}
+
+/**
+ * update_order_view
+ * @desc updates view of current order
+ */
+function update_order_view() {
+	$("#menu_order").remove();
+	$("#menu").append('<div id="menu_order"></div>');
+
+	for(item of orders[current_table_number]) {
+		$("#menu_order").append('<p> "' + item + '"</p>');
+	} //TODO continue here.
 	update_view();
 }
 
@@ -198,9 +221,12 @@ function load_menu_view() {
 	for(const type of menu_types) {
 		$("#menu_view").append('<div id="menu_view_' + type + '"></div>');
 		for(idx in db[type]) {
-			for(const info of beverages_info[type]) {
-				$("#menu_view_" + type).append(get_drink_string(type, idx, info) +  '<br>');
+			for(const info_point of beverages_info[type]) {
+				$("#menu_view_" + type).append(get_drink_string(type, idx, info_point) +  '<br>');
 			}
+			var country = get_country_of_origin(type, idx);
+			var flag_src = get_flag(country);
+			$("#menu_view_" + type).append('<img class="menu_flag_icon" src="' + flag_src + '">');
 			$("#menu_view_" + type).append('<div class="add_item_button" id="temp_id">+ 1</div>');
 			let new_id = get_drink_string(type, idx, "artikelid");
 			document.getElementById('temp_id').id = new_id; // VICTOR: Gör vad?
@@ -211,6 +237,16 @@ function load_menu_view() {
 	}
 
 	hide_menu_views();
+}
+
+/**
+*	get_country_of_origin
+*	@desc retrieves the country of origin for a given beverage
+*	@arg type of drink from data base
+*	@arg index of the drink in the given "type" category
+*/
+function get_country_of_origin(type, index) {
+	return get_drink_string(type, index, "ursprunglandnamn");
 }
 
 /**
@@ -226,6 +262,7 @@ function hide_menu_views() {
 }
 
 /**
+
  * load_frame_manager
  * @desc Creates a manager frame
  * @param old_frame Old frame to be removed
@@ -305,6 +342,16 @@ function allow_drop(ev) {
  */
 function clear_orders() {
 	orders[current_table_number] = [];
+}
+
+// Control logic and should those be in this file
+function get_drink_string(drink, index, key) {
+return db[drink][index][key];
+}
+
+// Control logic and should those be in this file
+function get_flag(country) {
+return flags[country];
 }
 
 
