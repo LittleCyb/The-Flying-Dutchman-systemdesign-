@@ -177,10 +177,9 @@ function load_menu_view() {
 			}
 			var country = get_country_of_origin(type, idx);
 			var flag_src = get_flag(country);
-			$("#menu_view_" + type).append('<img class="menu_flag_icon" src="' + flag_src + '">');
-			$("#menu_view_" + type).append('<div class="add_item_button" id="temp_id">+ 1</div>');
 			let new_id = get_drink_string(type, idx, "artikelid");
-			document.getElementById('temp_id').id = new_id; // VICTOR: Gör vad?
+			$("#menu_view_" + type).append('<img class="menu_flag_icon" src="' + flag_src + '">');
+			$("#menu_view_" + type).append('<div class="add_item_button" id="'+new_id+'">+ 1</div>');
 			document.getElementById(new_id).addEventListener('click', function add() {do_action('add', new_id)}, false);
 
 			$("#menu_view" + type).append('<br>');
