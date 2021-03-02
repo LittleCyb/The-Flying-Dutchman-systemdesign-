@@ -4,6 +4,17 @@
 This js document contains the beverages served at the pub.
  */
 
+ /**
+  *	get_string_drink
+  *	@desc returns information about a drink from database
+  *	@arg drink what kind of dring
+  *  @arg index
+  *  @arg key
+  */
+ function get_drink_string(drink, index, key) {
+ 	return db[drink][index][key];
+ }
+
 flags = {
     "Nederländerna": "flags/nl.gif",
     "Storbritannien": "flags/en.gif",
@@ -342,4 +353,3 @@ db = {
         }
     ]
 }
-

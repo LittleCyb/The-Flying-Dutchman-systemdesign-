@@ -58,4 +58,8 @@ function change_language() {
     } else { language = 'en'};
 }
 
+function get_flag(country) {
+return flags[country];
+}
+
 /* END OF FILE */
