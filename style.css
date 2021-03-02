@@ -157,11 +157,19 @@ img {
 	overflow-y: scroll;
 }
 
+#undo_button {
+    background-color: red;
+    margin: 2px;
+}
+#redo_button {
+    background-color: red;
+    margin: 2px;
+}
+
 #menu_order {
     margin-right: 10%;
     overflow-y: scroll;
 }
-
 
 
 /* Login ID:s */
@@ -226,7 +234,7 @@ img {
 
 #login_text {
     text-align: center;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 
