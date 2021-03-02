@@ -59,7 +59,7 @@ function change_language() {
 }
 
 function get_flag(country) {
-return flags[country];
+	return flags[country];
 }
 
 /* END OF FILE */

@@ -119,8 +119,14 @@ img {
 
 #table_number {
 	position: absolute;
-	margin-top: 1em;
-	margin-left: 1em;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.menu_beverage {
+	background: rgba(255, 255, 255, 0.4);
+	margin-bottom: 20px;
+	padding: 10px;
 }
 
 

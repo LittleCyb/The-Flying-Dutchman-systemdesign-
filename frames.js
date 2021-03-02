@@ -169,22 +169,29 @@ function load_menu_view() {
 
 	for(const type of menu_types) {
 		$("#menu_view").append('<div id="menu_view_' + type + '"></div>');
-		for(idx in db[type]) {
-			for(const info_point of beverages_info[type]) {
-				$("#menu_view_" + type).append(get_drink_string(type, idx, info_point) +  '<br>');
-			}
-			var country = get_country_of_origin(type, idx);
-			var flag_src = get_flag(country);
-			let new_id = get_drink_string(type, idx, "artikelid");
-			$("#menu_view_" + type).append('<img class="menu_flag_icon" src="' + flag_src + '">');
-			$("#menu_view_" + type).append('<div class="add_item_button" id="'+new_id+'">+ 1</div>');
-			document.getElementById(new_id).addEventListener('click', function add() {do_action('add', new_id)}, false);
-
+		for(index in db[type]) {
+			var beverage = make_beverage(type, index);
+			$("#menu_view_" + type).append(beverage);
 			$("#menu_view" + type).append('<br>');
 		}
 	}
-
+	
 	hide_menu_views();
+}
+
+function make_beverage(type, index) {
+	var div = $("<div>").addClass("menu_beverage");
+	
+	for(var info_point of beverages_info[type]) {
+		var data = get_drink_string(type, index, info_point);
+		$("<div>").addClass("menu_beverage_" + info_point).text(info_point + ": " + data).appendTo(div);
+	}
+	
+	var flag_src = get_flag(get_country_of_origin(type, index));
+	var new_id = get_drink_string(type, index, "artikelid");
+	$(div).append('<img class="menu_flag_icon" src="' + flag_src + '">');
+	$(div).append('<div class="add_item_button" id="'+new_id+'">+ 1</div>').click(function() {do_action('add', new_id)});
+	return div
 }
 
 /**
