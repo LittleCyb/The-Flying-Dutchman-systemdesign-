@@ -21,6 +21,13 @@ function load_topbar_language() {
    $("#language").attr("onclick", 'change_language_control()');
 }
 
+function load_main_frame() {
+	$('body').append('<div id="main_frame"></div>');
+	$("#main_frame").append('<div id="table_number"></div>');
+	$("#table_number").hide();
+	$("#main_frame").append('<img id="logo" src="">');
+}
+
 /**
  * load_frame_login
  * @desc Creates a login frame
@@ -28,18 +35,11 @@ function load_topbar_language() {
  */
 function load_frame_login(old_frame) {
 	remove_old_frame(old_frame);
-
-	//niche case when we already have a main_frame and attempt to create another one, eg. in choose screen and want to return to login screen
-	$("#main_frame").remove();
-
-	// Adds the new frame
-	$('body').append('<div id="main_frame"></div>');
+	
 	$("#main_frame").append('<div id="login"></div>');
 	$("#login").append('<div id="login_topbar"></div>');
 	$("#login_topbar").append('<span id="login_manager"></span>');
 	$("#login_manager").attr("onclick", 'load_frame_manager("login")');
-
-	$("#login").append('<img id="logo" src="">');
 
 	$("#login").append('<p id="login_text"></p>');
 
@@ -71,7 +71,6 @@ function load_frame_choose(old_frame) {
 	remove_old_frame(old_frame);
 
 	// adds new content to main_frame
-	$("#main_frame").append('<img id="logo" src="">');
 	$("#main_frame").append('<div id="choose_screen"></div>');
 	// Welcoming text
 	$('#choose_screen').append('<h1 id="choose_welcome"></h1>')
@@ -85,7 +84,7 @@ function load_frame_choose(old_frame) {
 		$(table).attr("ondragover","allow_drop(event)");
 		let str = "Table " + i
 		$(table).text(str);
-		$(table).attr("onclick", 'load_frame_menu("choose_screen", this)');
+		$(table).attr("onclick", 'load_frame_menu("choose_screen", '+i+')');
 		$("#choose_screen").append(table);
 	}
 	// Add bar
@@ -116,11 +115,13 @@ function load_frame_choose(old_frame) {
  * @param old_frame Old frame to be removed
  * @param caller The table/bar on which the iPad was dropped
  */
-function load_frame_menu(old_frame, caller) {
+function load_frame_menu(old_frame, new_table_number) {
 	remove_old_frame(old_frame);
 
 	// Get number of current table
-	current_table_number = caller.id.charAt(6);
+	current_table_number = new_table_number;
+	$("#table_number").show();
+	$("#table_number").text("Table " + current_table_number);
 	// Adds the new frame
 	$("#main_frame").append('<div id="menu"></div>');
 
@@ -140,9 +141,6 @@ function load_frame_menu(old_frame, caller) {
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
-
-	// TODO: Move this to a proper position! :)
-	$("#menu").append('<p> ' + 'Table ' + current_table_number + ' </p>');
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
@@ -222,4 +220,5 @@ function remove_old_frame(old_frame) {
 	if (old_frame) {
 		$("#" + old_frame).remove();
 	}
+	$("#table_number").hide()
 }
