@@ -142,16 +142,16 @@ function load_frame_menu(old_frame, caller) {
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
 
 	// TODO: Move this to a proper position! :)
-	$("#menu").append('<p> ' + 'Table ' + current_table_number + ' </p>');
+	$("#menu").append('<p id="table_number"> ' + 'Table ' + current_table_number + ' </p>');
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
 
 
-	// TODO: fix some actual buttons for undo/redo
-	$("#menu_bar").append('<div id="undo_button"> UNDO </div>');
+	// TODO: fix text generated from dictionary.js + update_view() with translation for undo/redo buttons
+	$("#menu_bar").append('<div class="menu_bar_item" id="undo_button">UNDO</div>');
 	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
-	$("#menu_bar").append('<div id="redo_button"> REDO </div>');
+	$("#menu_bar").append('<div class="menu_bar_item" id="redo_button">REDO</div>');
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
 
 	load_current_order();
@@ -196,7 +196,23 @@ function load_menu_view() {
  */
 
 function load_current_order() {
+    //TODO make sure the text comes from the dictionary rather than being hardcoded in order to support translation!
 	$("#menu").append('<div id="menu_order"></div>');
+    $("#menu_order").append('<div id="menu_order_info"></div>');
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name">NAME</div>');
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount">AMOUNT</div>');
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price">PRICE</div>');
+
+}
+
+/**
+ * clear_menu_order_body
+ * @desc clear menu_order_body in order to update the content to current order in orderds.js
+ */
+function clear_menu_order_body() {
+    if("#menu_order_body") {
+        $("#menu_order_body").remove();
+    }
 }
 
 /**
@@ -204,11 +220,15 @@ function load_current_order() {
  * @desc updates view of current order
  */
 function update_order_view() {
-	$("#menu_order").remove();
-	$("#menu").append('<div id="menu_order"></div>');
+    clear_menu_order_body();
+    $("#menu_order").append('<div id="menu_order_body"></div>');
 
 	for(item of orders[current_table_number]) {
-		$("#menu_order").append('<p> "' + item + '"</p>');
+        let item_price = 10; //FIXME
+        let item_name = "drink"; //FIXME
+        let item_id = item.id;
+        let item_amount = item.amount;
+		$("#menu_order_body").append('<p>' + item_name + item_amount + ' </p>');
 	} //TODO continue here. + update for new implementation of redo / undo
 	update_view();
 }

@@ -24,6 +24,7 @@ function add_item_to_order(item) {
             else {
                 found_item.amount++;
             }
+            update_order_view();
         },
         unexecute: function () {
             var order = orders[this.order_table];
@@ -44,6 +45,7 @@ function add_item_to_order(item) {
                     }
                 }
             }
+            update_order_view();
         },
         reexecute: function () {
             var order = orders[this.order_table];
@@ -56,6 +58,7 @@ function add_item_to_order(item) {
             else {
                 found_item.amount++;
             }
+            update_order_view();
         }
     };
     return values;
