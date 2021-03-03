@@ -85,7 +85,7 @@
  /* drag-n-drop */
  function drop_ipad(ev) {
  	ev.preventDefault();
- 	load_frame_menu("choose_screen", ev.target)
+ 	ev.target.onclick();
  	// Get data from temp drag-buffer, might be used later
  	//var data = ev.dataTransfer.getData("text");
  	//ev.target.appendChild(document.getElementById(data));
