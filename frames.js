@@ -188,9 +188,9 @@ function make_beverage(type, index) {
 	}
 
 	var flag_src = get_flag(get_country_of_origin(type, index));
-	var new_id = get_drink_string(type, index, "artikelid");
+	var new_drink = get_drink_object(type, index);
 	$(div).append('<img class="menu_flag_icon" src="' + flag_src + '">');
-	$(div).append('<div class="add_item_button" id="'+new_id+'">+ 1</div>').click(function() {do_action('add', new_id)});
+	$(div).append('<div class="add_item_button" id="'+ new_drink.artikelid +'">+ 1</div>').click(function() {do_action('add', new_drink)});
 	return div
 }
 
@@ -228,11 +228,11 @@ function update_order_view() {
     $("#menu_order").append('<div id="menu_order_body"></div>');
 
 	for(item of orders[current_table_number]) {
-        let item_price = 10; //FIXME
-        let item_name = "drink"; //FIXME
+        let item_price = item.price;
+        let item_name = item.name;
         let item_id = item.id;
         let item_amount = item.amount;
-		$("#menu_order_body").append('<p>' + item_name + item_amount + ' </p>');
+		$("#menu_order_body").append('<p>' + item_name + " | " + item_amount + " | " + item_price + ' </p>');
 	} //TODO continue here. + update for new implementation of redo / undo
 	update_view();
 }
