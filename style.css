@@ -199,6 +199,24 @@ img {
     justify-content: flex-start;
 }
 
+#total_cost_wrapper {
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#total_cost_text {
+    display:flex;
+    width: 10em;
+    margin-left: 0.5em;
+    justify-content: center;
+}
+
+#total_cost_amount {
+    margin-left: 2.5em;
+}
+
 
 #menu_topbar {
 	display: flex;

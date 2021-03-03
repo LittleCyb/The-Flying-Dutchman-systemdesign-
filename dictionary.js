@@ -35,7 +35,8 @@ dict = {
         'menu_order_amount': "Amount",
         'menu_order_price': "Price",
         'undo_button': "Undo",
-        'redo_button': "Redo"
+        'redo_button': "Redo",
+        'total_cost_text': "Total"
     },
 
     'sv' : {
@@ -54,7 +55,8 @@ dict = {
         'menu_order_amount': "Mängd",
         'menu_order_price': "Pris",
         'undo_button': "Ångra",
-        'redo_button': "Gör om"
+        'redo_button': "Gör om",
+        'total_cost_text': "Summa"
     }
 }
 

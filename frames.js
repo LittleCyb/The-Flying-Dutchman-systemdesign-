@@ -204,6 +204,7 @@ function load_current_order() {
 	$("#menu").append('<div id="menu_order"></div>');
     $("#menu_order").append('<div id="menu_order_info"></div>');
 
+    //FIXME the dictionary support
     $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name">NAME</div>');
     $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount">AMOUNT</div>');
     $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price">PRICE</div>');
@@ -229,10 +230,29 @@ function update_order_view() {
     clear_menu_order_body();
     $("#menu_order").append('<div id="menu_order_body"></div>');
 
+    let total_cost = 0;
 	for(item of orders[current_table_number]) {
         create_order_item(item);
+        //TODO pick out cost of item * amount = item_cost
+        //total_cost += item_cost;
 	}
+
+    load_total_cost(total_cost);
 	update_view();
+}
+
+/**
+    * load_total_cost
+    * @desc loads total cost of order
+    * @arg cost of order
+    */
+function load_total_cost(cost) {
+
+    //FIXME dictionary support isn't working
+    $("#menu_order_body").append('<div id="total_cost_wrapper"></div>');
+    $("#total_cost_wrapper").append('<div id="total_cost_text">TOTAL</div>');
+    $("#total_cost_wrapper").append('<div id="total_cost_amount">' + cost + '</div>');
+    update_view();
 }
 
 /**
@@ -241,16 +261,17 @@ function update_order_view() {
 */
 function create_order_item(item) {
     let item_price = 10; //FIXME
+    let item_amount = item.amount;
+    let total_price = item_price * item_amount;
     let item_name = "drink"; //FIXME
     let item_id = item.id;
-    let item_amount = item.amount;
     let div_id = "item_" + item_id;
     /*$("#menu_order_body").append('<p>' + item_name + item_amount + ' </p>');*/
     $("#menu_order_body").append('<div id="' + div_id + '"></div>');
     $("#" + div_id).css("display", "flex");
-    $("#" + div_id).append('<div class="order_item_name">Name</div>');
-    $("#" + div_id).append('<div class="order_item_amount">Amount</div>');
-    $("#" + div_id).append('<div class="order_item_price">Prics</div>');
+    $("#" + div_id).append('<div class="order_item_name">' + item_name + '</div>');
+    $("#" + div_id).append('<div class="order_item_amount">' + item_amount + '</div>');
+    $("#" + div_id).append('<div class="order_item_price">' + total_price + '</div>');
 }
 
 
