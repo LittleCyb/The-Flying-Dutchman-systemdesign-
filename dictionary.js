@@ -30,7 +30,12 @@ dict = {
         'menu_bar_vip': "VIP",
         'menu_bar_order': "My Order",
         'login_manager': "Login as manager",
-        'login_vip': "VIP login"
+        'login_vip': "VIP login",
+        'menu_order_name': "Name",
+        'menu_order_amount': "Amount",
+        'menu_order_price': "Price",
+        'undo_button': "Undo",
+        'redo_button': "Redo"
     },
 
     'sv' : {
@@ -44,8 +49,24 @@ dict = {
         'menu_bar_vip': "VIP",
         'menu_bar_order': "Beställning",
         'login_manager': "Logga in som manager",
-        'login_vip': "VIP login"
+        'login_vip': "VIP login",
+        'menu_order_name': "Namn",
+        'menu_order_amount': "Mängd",
+        'menu_order_price': "Pris",
+        'undo_button': "Ångra",
+        'redo_button': "Gör om"
     }
+}
+
+flags = {
+    "Nederländerna": "flags/nl.gif",
+    "Storbritannien": "flags/en.gif",
+    "Sverige": "flags/sv.gif",
+    "Folkrepubliken Kina": "flags/ch.gif",
+    "Tjeckien": "flags/cz.gif",
+    "Italien": "flags/it.gif",
+    "Österrike": "flags/au.gif",
+    "Nya Zeeland": "flags/nz.gif"
 }
 
 function get_string(key) {
@@ -59,7 +80,7 @@ function change_language() {
 }
 
 function get_flag(country) {
-return flags[country];
+	return flags[country];
 }
 
 /* END OF FILE */
