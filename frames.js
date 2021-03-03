@@ -244,7 +244,13 @@ function create_order_item(item) {
     let item_name = "drink"; //FIXME
     let item_id = item.id;
     let item_amount = item.amount;
-    $("#menu_order_body").append('<p>' + item_name + item_amount + ' </p>');
+    let div_id = "item_" + item_id;
+    /*$("#menu_order_body").append('<p>' + item_name + item_amount + ' </p>');*/
+    $("#menu_order_body").append('<div id="' + div_id + '"></div>');
+    $("#" + div_id).css("display", "flex");
+    $("#" + div_id).append('<div class="order_item_name">Name</div>');
+    $("#" + div_id).append('<div class="order_item_amount">Amount</div>');
+    $("#" + div_id).append('<div class="order_item_price">Prics</div>');
 }
 
 

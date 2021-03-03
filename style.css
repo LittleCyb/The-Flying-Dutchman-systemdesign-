@@ -74,6 +74,34 @@ img {
     margin-right: 1em;
     justify-content: center;
 }
+
+.order_item_name {
+    display: flex;
+    width: 5em;
+    margin-right: 1em;
+    justify-content: center;
+}
+
+.order_item_amount {
+    display: flex;
+    width: 5em;
+    margin-right: 1em;
+    justify-content: center;
+}
+
+.order_item_price {
+    display: flex;
+    width: 5em;
+    margin-right: 1em;
+    justify-content: center;
+}
+
+.order_item_info {
+    display: flex;
+    width: 5em;
+    margin-right: 1em;
+    justify-content: center;
+}
 .menu_bar_item {
 	display: flex;
 	border: 1px solid black;
@@ -164,6 +192,13 @@ img {
 
 }
 
+#menu_order_body {
+    display: flex;
+    width: 15em;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
 
 #menu_topbar {
 	display: flex;
@@ -205,7 +240,6 @@ img {
 
 #menu_order_info {
     display: flex;
-    height: 4%;
     justify-content: flex-start;
 }
 
