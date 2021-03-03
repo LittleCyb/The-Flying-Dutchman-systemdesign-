@@ -204,10 +204,9 @@ function load_current_order() {
 	$("#menu").append('<div id="menu_order"></div>');
     $("#menu_order").append('<div id="menu_order_info"></div>');
 
-    //FIXME the dictionary support
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name">NAME</div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount">AMOUNT</div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price">PRICE</div>');
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name"></div>');
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount"></div>');
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price"></div>');
     update_view();
 
 }
@@ -248,9 +247,8 @@ function update_order_view() {
     */
 function load_total_cost(cost) {
 
-    //FIXME dictionary support isn't working
     $("#menu_order_body").append('<div id="total_cost_wrapper"></div>');
-    $("#total_cost_wrapper").append('<div id="total_cost_text">TOTAL</div>');
+    $("#total_cost_wrapper").append('<div id="total_cost_text"></div>');
     $("#total_cost_wrapper").append('<div id="total_cost_amount">' + cost + '</div>');
     update_view();
 }
