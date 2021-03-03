@@ -203,9 +203,11 @@ function load_current_order() {
     //TODO make sure the text comes from the dictionary rather than being hardcoded in order to support translation!
 	$("#menu").append('<div id="menu_order"></div>');
     $("#menu_order").append('<div id="menu_order_info"></div>');
+
     $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name">NAME</div>');
     $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount">AMOUNT</div>');
     $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price">PRICE</div>');
+    update_view();
 
 }
 
@@ -228,14 +230,23 @@ function update_order_view() {
     $("#menu_order").append('<div id="menu_order_body"></div>');
 
 	for(item of orders[current_table_number]) {
-        let item_price = 10; //FIXME
-        let item_name = "drink"; //FIXME
-        let item_id = item.id;
-        let item_amount = item.amount;
-		$("#menu_order_body").append('<p>' + item_name + item_amount + ' </p>');
-	} //TODO continue here. + update for new implementation of redo / undo
+        create_order_item(item);
+	}
 	update_view();
 }
+
+/**
+    * create_order_item
+    * @desc creates an order item
+*/
+function create_order_item(item) {
+    let item_price = 10; //FIXME
+    let item_name = "drink"; //FIXME
+    let item_id = item.id;
+    let item_amount = item.amount;
+    $("#menu_order_body").append('<p>' + item_name + item_amount + ' </p>');
+}
+
 
 
 /**

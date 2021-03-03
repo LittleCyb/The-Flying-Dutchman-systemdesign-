@@ -202,12 +202,11 @@ img {
     border: solid black 1px;
 }
 
+
 #menu_order_info {
     display: flex;
+    height: 4%;
     justify-content: flex-start;
-}
-
-#menu_order_body {
 }
 
 #undo_button {
