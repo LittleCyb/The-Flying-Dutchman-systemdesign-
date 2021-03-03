@@ -35,7 +35,7 @@ function load_main_frame() {
  */
 function load_frame_login(old_frame) {
 	remove_old_frame(old_frame);
-	
+
 	$("#main_frame").append('<div id="login"></div>');
 	$("#login").append('<div id="login_topbar"></div>');
 	$("#login_topbar").append('<span id="login_manager"></span>');
@@ -84,7 +84,7 @@ function load_frame_choose(old_frame) {
 		$(table).attr("ondragover","allow_drop(event)");
 		let str = "Table " + i
 		$(table).text(str);
-		$(table).attr("onclick", 'load_frame_menu("choose_screen", '+i+')');
+		$(table).attr("onclick", 'load_frame_menu("choose_screen", "' + i +'")');
 		$("#choose_screen").append(table);
 	}
 	// Add bar
@@ -175,18 +175,18 @@ function load_menu_view() {
 			$("#menu_view" + type).append('<br>');
 		}
 	}
-	
+
 	hide_menu_views();
 }
 
 function make_beverage(type, index) {
 	var div = $("<div>").addClass("menu_beverage");
-	
+
 	for(var info_point of beverages_info[type]) {
 		var data = get_drink_string(type, index, info_point);
 		$("<div>").addClass("menu_beverage_" + info_point).text(info_point + ": " + data).appendTo(div);
 	}
-	
+
 	var flag_src = get_flag(get_country_of_origin(type, index));
 	var new_id = get_drink_string(type, index, "artikelid");
 	$(div).append('<img class="menu_flag_icon" src="' + flag_src + '">');
