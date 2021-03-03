@@ -9,6 +9,7 @@ var language = 'sv'
 dict = {
     'keys': ['login_text',
             'login_button',
+            'choose_welcome',
             'menu_bar_beers',
             'menu_bar_cocktails',
             'menu_bar_wine',
@@ -24,6 +25,7 @@ dict = {
         'logo' : "logo.png",
         'login_text': "Login as admin, enter password below",
         'login_button': "Login",
+        'choose_welcome': "Please choose table for the company",
         'menu_bar_beers': "Beer",
         'menu_bar_cocktails': "Cocktails",
         'menu_bar_wine': "Wine",
@@ -43,6 +45,7 @@ dict = {
         'logo' : "logo.png",
         'login_text': "Logga in som admin, ange lösenord nedan",
         'login_button': "Logga in",
+        'choose_welcome': "Vänligen välj bord för sällskapet",
         'menu_bar_beers': "Öl",
         'menu_bar_cocktails': "Cocktails",
         'menu_bar_wine': "Vin",
