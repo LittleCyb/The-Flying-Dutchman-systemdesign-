@@ -203,9 +203,11 @@ function load_current_order() {
     //TODO make sure the text comes from the dictionary rather than being hardcoded in order to support translation!
 	$("#menu").append('<div id="menu_order"></div>');
     $("#menu_order").append('<div id="menu_order_info"></div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name">NAME</div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount">AMOUNT</div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price">PRICE</div>');
+
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name"></div>');
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount"></div>');
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price"></div>');
+    update_view();
 
 }
 
@@ -227,15 +229,45 @@ function update_order_view() {
     clear_menu_order_body();
     $("#menu_order").append('<div id="menu_order_body"></div>');
 
+    let total_cost = 0;
 	for(item of orders[current_table_number]) {
-        let item_price = item.price;
-        let item_name = item.name;
-        let item_id = item.id;
-        let item_amount = item.amount;
-		$("#menu_order_body").append('<p>' + item_name + " | " + item_amount + " | " + item_price + ' </p>');
-	} //TODO continue here. + update for new implementation of redo / undo
+        create_order_item(item);
+	}
+    load_total_cost(total_cost);
 	update_view();
 }
+
+/**
+    * load_total_cost
+    * @desc loads total cost of order
+    * @arg cost of order
+    */
+function load_total_cost(cost) {
+
+    $("#menu_order_body").append('<div id="total_cost_wrapper"></div>');
+    $("#total_cost_wrapper").append('<div id="total_cost_text"></div>');
+    $("#total_cost_wrapper").append('<div id="total_cost_amount">' + cost + '</div>');
+    update_view();
+}
+
+/**
+    * create_order_item
+    * @desc creates an order item
+*/
+function create_order_item(item) {
+    let item_id     = order_item_id(item);
+    let item_name   = order_item_name(item);
+    let item_price  = order_item_price(item);
+    let item_amount = order_item_amount(item);
+    let total_price = item_price * item_amount;
+    let div_id = "item_" + item_id;
+    $("#menu_order_body").append('<div id="' + div_id + '"></div>');
+    $("#" + div_id).css("display", "flex");
+    $("#" + div_id).append('<div class="order_item_name">' + item_name + '</div>');
+    $("#" + div_id).append('<div class="order_item_amount">' + item_amount + '</div>');
+    $("#" + div_id).append('<div class="order_item_price">' + total_price + '</div>');
+}
+
 
 
 /**

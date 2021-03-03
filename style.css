@@ -74,6 +74,34 @@ img {
     margin-right: 1em;
     justify-content: center;
 }
+
+.order_item_name {
+    display: flex;
+    width: 5em;
+    margin-right: 1em;
+    justify-content: center;
+}
+
+.order_item_amount {
+    display: flex;
+    width: 5em;
+    margin-right: 1em;
+    justify-content: center;
+}
+
+.order_item_price {
+    display: flex;
+    width: 5em;
+    margin-right: 1em;
+    justify-content: center;
+}
+
+.order_item_info {
+    display: flex;
+    width: 5em;
+    margin-right: 1em;
+    justify-content: center;
+}
 .menu_bar_item {
 	display: flex;
 	border: 1px solid black;
@@ -164,6 +192,31 @@ img {
 
 }
 
+#menu_order_body {
+    display: flex;
+    width: 15em;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#total_cost_wrapper {
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#total_cost_text {
+    display:flex;
+    width: 10em;
+    margin-left: 0.5em;
+    justify-content: center;
+}
+
+#total_cost_amount {
+    margin-left: 2.5em;
+}
+
 
 #menu_topbar {
 	display: flex;
@@ -202,12 +255,10 @@ img {
     border: solid black 1px;
 }
 
+
 #menu_order_info {
     display: flex;
     justify-content: flex-start;
-}
-
-#menu_order_body {
 }
 
 #undo_button {
