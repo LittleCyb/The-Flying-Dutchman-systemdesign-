@@ -15,17 +15,6 @@ This js document contains the beverages served at the pub.
  	return db[drink][index][key];
  }
 
-flags = {
-    "Nederländerna": "flags/nl.gif",
-    "Storbritannien": "flags/en.gif",
-    "Sverige": "flags/sv.gif",
-    "Folkrepubliken Kina": "flags/ch.gif",
-    "Tjeckien": "flags/cz.gif",
-    "Italien": "flags/it.gif",
-    "Österrike": "flags/au.gif",
-    "Nya Zeeland": "flags/nz.gif"
-}
-
 const menu_types = ["beers", "cocktails", "wine", "vip"];
 const information = {
     "beers" : ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"],
@@ -33,6 +22,8 @@ const information = {
     "wine": ["namn", "saljstart", "producent", "varugrupp", "volym", "prisinklmoms", "tanniner"],
     "vip": ["namn", "producent", "volym", "prisinklmoms"]
 }
+
+const menu_order_info = ["name", "amount", "price"];
 
 const beverages_info = {
     "cocktails" : [
