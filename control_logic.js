@@ -64,6 +64,20 @@
  	}
  }
 
+// TODO: att docu
+function order_item_id(item) {
+    return item.id;
+}
+function order_item_name(item) {
+    return item.name;
+}
+function order_item_price(item) {
+    return item.price;
+}
+function order_item_amount(item) {
+    return item.amount;
+}
+
  /**
   *	do_action
   *	@desc calls for an action in the backend

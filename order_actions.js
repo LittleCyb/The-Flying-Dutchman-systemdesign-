@@ -12,13 +12,15 @@
 function add_item_to_order(item) {
     const values = {
         order_table: current_table_number,
-        order_id: item,
+        order_id: item.artikelid,
+        order_name: item.namn,
+        order_price: item.prisinklmoms,
         execute: function () {
             var order = orders[this.order_table];
             var found_item = find_item_in_order(order, this.order_id)
             // Add item to order if it doesnt exist
             if (!found_item) {
-                var new_item = new Order_item(this.order_id);
+                var new_item = new Order_item(this.order_id, this.order_name, this.order_price);
                 order.push(new_item);
             }
             else {
@@ -52,7 +54,7 @@ function add_item_to_order(item) {
             var found_item = find_item_in_order(order, this.order_id)
             // Add item to order if it doesnt exist
             if (!found_item) {
-                var new_item = new Order_item(this.order_id);
+                var new_item = new Order_item(this.order_id, this.order_name, this.order_price);
                 order.push(new_item);
             }
             else {

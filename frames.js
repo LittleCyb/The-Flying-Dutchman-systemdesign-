@@ -188,9 +188,9 @@ function make_beverage(type, index) {
 	}
 
 	var flag_src = get_flag(get_country_of_origin(type, index));
-	var new_id = get_drink_string(type, index, "artikelid");
+	var new_drink = get_drink_object(type, index);
 	$(div).append('<img class="menu_flag_icon" src="' + flag_src + '">');
-	$(div).append('<div class="add_item_button" id="'+new_id+'">+ 1</div>').click(function() {do_action('add', new_id)});
+	$(div).append('<div class="add_item_button" id="'+ new_drink.artikelid +'">+ 1</div>').click(function() {do_action('add', new_drink)});
 	return div
 }
 
@@ -232,10 +232,7 @@ function update_order_view() {
     let total_cost = 0;
 	for(item of orders[current_table_number]) {
         create_order_item(item);
-        //TODO pick out cost of item * amount = item_cost
-        //total_cost += item_cost;
 	}
-
     load_total_cost(total_cost);
 	update_view();
 }
@@ -258,13 +255,12 @@ function load_total_cost(cost) {
     * @desc creates an order item
 */
 function create_order_item(item) {
-    let item_price = 10; //FIXME
-    let item_amount = item.amount;
+    let item_id     = order_item_id(item);
+    let item_name   = order_item_name(item);
+    let item_price  = order_item_price(item);
+    let item_amount = order_item_amount(item);
     let total_price = item_price * item_amount;
-    let item_name = "drink"; //FIXME
-    let item_id = item.id;
     let div_id = "item_" + item_id;
-    /*$("#menu_order_body").append('<p>' + item_name + item_amount + ' </p>');*/
     $("#menu_order_body").append('<div id="' + div_id + '"></div>');
     $("#" + div_id).css("display", "flex");
     $("#" + div_id).append('<div class="order_item_name">' + item_name + '</div>');
