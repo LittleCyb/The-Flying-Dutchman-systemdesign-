@@ -20,10 +20,11 @@ function load_topbar_language() {
 }
 
 function load_main_frame() {
+	// Create frame
 	add_block("body","div","","main_frame");
 	add_block("#main_frame","div","","table_number");
 	add_image("#main_frame", "Logo image", "logo");
-
+	// Additional attributes
 	$("#table_number").hide();
 }
 
@@ -36,14 +37,14 @@ function load_main_frame() {
  */
 function load_frame_login(old_frame) {
 	remove_old_frame(old_frame);
-
+	// Create frame
 	add_block('#main_frame', "div", "", "login");
 	add_block('#login', "div", "", "login_topbar");
 	add_block('#login_topbar', "span", "", "login_manager");
 	add_block("#login", "p", "", "login_text");
 	add_block("#login", "span", "", "login_input");
 	add_block("#login", "span", "", "login_button");
-
+	// Additional attributes
 	$("#login_manager").attr("onclick", 'load_frame_manager("login")');
 	$("#login_button").attr("onclick", 'load_frame_choose("login")');
 	$("#login_input").attr("contentEditable", "true");
@@ -69,10 +70,9 @@ function load_frame_manager(old_frame) {
  */
 function load_frame_choose(old_frame) {
 	remove_old_frame(old_frame);
-
+	// Create frame
 	add_block("#main_frame", "div", "", "choose_screen");
 	add_block("#choose_screen", "h1", "", "choose_welcome");
-
 	// Add tables
 	for (i = 1; i <= 9; i++) {
 		let table = $('<div class="table"></div>');
@@ -85,7 +85,6 @@ function load_frame_choose(old_frame) {
 		$("#choose_screen").append(table);
 	}
 	// Add bar
-	//$('#choose_screen').append('<div class="table" id="table_bar"> Bar </div>');
 	add_block("#choose_screen", "div", "table", "table_bar");
 	$("#table_bar").text("Bar");
 
@@ -120,25 +119,20 @@ function load_frame_menu(old_frame, new_table_number) {
 	// Get number of current table
 	current_table_number = new_table_number;
 	$("#table_number").show();
-	$("#table_number").text("Table " + current_table_number);
-	// Adds the new frame
-	$("#main_frame").append('<div id="menu"></div>');
-
-	$("#menu").append('<div id="menu_topbar"></div>');
-	$("#menu_topbar").append('<span id="login_vip"></span>');
-
-	$("#menu").append('<div id="menu_bar"></div>');
-
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_beers"></div>');
-	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');
-
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_cocktails"></div>');
+	// Create frame
+	add_block("#main_frame", "div", "", "menu");
+	add_block("#menu", "div", "", "menu_topbar");
+	add_block("#menu_topbar", "span", "", "login_vip");
+	add_block("#menu", "div", "", "menu_bar");
+	// Menu categories
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_beers");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_cocktails");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_wine");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_vip");
+	// Make categories clickable
+	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');;
 	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
-
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_wine"></div>');
 	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
-
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
 
 	load_menu_view();
@@ -162,10 +156,9 @@ function load_frame_menu(old_frame, new_table_number) {
  * @desc loads menu view frame
  */
 function load_menu_view() {
-
-	//loads div for menu_view to put items in
-	$("#menu").append('<div id="menu_view"></div>');
-
+	// frame to put items in
+	add_block("#menu", "div", "", "menu_view");
+	// Items
 	for(const type of menu_types) {
 		$("#menu_view").append('<div id="menu_view_' + type + '"></div>');
 		for(index in db[type]) {
@@ -200,13 +193,13 @@ function make_beverage(type, index) {
 
 function load_current_order() {
     //TODO make sure the text comes from the dictionary rather than being hardcoded in order to support translation!
-	$("#menu").append('<div id="menu_order"></div>');
-    $("#menu_order").append('<div id="menu_order_info"></div>');
+	add_block("#menu", "div", "", "menu_order");
+	add_block("#menu_order", "div", "", "menu_order_info");
+	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_name");
+	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_amount");
+	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_price");
 
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name"></div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount"></div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price"></div>');
-    update_view();
+	update_view();
 
 }
 
@@ -226,7 +219,7 @@ function clear_menu_order_body() {
  */
 function update_order_view() {
     clear_menu_order_body();
-    $("#menu_order").append('<div id="menu_order_body"></div>');
+    add_block("#menu_order", "div", "", "menu_order_body");
 
     let total_cost = 0;
 	for(item of orders[current_table_number]) {

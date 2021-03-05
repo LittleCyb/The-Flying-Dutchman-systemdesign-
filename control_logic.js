@@ -88,6 +88,7 @@ function add_image(src, alt, id) {
  		pic = pics[idx];
  		$("#" + pic).attr('src', get_string(pic));
  	}
+ 	$("#table_number").text(language == "sv" ? "Bord: " + current_table_number : "Table: " + current_table_number);
  }
 
 // TODO: att docu
