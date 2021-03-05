@@ -11,6 +11,14 @@
     	orders[current_table_number] = [];
     }
 
+    /** get_order
+     *	@desc gets order
+     *  @arg table_number
+     */
+     function get_order(table_number) {
+         return orders[table_number];
+     }
+
 orders = {
     '1': [
 
