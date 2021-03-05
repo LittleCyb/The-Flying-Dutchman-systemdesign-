@@ -84,9 +84,9 @@ function order_item_amount(item) {
   *	@fun function to call
   *  @arg argument for function
   */
- function do_action(fun, arg) {
+ function do_action(fun, arg1, arg2) {
  	if (fun == 'add') {
- 		action_exe(add_item_to_order(arg));
+ 		action_exe(add_item_to_order(arg1));
  	}
  	if (fun == 'undo') {
  		action_undo();
@@ -94,6 +94,9 @@ function order_item_amount(item) {
  	if (fun == 'redo') {
  		action_redo();
  	}
+    if (fun == 'remove') {
+        action_exe(remove_item_from_order(arg1, arg2));
+    }
  }
 
  /* drag-n-drop */
