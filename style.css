@@ -70,16 +70,15 @@ img {
 
 .menu_order_info {
     display: flex;
-    width: 5em;
     margin-right: 1em;
     justify-content: center;
 }
 
 .order_item_name {
     display: flex;
-    width: 5em;
+    width: 7em;
     margin-right: 1em;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .order_item_amount {
@@ -194,9 +193,21 @@ img {
 
 #menu_order_body {
     display: flex;
-    width: 15em;
+    width: 17em;
     flex-wrap: wrap;
     justify-content: flex-start;
+}
+
+#menu_order_name {
+    width: 7em;
+}
+
+#menu_order_amount {
+    width: 5em;
+}
+
+#menu_order_price {
+    width: 5em;
 }
 
 #total_cost_wrapper {
