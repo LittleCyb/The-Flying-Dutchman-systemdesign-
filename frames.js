@@ -200,13 +200,13 @@ function make_beverage(type, index) {
  */
 
 function load_current_order() {
-    //TODO make sure the text comes from the dictionary rather than being hardcoded in order to support translation!
 	$("#menu").append('<div id="menu_order"></div>');
     $("#menu_order").append('<div id="menu_order_info"></div>');
 
     $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name"></div>');
     $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount"></div>');
     $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price"></div>');
+    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_remove"></div>');
     update_view();
 
 }
@@ -266,6 +266,10 @@ function create_order_item(item) {
     $("#" + div_id).append('<div class="order_item_name">' + item_name + '</div>');
     $("#" + div_id).append('<div class="order_item_amount">' + item_amount + '</div>');
     $("#" + div_id).append('<div class="order_item_price">' + total_price + '</div>');
+    $("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {change_language_control()}); //FIXME should remove from database and be "undo/redo:able"
+
+    /*$(div).append('<div class="add_item_button" id="'+ new_drink.artikelid +'">+ 1</div>').click(function() {do_action('add', new_drink)});
+    */
 }
 
 

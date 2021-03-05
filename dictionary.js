@@ -15,6 +15,7 @@ dict = {
             'menu_bar_wine',
             'menu_bar_vip',
             'menu_bar_order',
+            'menu_order_remove',
             'login_manager',
             'login_vip',
             'menu_order_name',
@@ -42,6 +43,7 @@ dict = {
         'menu_order_name': "Name",
         'menu_order_amount': "Amount",
         'menu_order_price': "Price",
+        'menu_order_remove': "Remove",
         'undo_button': "Undo",
         'redo_button': "Redo",
         'total_cost_text': "Total"
@@ -63,6 +65,7 @@ dict = {
         'menu_order_name': "Namn",
         'menu_order_amount': "Mängd",
         'menu_order_price': "Pris",
+        'menu_order_remove': "Ta bort",
         'undo_button': "Ångra",
         'redo_button': "Gör om",
         'total_cost_text': "Summa"
