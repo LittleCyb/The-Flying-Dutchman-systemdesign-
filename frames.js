@@ -9,24 +9,25 @@
   * @desc Creates a language topbar
   */
 function load_topbar_language() {
-   $('body').append('<div id="language_bar"</div>');
+	add_block("body","div","","language_bar");
 
+    /*FIXME (for testing purposes, remove later)*/
+    $("#language_bar").append('<div id="login_from_menu">back to login</div>');
+    $("#login_from_menu").attr("onclick", 'load_frame_login("menu")');
 
-   /*FIXME (for testing purposes, remove later)*/
-   $("#language_bar").append('<div id="login_from_menu">back to login</div>');
-   $("#login_from_menu").attr("onclick", 'load_frame_login("menu")');
-
-
-   $("#language_bar").append('<img id="language" alt="current language" src="">');
-   $("#language").attr("onclick", 'change_language_control()');
+   	add_image("#language_bar", "Current language", "language");
+   	$("#language").attr("onclick", 'change_language_control()');
 }
 
 function load_main_frame() {
-	$('body').append('<div id="main_frame"></div>');
-	$("#main_frame").append('<div id="table_number"></div>');
+	add_block("body","div","","main_frame");
+	add_block("#main_frame","div","","table_number");
+	add_image("#main_frame", "Logo image", "logo");
+
 	$("#table_number").hide();
-	$("#main_frame").append('<img id="logo" src="">');
 }
+
+
 
 /**
  * load_frame_login
@@ -36,18 +37,17 @@ function load_main_frame() {
 function load_frame_login(old_frame) {
 	remove_old_frame(old_frame);
 
-	$("#main_frame").append('<div id="login"></div>');
-	$("#login").append('<div id="login_topbar"></div>');
-	$("#login_topbar").append('<span id="login_manager"></span>');
+	add_block('#main_frame', "div", "", "login");
+	add_block('#login', "div", "", "login_topbar");
+	add_block('#login_topbar', "span", "", "login_manager");
+	add_block("#login", "p", "", "login_text");
+	add_block("#login", "span", "", "login_input");
+	add_block("#login", "span", "", "login_button");
+
 	$("#login_manager").attr("onclick", 'load_frame_manager("login")');
-
-	$("#login").append('<p id="login_text"></p>');
-
-	$("#login").append('<span id="login_input"></span>');
+	$("#login_button").attr("onclick", 'load_frame_choose("login")');
 	$("#login_input").attr("contentEditable", "true");
 
-	$("#login").append('<span id="login_button"></span>');
-	$("#login_button").attr("onclick", 'load_frame_choose("login")');
 	update_view();
 }
 
@@ -70,11 +70,8 @@ function load_frame_manager(old_frame) {
 function load_frame_choose(old_frame) {
 	remove_old_frame(old_frame);
 
-	// adds new content to main_frame
-	$("#main_frame").append('<div id="choose_screen"></div>');
-	// Welcoming text
-	$('#choose_screen').append('<h1 id="choose_welcome"></h1>')
-	$('#choose_welcome').text("Please seat yourself at a table");
+	add_block("#main_frame", "div", "", "choose_screen");
+	add_block("#choose_screen", "h1", "", "choose_welcome");
 
 	// Add tables
 	for (i = 1; i <= 9; i++) {
@@ -82,13 +79,15 @@ function load_frame_choose(old_frame) {
 		$(table).attr("id", "table_" + i);
 		$(table).attr("ondrop","drop_ipad(event)");
 		$(table).attr("ondragover","allow_drop(event)");
-		let str = "Table " + i
-		$(table).text(str);
+		// TODO: Språket ändrar sig ej dynamiskt!
+		$(table).text(i);
 		$(table).attr("onclick", 'load_frame_menu("choose_screen", "' + i +'")');
 		$("#choose_screen").append(table);
 	}
 	// Add bar
-	$('#choose_screen').append('<div class="table" id="table_bar"> Bar </div>');
+	//$('#choose_screen').append('<div class="table" id="table_bar"> Bar </div>');
+	add_block("#choose_screen", "div", "table", "table_bar");
+	$("#table_bar").text("Bar");
 
 	// Add iPad
 	$('#choose_screen').append('<canvas id="ipad" width="64" height="96"> Cannot show ipad-canvas</canvas>');
@@ -190,7 +189,7 @@ function make_beverage(type, index) {
 	var flag_src = get_flag(get_country_of_origin(type, index));
 	var new_drink = get_drink_object(type, index);
 	$(div).append('<img class="menu_flag_icon" src="' + flag_src + '">');
-	$(div).append('<div class="add_item_button" id="'+ new_drink.artikelid +'">+ 1</div>').click(function() {do_action('add', new_drink)});
+	$(div).append('<div class="add_item_button" id="'+ get_drink_id(type, index) +'">+ 1</div>').click(function() {do_action('add', new_drink)});
 	return div
 }
 
@@ -267,8 +266,6 @@ function create_order_item(item) {
     $("#" + div_id).append('<div class="order_item_amount">' + item_amount + '</div>');
     $("#" + div_id).append('<div class="order_item_price">' + total_price + '</div>');
 }
-
-
 
 /**
  * remove_old_frame(old_frame)

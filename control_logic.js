@@ -14,6 +14,32 @@
  	update_view();
  }
 
+/**
+ * add_block
+ * @desc Creates a HTML block
+ * @param src which html block to build upon
+ * @param tag html tag
+ * @param class class attribute
+ * @param id id attribute
+ */
+function add_block(src, tag, _class, id) {
+	if (_class != "") _class = 'class=' + _class;
+	let html_code = '<' + tag + ' ' + _class + ' id="' + id + '"' + '></' + tag + '>';
+	$(src).append(html_code);
+}
+
+/**
+ * add_image
+ * @desc Creates a HTML block
+ * @param src which html block to build upon
+ * @param alt describtion of image
+ * @param id id attribute
+ */
+function add_image(src, alt, id) {
+	let html_code = '<img src="" alt="' + alt + '" id="' + id + '">';
+	$(src).append(html_code);
+}
+
  /**
   * display_menu_items
   * @desc Displays chosen menu items in menu view frame

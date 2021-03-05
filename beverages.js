@@ -19,6 +19,10 @@ This js document contains the beverages served at the pub.
      return db[drink][index];
  }
 
+function get_drink_id(drink, index) {
+    return db[drink][index]["artikelid"];
+}
+
 const menu_types = ["beers", "cocktails", "wine", "vip"];
 const information = {
     "beers" : ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"],
