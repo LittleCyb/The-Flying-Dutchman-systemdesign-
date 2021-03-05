@@ -13,7 +13,7 @@ let stack_redo = [];
 function Order_item(id, name, price) {
     this.id = id;
     this.name = name;
-    this.price = Math.trunc(parseFloat(price));
+    this.price = parseFloat(price);
     this.amount = 1;
 }
 
