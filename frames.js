@@ -259,13 +259,16 @@ function create_order_item(item) {
     let item_name   = order_item_name(item);
     let item_price  = order_item_price(item);
     let item_amount = order_item_amount(item);
+    // Get price of total amount of item, leaving at most two decimals
     let total_price = item_price * item_amount;
+    let total_roundoff = Math.round(total_price * 100)/100;
+
     let div_id = "item_" + item_id;
     $("#menu_order_body").append('<div id="' + div_id + '"></div>');
     $("#" + div_id).css("display", "flex");
     $("#" + div_id).append('<div class="order_item_name">' + item_name + '</div>');
     $("#" + div_id).append('<div class="order_item_amount">' + item_amount + '</div>');
-    $("#" + div_id).append('<div class="order_item_price">' + total_price + '</div>');
+    $("#" + div_id).append('<div class="order_item_price">' + total_roundoff + '</div>');
 }
 
 
