@@ -9,24 +9,26 @@
   * @desc Creates a language topbar
   */
 function load_topbar_language() {
-   $('body').append('<div id="language_bar"</div>');
+	add_block("body","div","","language_bar");
 
+    /*FIXME (for testing purposes, remove later)*/
+    $("#language_bar").append('<div id="login_from_menu">back to login</div>');
+    $("#login_from_menu").attr("onclick", 'load_frame_login("menu")');
 
-   /*FIXME (for testing purposes, remove later)*/
-   $("#language_bar").append('<div id="login_from_menu">back to login</div>');
-   $("#login_from_menu").attr("onclick", 'load_frame_login("menu")');
-
-
-   $("#language_bar").append('<img id="language" alt="current language" src="">');
-   $("#language").attr("onclick", 'change_language_control()');
+   	add_image("#language_bar", "Current language", "language");
+   	$("#language").attr("onclick", 'change_language_control()');
 }
 
 function load_main_frame() {
-	$('body').append('<div id="main_frame"></div>');
-	$("#main_frame").append('<div id="table_number"></div>');
+	// Create frame
+	add_block("body","div","","main_frame");
+	add_block("#main_frame","div","","table_number");
+	add_image("#main_frame", "Logo image", "logo");
+	// Additional attributes
 	$("#table_number").hide();
-	$("#main_frame").append('<img id="logo" src="">');
 }
+
+
 
 /**
  * load_frame_login
@@ -35,19 +37,18 @@ function load_main_frame() {
  */
 function load_frame_login(old_frame) {
 	remove_old_frame(old_frame);
-
-	$("#main_frame").append('<div id="login"></div>');
-	$("#login").append('<div id="login_topbar"></div>');
-	$("#login_topbar").append('<span id="login_manager"></span>');
+	// Create frame
+	add_block('#main_frame', "div", "", "login");
+	add_block('#login', "div", "", "login_topbar");
+	add_block('#login_topbar', "span", "", "login_manager");
+	add_block("#login", "p", "", "login_text");
+	add_block("#login", "span", "", "login_input");
+	add_block("#login", "span", "", "login_button");
+	// Additional attributes
 	$("#login_manager").attr("onclick", 'load_frame_manager("login")');
-
-	$("#login").append('<p id="login_text"></p>');
-
-	$("#login").append('<span id="login_input"></span>');
+	$("#login_button").attr("onclick", 'load_frame_choose("login")');
 	$("#login_input").attr("contentEditable", "true");
 
-	$("#login").append('<span id="login_button"></span>');
-	$("#login_button").attr("onclick", 'load_frame_choose("login")');
 	update_view();
 }
 
@@ -69,26 +70,23 @@ function load_frame_manager(old_frame) {
  */
 function load_frame_choose(old_frame) {
 	remove_old_frame(old_frame);
-
-	// adds new content to main_frame
-	$("#main_frame").append('<div id="choose_screen"></div>');
-	// Welcoming text
-	$('#choose_screen').append('<h1 id="choose_welcome"></h1>')
-	$('#choose_welcome').text("Please seat yourself at a table");
-
+	// Create frame
+	add_block("#main_frame", "div", "", "choose_screen");
+	add_block("#choose_screen", "h1", "", "choose_welcome");
 	// Add tables
 	for (i = 1; i <= 9; i++) {
 		let table = $('<div class="table"></div>');
 		$(table).attr("id", "table_" + i);
 		$(table).attr("ondrop","drop_ipad(event)");
 		$(table).attr("ondragover","allow_drop(event)");
-		let str = "Table " + i
-		$(table).text(str);
+		// TODO: Språket ändrar sig ej dynamiskt!
+		$(table).text(i);
 		$(table).attr("onclick", 'load_frame_menu("choose_screen", "' + i +'")');
 		$("#choose_screen").append(table);
 	}
 	// Add bar
-	$('#choose_screen').append('<div class="table" id="table_bar"> Bar </div>');
+	add_block("#choose_screen", "div", "table", "table_bar");
+	$("#table_bar").text("Bar");
 
 	// Add iPad
 	$('#choose_screen').append('<canvas id="ipad" width="64" height="96"> Cannot show ipad-canvas</canvas>');
@@ -121,25 +119,20 @@ function load_frame_menu(old_frame, new_table_number) {
 	// Get number of current table
 	current_table_number = new_table_number;
 	$("#table_number").show();
-	$("#table_number").text("Table " + current_table_number);
-	// Adds the new frame
-	$("#main_frame").append('<div id="menu"></div>');
-
-	$("#menu").append('<div id="menu_topbar"></div>');
-	$("#menu_topbar").append('<span id="login_vip"></span>');
-
-	$("#menu").append('<div id="menu_bar"></div>');
-
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_beers"></div>');
-	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');
-
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_cocktails"></div>');
+	// Create frame
+	add_block("#main_frame", "div", "", "menu");
+	add_block("#menu", "div", "", "menu_topbar");
+	add_block("#menu_topbar", "span", "", "login_vip");
+	add_block("#menu", "div", "", "menu_bar");
+	// Menu categories
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_beers");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_cocktails");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_wine");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_vip");
+	// Make categories clickable
+	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');;
 	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
-
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_wine"></div>');
 	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
-
-	$("#menu_bar").append('<div class="menu_bar_item" id="menu_bar_vip"></div>');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
 
 	load_menu_view();
@@ -161,10 +154,9 @@ function load_frame_menu(old_frame, new_table_number) {
  * @desc loads menu view frame
  */
 function load_menu_view() {
-
-	//loads div for menu_view to put items in
-	$("#menu").append('<div id="menu_view"></div>');
-
+	// frame to put items in
+	add_block("#menu", "div", "", "menu_view");
+	// Items
 	for(const type of menu_types) {
 		$("#menu_view").append('<div id="menu_view_' + type + '"></div>');
 		for(index in db[type]) {
@@ -188,7 +180,7 @@ function make_beverage(type, index) {
 	var flag_src = get_flag(get_country_of_origin(type, index));
 	var new_drink = get_drink_object(type, index);
 	$(div).append('<img class="menu_flag_icon" src="' + flag_src + '">');
-	$(div).append('<div class="add_item_button" id="'+ new_drink.artikelid +'">+ 1</div>').click(function() {do_action('add', new_drink, '')});
+	$(div).append('<div class="add_item_button" id="'+ get_drink_id(type, index) +'">+ 1</div>').click(function() {do_action('add', new_drink)});
 	return div
 }
 
@@ -198,15 +190,14 @@ function make_beverage(type, index) {
  */
 
 function load_current_order() {
-	$("#menu").append('<div id="menu_order"></div>');
-    $("#menu_order").append('<div id="menu_order_info"></div>');
+    //TODO make sure the text comes from the dictionary rather than being hardcoded in order to support translation!
+	add_block("#menu", "div", "", "menu_order");
+	add_block("#menu_order", "div", "", "menu_order_info");
+	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_name");
+	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_amount");
+	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_price");
 
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_name"></div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_amount"></div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_price"></div>');
-    $("#menu_order_info").append('<div class="menu_order_info" id="menu_order_remove"></div>');
-    update_view();
-
+	update_view();
 }
 
 /**
@@ -225,7 +216,7 @@ function clear_menu_order_body() {
  */
 function update_order_view() {
     clear_menu_order_body();
-    $("#menu_order").append('<div id="menu_order_body"></div>');
+    add_block("#menu_order", "div", "", "menu_order_body");
 
     let total_cost = 0;
 	for(item of orders[current_table_number]) {
@@ -272,8 +263,6 @@ function create_order_item(item) {
     $("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[current_table_number], item_id).amount)});
 
 }
-
-
 
 /**
  * remove_old_frame(old_frame)

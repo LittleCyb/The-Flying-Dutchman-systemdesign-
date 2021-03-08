@@ -25,6 +25,15 @@ This js document contains the beverages served at the pub.
      return db[drink][index];
  }
 
+ /**
+  *	get_drink_id
+  *	@desc returns a drink ID
+  *	@arg drink what kind of drink
+  *  @arg index
+  */
+function get_drink_id(drink, index) {
+    return db[drink][index]["artikelid"];
+}
 /**
     * get_drink_from_id
     * @desc returns drink from its id
