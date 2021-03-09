@@ -355,15 +355,36 @@ img {
 
 
 #login_input {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: -2%;
     margin-left: 30%;
     margin-right: 30%;
     padding-left: 4px; /* for inlining text */
     border: 1px solid black;
     border-radius: 5px;
     background-color: #ffd29a;
+}
+
+#vip_login_input {
+    margin-left: 30%;
+    margin-right: 30%;
+    padding-left: 4px; /* for inlining text */
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #ffd29a;
+}
+
+#vip_login_label {
+	text-align: center;
+}
+
+#vip_login_button {
+    background-color: #ffd29a;
+    text-align: center;
+    border: 1px solid black;
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #login_topbar {

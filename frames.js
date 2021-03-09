@@ -42,8 +42,8 @@ function load_frame_login(old_frame) {
 	add_block('#login', "div", "", "login_topbar");
 	add_block('#login_topbar', "span", "", "login_manager");
 	add_block("#login", "p", "", "login_text");
-	add_block("#login", "span", "", "login_input");
-	add_block("#login", "span", "", "login_button");
+	add_block("#login", "div", "", "login_input");
+	add_block("#login", "div", "", "login_button");
 	// Additional attributes
 	$("#login_manager").attr("onclick", 'load_frame_manager("login")');
 	$("#login_button").attr("onclick", 'load_frame_choose("login")');
@@ -61,6 +61,28 @@ function load_frame_manager(old_frame) {
 	remove_old_frame(old_frame);
 	// adds new content to main_frame
 	$("#main_frame").append('<div id="manager"></div>');
+}
+
+/**
+ * load_frame_vip_login
+ * @desc Creates a vip_login frame
+ * @param old_frame Old frame to be removed
+ */
+function load_frame_vip_login(old_frame) {
+	remove_old_frame(old_frame);
+	// Create frame
+	// add_block("#main_frame", "div", "", "vip_login");
+	$("<div id=vip_login>").appendTo("#main_frame");
+	$("<p id=vip_login_label>").appendTo("#vip_login");
+	$("<div id=vip_login_input>").attr("contentEditable", "true").appendTo("#vip_login");
+	$("<div id=vip_login_button>").appendTo("#vip_login");
+	update_view();
+	
+	$("#vip_login_button").click(function() {
+		var name = $("#vip_login_input").text();
+		alert("logged in as: " + name);
+		load_frame_menu("vip_login", current_table_number);
+	})
 }
 
 /**
@@ -134,6 +156,8 @@ function load_frame_menu(old_frame, new_table_number) {
 	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
 	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
+	
+	$("#login_vip").click(function() {load_frame_vip_login("menu")})
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
