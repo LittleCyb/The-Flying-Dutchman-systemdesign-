@@ -57,7 +57,8 @@ flags = {
     "Tjeckien": "flags/cz.gif",
     "Italien": "flags/it.gif",
     "Österrike": "flags/au.gif",
-    "Nya Zeeland": "flags/nz.gif"
+    "Nya Zeeland": "flags/nz.gif",
+}
 
  /**
   *	get_drink_object
