@@ -196,6 +196,7 @@ function load_current_order() {
 	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_name");
 	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_amount");
 	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_price");
+	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_remove");
 
 	update_view();
 }
