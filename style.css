@@ -12,7 +12,7 @@ body {
 
 img {
     display: flex;
-	position: relative;
+    position: relative;
     width: 340px;
     margin: 0 auto;
 }
@@ -36,12 +36,12 @@ img {
 }
 /* When using a iPad or cellphone or other screen with a "high-screen" view */
 @media only screen and (min-height: 1081px) {
-   body {
+    body {
         background-color: burlywood;
         background-image: url("ship.png");
         background-repeat: no-repeat;
         background-size: cover;
-   }
+    }
 }
 
 /*button classes*/
@@ -62,14 +62,14 @@ img {
 /* Menu Classes */
 
 .menu_bar_item {
-	display: flex;
-	border: 1px solid black;
-	border-radius: 5px;
-	margin-left: 2px;
-	margin-right: 2px;
-	width : 5em;
-	background-color: #ffd29a;
-	justify-content: center;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    width : 5em;
+    background-color: #ffd29a;
+    justify-content: center;
 }
 
 .menu_bar_item:hover {
@@ -85,18 +85,18 @@ img {
 /* Choose table classes */
 
 .table {
-	float: left;
-	border: 2px solid black;
-	background-color: saddlebrown;
-	width: 10%;
-	height: 10%;
+    float: left;
+    border: 2px solid black;
+    background-color: saddlebrown;
+    width: 10%;
+    height: 10%;
     margin: 2.5% 0 2.5% 17.5%;
-	text-align: center;
-	color: #ffd29a;
+    text-align: center;
+    color: #ffd29a;
     cursor: pointer;
 }
 .table:hover {
-	background-color: sienna;
+    background-color: sienna;
 }
 
 @media only screen and (min-height: 1081px) {
@@ -119,8 +119,8 @@ img {
 
 
 #menu_topbar {
-	display: flex;
-	justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 
@@ -130,8 +130,8 @@ img {
     border: 1px solid black;
     border-radius: 5px;
     background-color: #ffd29a;
-	margin-right: 1.65em;
-	width: auto;
+    margin-right: 1.65em;
+    width: auto;
     padding: 4px;
 }
 
@@ -141,20 +141,20 @@ img {
 }
 
 #menu_bar {
-	display: flex;
-	justify-content: flex-start;
-	margin: auto;
-	margin-top: 0.7em;
-	width: 90%;
-	height: 4%;
+    display: flex;
+    justify-content: flex-start;
+    margin: auto;
+    margin-top: 0.7em;
+    width: 90%;
+    height: 4%;
     cursor: pointer;
 }
 
 #menu_view {
     float: left;
-	width: 70%;
-	height: 75%;
-	overflow-y: scroll;
+    width: 70%;
+    height: 75%;
+    overflow-y: scroll;
 }
 
 #undo_button {
@@ -216,13 +216,13 @@ img {
 
 #login_manager {
     display: flex;
-	justify-content: center;
+    justify-content: center;
     border: 1px solid black;
     margin-top: 5px;
     border-radius: 5px;
     background-color: #ffd29a;
-	margin-right: 0.4em;
-	width: auto;
+    margin-right: 0.4em;
+    width: auto;
     padding: 4px;
     cursor: pointer;
 }
@@ -287,13 +287,58 @@ img {
 /* manager ID:s */
 
 #manager {
-    background-color: burlywood;
     border: 2px solid black;
-    width: 75%;
+    width: 90%;
     margin: 20px auto;
-	margin-top: 50px;
-    height: 30em;
+    margin-top: 7.5%;
+    height: 85%;
+    overflow: auto;
 }
+#manager_left {
+    width: 30%;
+}
+.item_text {
+    display: flex;
+    justify-content: center;
+    font-size: 1.25em;
+}
+
+/* Simpan's test  ============================================*/
+.boxed {
+    border: 2px solid black;
+    border-radius: 8px;
+    margin-right: 0%;
+}
+
+.increment_button {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    margin-right: 2%;
+    margin-top: 5px;
+    border-radius: 5px;
+    width: auto;
+    padding: 5px;
+    background-color: #ffd29a;
+}
+
+.increment_button:hover {
+    background-color: #ffb686
+}
+
+.flex_button_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.dividing_large_text {
+    font-size: 2.0em;
+    text-transform: capitalize;
+}
+/* Simpan's test  ============================================*/
+
+
 
 /* choose table ID:s */
 @media only screen and (max-height: 1080px) {
@@ -327,21 +372,21 @@ img {
 
 /* Scrollbar customisation */
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: burlywood;
+    background: burlywood;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ffd29a;
+    background: #ffd29a;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffdfb8;
+    background: #ffdfb8;
 }
 
 /* END OF FILE */
