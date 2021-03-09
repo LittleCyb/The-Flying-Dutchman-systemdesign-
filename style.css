@@ -74,6 +74,10 @@ img {
     justify-content: center;
 }
 
+.checkbox_label {
+    display: flex;
+}
+
 .order_item_name {
     display: flex;
     width: 7em;
@@ -166,6 +170,11 @@ img {
 	position: absolute;
 	margin-top: 20px;
 	margin-left: 20px;
+}
+
+#menu_bar_filter {
+    background-color: green;
+
 }
 
 @media only screen and (max-height: 1080px) {
@@ -438,6 +447,7 @@ img {
     right: 64px;
     cursor: grabbing;
 }
+
 
 
 /* Scrollbar customisation */

@@ -129,11 +129,17 @@ function load_frame_menu(old_frame, new_table_number) {
 	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_cocktails");
 	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_wine");
 	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_vip");
+
+	//filter dropdown
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_filter");
+
+
 	// Make categories clickable
 	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');;
 	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
 	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
+	$("#menu_bar_filter").attr("onclick", 'display_menu_items("filter")');
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
@@ -166,11 +172,20 @@ function load_menu_view() {
 		}
 	}
 
+	//remove menu_view_filter from standard loop (see above) to add it separately below //FIXME this removes both, otherwise we get duplicates
+	//$("#menu_view_filter").remove();
+
+	//add filter functionality
+	add_block("#menu_view", "div", "menu_view_filter");
+	for(const filter of filter_types) {
+		$("#menu_view_filter").append('<input id="checkbox_' + filter +'_id" type="checkbox" name="checkbox_' + filter + '">' + '<label for="checkbox_' + filter + '" class="checkbox_label" id="checkbox_' + filter + '">');
+	}
+
 	hide_menu_views();
 }
 
 function make_beverage(type, index) {
-	var div = $("<div>").addClass("menu_beverage");
+	var div = $("<div>").addClass("menu_beverage").attr("id", get_drink_id(type, index));
 
 	for(var info_point of beverages_info[type]) {
 		var data = get_drink_string(type, index, info_point);

@@ -72,7 +72,8 @@ function get_drink_price_from_id(id) {
 }
 
 
-const menu_types = ["beers", "cocktails", "wine", "vip"];
+const menu_types = ["beers", "cocktails", "wine", "vip", "filter"];
+const filter_types = ["gluten", "low_tannins", "lactose", "low_alcohol"];
 const information = {
     "beers" : ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"],
     "cocktails": ["namn", "alkoholhalt", "volym", "prisinklmoms"],
@@ -146,6 +147,7 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "33cl",
+            "gluten_free": "1",
         },
         {
             "nr": "76814",
@@ -173,6 +175,7 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "40cl",
+            "gluten_free": "1",
         },
         {
             "nr": "76901",
@@ -200,6 +203,7 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "50cl",
+            "gluten_free": "1",
         }
     ],
     "beers" : [
@@ -229,6 +233,7 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "33cl",
+            "gluten_free": "1",
         },
         {
             "nr": "8966503",
@@ -256,6 +261,7 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym" : "33cl",
+            "gluten_free": "0",
         },
         {
             "nr": "8968101",
@@ -283,6 +289,7 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "33cl",
+            "gluten_free": "0",
         }
     ],
     "wine" : [
@@ -313,6 +320,7 @@ db = {
             "koscher": "0",
             "volym": "75cl",
             "tanniner": "5",
+            "gluten_free": "1",
         },
         {
             "nr": "8974301",
@@ -341,6 +349,7 @@ db = {
             "koscher": "0",
             "volym": "15cl",
             "tanniner": "4",
+            "gluten_free": "1",
         },
         {
             "nr": "9001201",
@@ -369,6 +378,7 @@ db = {
             "koscher": "0",
             "volym": "15cl",
             "tanniner": "1",
+            "gluten_free": "1",
         },
 
     ],
@@ -398,6 +408,7 @@ db = {
             "ekologisk": "1",
             "koscher": "0",
             "volym": "25cl",
+            "gluten_free": "1",
         }
     ]
 }

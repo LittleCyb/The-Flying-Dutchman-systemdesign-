@@ -14,7 +14,7 @@ dict = {
             'menu_bar_cocktails',
             'menu_bar_wine',
             'menu_bar_vip',
-            'menu_bar_order',
+            'menu_bar_filter',
             'menu_order_remove',
             'login_manager',
             'login_vip',
@@ -23,7 +23,11 @@ dict = {
             'menu_order_price',
             'undo_button',
             'redo_button',
-            'total_cost_text'],
+            'total_cost_text',
+            'checkbox_gluten',
+            'checkbox_low_tannins',
+            'checkbox_lactose',
+            'checkbox_low_alcohol'],
     'pics': ['language',
             'logo'],
 
@@ -37,7 +41,7 @@ dict = {
         'menu_bar_cocktails': "Cocktails",
         'menu_bar_wine': "Wine",
         'menu_bar_vip': "VIP",
-        'menu_bar_order': "My Order",
+        'menu_bar_filter': "Filter",
         'login_manager': "Login as manager",
         'login_vip': "VIP login",
         'menu_order_name': "Name",
@@ -46,7 +50,11 @@ dict = {
         'menu_order_remove': "Remove",
         'undo_button': "Undo",
         'redo_button': "Redo",
-        'total_cost_text': "Total"
+        'total_cost_text': "Total",
+        'checkbox_gluten': "Gluten-free",
+        'checkbox_low_tannins': "Low tannins content (< 3/5)",
+        'checkbox_lactose': "Lactose-free",
+        'checkbox_low_alcohol': "Low alcohol content (< 4%)"
     },
 
     'sv' : {
@@ -59,7 +67,7 @@ dict = {
         'menu_bar_cocktails': "Cocktails",
         'menu_bar_wine': "Vin",
         'menu_bar_vip': "VIP",
-        'menu_bar_order': "Beställning",
+        'menu_bar_filter': "Filtrera",
         'login_manager': "Logga in som manager",
         'login_vip': "VIP login",
         'menu_order_name': "Namn",
@@ -68,7 +76,11 @@ dict = {
         'menu_order_remove': "Ta bort",
         'undo_button': "Ångra",
         'redo_button': "Gör om",
-        'total_cost_text': "Summa"
+        'total_cost_text': "Summa",
+        'checkbox_gluten': "Glutenfri",
+        'checkbox_low_tannins': "Lågt innehåll av tanniner (< 3/5)",
+        'checkbox_lactose': "Laktosfri",
+        'checkbox_low_alcohol': "Låg alkoholhalt (< 4%)"
     }
 }
 
