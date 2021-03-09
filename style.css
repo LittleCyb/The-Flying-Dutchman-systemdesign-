@@ -5,6 +5,37 @@ Author: TODO: add our names
 A style sheet to customize and refine the appearance of the pub's application.
 */
 
+
+
+/* TODO: Gonna sort these later on */
+/* Bar Classes */
+
+.bar_order_item {
+    background: rgba(255, 255, 255, 0.4);
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+@media only screen and (max-height: 1080px) {
+    #bar_view {
+        margin-top: 1em;
+        float: left;
+        width: 60%;
+        height: 75%;
+        overflow-y: scroll;
+    }
+}
+
+
+@media only screen and (min-height: 1081px) {
+    #bar_view {
+        margin-top: 1em;
+        float: left;
+        width: 50%;
+        overflow-y: scroll;
+    }
+}
+
 /* Tags */
 body {
     font-family: 'Calibri', serif;
@@ -287,6 +318,7 @@ img {
 #redo_button {
     background-color: red;
 }
+
 
 /* Login ID:s */
 @media only screen and (max-height: 1080px) {

@@ -6,6 +6,8 @@
 
 /* DATA STRUCTURES */
 
+let order_id = 0;
+
 let stack_undo = [];
 let stack_redo = [];
 

@@ -14,6 +14,7 @@
  	update_view();
  }
 
+ // TODO: Detta är inte control logic
 /**
  * add_block
  * @desc Creates a HTML block
@@ -25,9 +26,9 @@
 function add_block(src, tag, _class, id) {
 	if (_class != "") _class = 'class=' + _class;
 	let html_code = '<' + tag + ' ' + _class + ' id="' + id + '"' + '></' + tag + '>';
-	$(src).append(html_code);
+	return $(src).append(html_code);
 }
-
+// TODO: Detta är inte control logic
 /**
  * add_image
  * @desc Creates a HTML block
@@ -37,7 +38,7 @@ function add_block(src, tag, _class, id) {
  */
 function add_image(src, alt, id) {
 	let html_code = '<img src="" alt="' + alt + '" id="' + id + '">';
-	$(src).append(html_code);
+	return $(src).append(html_code);
 }
 
  /**
@@ -52,7 +53,6 @@ function add_image(src, alt, id) {
  	$("#menu_bar_" + item).css("background-color", "#ffb686");
  	update_view();
  }
-
 
  /**
  *	get_country_of_origin
@@ -143,3 +143,8 @@ function order_item_amount(item) {
  function allow_drop(ev) {
  	ev.preventDefault();
  }
+
+ // TODO: When an order is done it should have this order id
+ function set_order_id() {
+ 	return ++order_id;
+}

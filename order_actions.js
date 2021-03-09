@@ -26,7 +26,7 @@ function add_item_to_order(item) {
             else {
                 found_item.amount++;
             }
-            update_order_view();
+            update_order_view(this.order_table);
         },
         unexecute: function () {
             var order = orders[this.order_table];
@@ -47,7 +47,7 @@ function add_item_to_order(item) {
                     }
                 }
             }
-            update_order_view();
+            update_order_view(this.order_table);
         },
         reexecute: function () {
             var order = orders[this.order_table];
@@ -60,7 +60,7 @@ function add_item_to_order(item) {
             else {
                 found_item.amount++;
             }
-            update_order_view();
+            update_order_view(this.order_table);
         }
     };
     return values;
@@ -87,7 +87,7 @@ function add_item_to_order(item) {
                      order.splice(index, 1);
                  }
              }
-             update_order_view();
+             update_order_view(this.order_table);
          },
          unexecute: function() {
              var order = orders[this.order_table];
@@ -102,7 +102,7 @@ function add_item_to_order(item) {
              else {
                  found_item.amount += old_amount;
              }
-             update_order_view();
+             update_order_view(this.order_table);
          },
          reexecute: function() {
              var order = orders[this.order_table];
@@ -117,7 +117,7 @@ function add_item_to_order(item) {
                      order.splice(index, 1);
                  }
              }
-             update_order_view();
+             update_order_view(this.order_table);
          }
      };
      return values;

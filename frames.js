@@ -28,8 +28,6 @@ function load_main_frame() {
 	$("#table_number").hide();
 }
 
-
-
 /**
  * load_frame_login
  * @desc Creates a login frame
@@ -87,6 +85,7 @@ function load_frame_choose(old_frame) {
 	// Add bar
 	add_block("#choose_screen", "div", "table", "table_bar");
 	$("#table_bar").text("Bar");
+	$("#table_bar").attr("onclick", 'load_frame_bar("choose_screen")');
 
 	// Add iPad
 	$('#choose_screen').append('<canvas id="ipad" width="64" height="96"> Cannot show ipad-canvas</canvas>');
@@ -214,12 +213,12 @@ function clear_menu_order_body() {
  * update_order_view
  * @desc updates view of current order
  */
-function update_order_view() {
+function update_order_view(o) {
     clear_menu_order_body();
     add_block("#menu_order", "div", "", "menu_order_body");
 
     let total_cost = 0;
-	for(item of orders[current_table_number]) {
+	for(item of orders[o]) {
         create_order_item(item);
 	}
     load_total_cost(total_cost);
@@ -274,4 +273,34 @@ function remove_old_frame(old_frame) {
 		$("#" + old_frame).remove();
 	}
 	$("#table_number").hide()
+}
+
+
+
+function load_frame_bar(old_frame) {
+	remove_old_frame(old_frame);
+	// Create frame
+	add_block("#main_frame", "div", "", "menu");
+	add_block("#menu", "div", "", "menu_topbar");
+
+	// frame to put items in
+	add_block("#menu", "div", "", "bar_view");
+	for (o in orders) {
+		add_block("#bar_view", "div", "bar_order_item", "bar_order_item" + o);
+		var current = "#bar_order_item" + o
+		$(current).append('<p> Order: ' + order_id + ' </p>');
+		$(current).append('<p> Table: ' + o + ' </p>');
+		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
+		$(current).on("click", update_order_view(o));
+	}
+
+
+	add_block("#menu_topbar", "div", "menu_bar_item", "undo_button");
+	add_block("#menu_topbar", "div", "menu_bar_item", "redo_button");
+	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
+	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
+
+	load_current_order();
+
+	update_view();
 }
