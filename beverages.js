@@ -7,13 +7,20 @@ This js document contains the beverages served at the pub.
  /**
   *	get_string_drink
   *	@desc returns information about a drink from database
+
   *	@arg drink what kind of dring
   *     @arg index
   *     @arg key
+
+  *	@arg drink what kind of drink
+  *  @arg index
+  *  @arg key
+
   */
  function get_drink_string(drink, index, key) {
  	return db[drink][index][key];
  }
+
 
 function incrementItemAmount(drinkType, id) {
     let index = db[drinkType].findIndex(element => element.artikelid == id);
@@ -51,7 +58,63 @@ flags = {
     "Italien": "flags/it.gif",
     "Österrike": "flags/au.gif",
     "Nya Zeeland": "flags/nz.gif"
+
+ /**
+  *	get_drink_object
+  *	@desc returns a drink
+  *	@arg drink what kind of drink
+  *  @arg index
+  */
+ function get_drink_object(drink, index) {
+     return db[drink][index];
+ }
+
+ /**
+  *	get_drink_id
+  *	@desc returns a drink ID
+  *	@arg drink what kind of drink
+  *  @arg index
+  */
+function get_drink_id(drink, index) {
+    return db[drink][index]["artikelid"];
 }
+/**
+    * get_drink_from_id
+    * @desc returns drink from its id
+    * @arg // IDEA: */
+ function get_drink_from_id(id) {
+     // we want to make sure we iterate over the drinks
+     for (let drink_type of Object.keys(db)) {
+         for (index in db[drink_type]) {
+             if (db[drink_type][index]["artikelid"] == id) {
+                 return db[drink_type][index];
+             }
+         }
+     }
+     console.log("Error: couldn't fint drink with that id in database.");
+     return 0;
+ }
+
+ /**
+    * get_drink_name_from_id
+    * @desc returns a dink's name
+    * @arg id
+    */
+function get_drink_name_from_id(id) {
+    var drink = get_drink_from_id(id);
+    return drink["namn"];
+}
+
+/**
+   * get_drink_price_from_id
+   * @desc returns a dink's price
+   * @arg id
+   */
+function get_drink_price_from_id(id) {
+   var drink = get_drink_from_id(id);
+   return drink["prisinklmoms"];
+}
+
 
 const menu_types = ["beers", "cocktails", "wine", "vip"];
 const information = {
@@ -60,6 +123,8 @@ const information = {
     "wine": ["namn", "saljstart", "producent", "varugrupp", "volym", "prisinklmoms", "tanniner"],
     "vip": ["namn", "producent", "volym", "prisinklmoms"]
 }
+
+const menu_order_info = ["name", "amount", "price"];
 
 const beverages_info = {
     "cocktails" : [
