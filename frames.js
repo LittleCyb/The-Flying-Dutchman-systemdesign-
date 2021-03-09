@@ -150,6 +150,7 @@ function load_frame_menu(old_frame, new_table_number) {
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
 
 	load_current_order();
+	update_order_view();
 
 	update_view();
 }
@@ -195,7 +196,7 @@ function make_beverage(type, index) {
 	var flag_src = get_flag(get_country_of_origin(type, index));
 	var new_drink = get_drink_object(type, index);
 	$(div).append('<img class="menu_flag_icon" src="' + flag_src + '">');
-	$(div).append('<div class="add_item_button" id="'+ get_drink_id(type, index) +'">+ 1</div>').click(function() {do_action('add', new_drink)});
+	$(div).append('<div class="add_item_button">+ 1</div>').click(function() {do_action('add', new_drink)});
 	return div
 }
 
