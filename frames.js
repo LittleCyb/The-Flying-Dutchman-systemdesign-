@@ -58,9 +58,42 @@ function load_frame_login(old_frame) {
  * @param old_frame Old frame to be removed
  */
 function load_frame_manager(old_frame) {
-	remove_old_frame(old_frame);
-	// adds new content to main_frame
-	$("#main_frame").append('<div id="manager"></div>');
+    remove_old_frame(old_frame);
+    // adds new content to main_frame
+    $("#main_frame").append('<img id="logo" src="">');
+    $("#main_frame").append('<div id="manager"></div>');
+    $("#manager").append('<div id="manager_left"></div>');
+
+    /* Get all the beers from the db. Each div's id will be the "artikelid" of the beer, this will 
+       make it easier to manipulate the db.*/
+    for (drinkType1 in db) {
+	let i=0;
+	let drinkType = drinkType1.toString();
+	$('#manager_left').append('<div class="dividing_large_text">'+drinkType+'</div>');
+	while (i < db[drinkType].length) {	    
+	    let drinkId = getDrinkIdFromDB(drinkType, i);
+	    $("#manager_left").append('<div class="boxed" id='+drinkId+'></div>');
+	    $("#"+drinkId).append('<div class="item_text"> '+getDrinkNameFromDB(drinkType, i)+'</div>');
+				  //getDrinkNameFromDB(""+drinkType, i) + " ");
+	    $("#"+drinkId).append('<div class="flex_button_container" id=flex'+drinkId+'> </div>');
+
+	    $("#flex"+drinkId).append(
+		'<div class="increment_button" id=decrement_button'+drinkId+'> Decrement </div>');
+	    $("#decrement_button"+drinkId).attr(
+		"onclick",'decrementItemAmount("'+drinkType+'", '+drinkId+');'+
+		    ' update_text("drink'+drinkId+'", getDrinkAmountFromDB("'+drinkType+'", '+i+'))');
+	    
+	    $("#flex"+drinkId).append(
+		'<div class="increment_button" id=increment_button'+drinkId+'> Increment </div>');
+	    $("#increment_button"+drinkId).attr(
+		"onclick",'incrementItemAmount("'+drinkType+'", '+drinkId+');'+
+		    ' update_text("drink'+drinkId+'", getDrinkAmountFromDB("'+drinkType+'", '+i+'))');
+	    
+	    
+	    $("#"+drinkId).append('<div class="item_text" id=drink'+drinkId+'>' +getDrinkAmountFromDB(drinkType, i)+ '</div>');
+	    i++;
+	}
+    }
 }
 
 /**
