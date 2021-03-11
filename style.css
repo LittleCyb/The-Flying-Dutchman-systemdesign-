@@ -74,6 +74,10 @@ img {
     justify-content: center;
 }
 
+.checkbox_label {
+    display: flex;
+}
+
 .order_item_name {
     display: flex;
     width: 7em;
@@ -167,6 +171,7 @@ img {
 	margin-top: 20px;
 	margin-left: 20px;
 }
+
 
 @media only screen and (max-height: 1080px) {
     #menu_view {
@@ -269,6 +274,11 @@ img {
   cursor: pointer;
 }
 
+#purchase_button {
+    width: auto;
+    height: auto;
+}
+
 #menu_order {
     margin-top: 1em;
     float: left;
@@ -281,12 +291,6 @@ img {
     justify-content: flex-start;
 }
 
-#undo_button {
-    background-color: red;
-}
-#redo_button {
-    background-color: red;
-}
 
 /* Login ID:s */
 @media only screen and (max-height: 1080px) {
@@ -503,6 +507,7 @@ img {
     right: 64px;
     cursor: grabbing;
 }
+
 
 
 /* Scrollbar customisation */

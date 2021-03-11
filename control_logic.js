@@ -45,13 +45,82 @@ function add_image(src, alt, id) {
   * @desc Displays chosen menu items in menu view frame
   * @arg item type to dislay
   */
- function display_menu_items(item) {
+
+function display_menu_items(item) {
  	hide_menu_views();
  	$("#menu_view_" + item).css("display", "block");
  	// Make a button appear active
  	$("#menu_bar_" + item).css("background-color", "#ffb686");
+
+    filter_items();
+
  	update_view();
  }
+
+ /**
+    * filter_items
+    * @desc looks at what filters have been applied and updates the menu view
+    */
+function filter_items() {
+    var gluten_free = $("#checkbox_gluten_id").is(":checked");
+    var low_tannins = $("#checkbox_low_tannins_id").is(":checked");
+    var lactose_free = $("#checkbox_lactose_id").is(":checked");
+    var low_alcohol = $("#checkbox_low_alcohol_id").is(":checked");
+
+    for(const key in db) { //got an error here before "'X' is not interable"
+        for(drink of db[key]) {
+            var artikelid = drink["artikelid"];
+            $("#" + artikelid).css("display", "block");
+        }
+    }
+
+    if(gluten_free) {
+        for(const key in db) {
+            for(drink of db[key]) {
+                if(drink["gluten_free"] == "0") {
+                    var artikelid = drink["artikelid"];
+                    $("#" + artikelid).css("display", "none");
+                }
+            }
+        }
+    }
+
+    if(low_tannins) {
+        for(const key in db) {
+            for(drink of db[key]) {
+                if(drink["tanniner"] > "3") {
+                    var artikelid = drink["artikelid"];
+                    $("#" + artikelid).css("display", "none");
+                }
+            }
+        }
+    }
+
+    if(lactose_free) {
+        for(const key in db) {
+            for(drink of db[key]) {
+                if(drink["lactose_free"] == "0") {
+                    var artikelid = drink["artikelid"];
+                    $("#" + artikelid).css("display", "none");
+                }
+            }
+        }
+    }
+
+    if(low_alcohol) {
+        for(const key in db) {
+            for(drink of db[key]) {
+                const temp = drink["alkoholhalt"];
+                var alkoholhalt = temp.slice(0, -1);
+                if(parseInt(alkoholhalt) > 4) { //annars kan vi få "10" > "4" == falskt
+                    var artikelid = drink["artikelid"];
+                    $("#" + artikelid).css("display", "none");
+                }
+            }
+        }
+    }
+
+}
 
 
  /**
@@ -74,6 +143,8 @@ function add_image(src, alt, id) {
  		$("#menu_bar_" + idx).css("background-color", "");
  	}
  	$("#menu_bar_order").css("background-color", "");
+
+    $("#menu_view_filter").css("display", "none");
  }
 
  //updates view with text in Swedish or English
