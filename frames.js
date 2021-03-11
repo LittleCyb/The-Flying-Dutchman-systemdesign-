@@ -247,7 +247,8 @@ function make_beverage(type, index) {
 
 	for(var info_point of beverages_info[type]) {
 		var data = get_drink_string(type, index, info_point);
-		$("<div>").addClass("menu_beverage_" + info_point).text(info_point + ": " + data).appendTo(div);
+		var translated_info_point = info_point;
+		$("<div>").addClass("menu_beverage_" + info_point).text(translated_info_point + ": " + data).appendTo(div);
 	}
 
 	var flag_src = get_flag(get_country_of_origin(type, index));

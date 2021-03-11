@@ -274,6 +274,11 @@ img {
   cursor: pointer;
 }
 
+#purchase_button {
+    width: auto;
+    height: auto;
+}
+
 #menu_order {
     margin-top: 1em;
     float: left;

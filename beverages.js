@@ -112,7 +112,7 @@ const filter_types = ["gluten", "low_tannins", "lactose", "low_alcohol"];
 const information = {
     "beers" : ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"],
     "cocktails": ["namn", "alkoholhalt", "volym", "prisinklmoms"],
-    "wine": ["namn", "saljstart", "producent", "varugrupp", "volym", "prisinklmoms", "tanniner"],
+    "wine": ["namn", "saljstart", "producent", "volym", "prisinklmoms", "tanniner"],
     "vip": ["namn", "producent", "volym", "prisinklmoms"]
 }
 
@@ -137,7 +137,6 @@ const beverages_info = {
         "namn",
         "saljstart",
         "producent",
-        "varugrupp",
         "volym",
         "prisinklmoms",
         "tanniner"
