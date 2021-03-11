@@ -106,6 +106,8 @@ flags = {
     "Italien": "flags/it.gif",
     "Österrike": "flags/au.gif",
     "Nya Zeeland": "flags/nz.gif",
+    "Frankrike": "flags/fr.gif",
+    "Australien": "flags/aus.gif"
 }
 
 function get_string(key) {

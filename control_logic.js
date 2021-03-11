@@ -145,7 +145,6 @@ function filter_items() {
  	$("#menu_bar_order").css("background-color", "");
 
     $("#menu_view_filter").css("display", "none");
-    $("#menu_bar_filter").css("background-color", "green");
  }
 
  //updates view with text in Swedish or English

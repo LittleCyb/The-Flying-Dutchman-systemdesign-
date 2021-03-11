@@ -172,10 +172,6 @@ img {
 	margin-left: 20px;
 }
 
-#menu_bar_filter {
-    background-color: green;
-
-}
 
 @media only screen and (max-height: 1080px) {
     #menu_view {
@@ -290,12 +286,6 @@ img {
     justify-content: flex-start;
 }
 
-#undo_button {
-    background-color: red;
-}
-#redo_button {
-    background-color: red;
-}
 
 /* Login ID:s */
 @media only screen and (max-height: 1080px) {
