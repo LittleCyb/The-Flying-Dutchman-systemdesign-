@@ -199,6 +199,8 @@ function load_frame_menu(old_frame, new_table_number) {
 	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
 	$("#menu_bar").append('<div class="menu_bar_item" id="redo_button"></div>');
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
+	$("#menu_bar").append('<div class="menu_bar_item" id="purchase_button"></div>');
+	document.getElementById('purchase_button').addEventListener('click', function add() {do_action("purchase", '')}, false);
 
 	load_current_order();
 

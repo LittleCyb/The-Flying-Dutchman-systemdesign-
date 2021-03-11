@@ -5,6 +5,43 @@
  */
 
 /**
+ *	send_order_to_bar
+ *	@desc adds a an item to the table's order
+ */
+function send_order_to_bar(name) {
+
+    const values = {
+        number: get_new_order_number(),
+        name: name,
+        execute: function () {
+            // Create Order_sent object and save it locally and push order to list
+            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number));
+            localStorage.setItem("order" + this.number, myJSON);
+            orders[current_table_number] = [];
+            pending_orders.push(this.number);
+            update_order_view();
+        },
+        unexecute: function () {
+            var order = JSON.parse(localStorage.getItem("order" + this.number));
+            orders[current_table_number] = order.items;
+            for (o in pending_orders) {
+                if (o == this.number) pending_orders.slice(o, 1);
+            }
+            localStorage.removeItem("order" + this.number);
+            update_order_view();
+        },
+        reexecute: function () {
+            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number));
+            localStorage.setItem("order" + this.number, myJSON);
+            orders[current_table_number] = [];
+            pending_orders.push(this.number);
+            update_order_view();
+        }
+    };
+    return values;
+}
+
+/**
  *	add_item_to_order
  *	@desc adds a an item to the table's order
  *	@arg item to add to table's order
@@ -122,8 +159,6 @@ function add_item_to_order(item) {
      };
      return values;
  }
-
-
 
 /* AUXILARY FUNCTIONS */
 

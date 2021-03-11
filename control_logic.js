@@ -124,6 +124,9 @@ function order_item_amount(item) {
     if (fun == 'remove') {
         action_exe(remove_item_from_order(arg1, arg2));
     }
+    if (fun == 'purchase') {
+    	action_exe(send_order_to_bar());
+	}
  }
 
  /* drag-n-drop */
