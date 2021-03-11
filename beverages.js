@@ -193,6 +193,7 @@ db = {
             "koscher": "0",
             "volym": "33cl",
             "gluten_free": "1",
+            "lactose_free": "1",
 	        "antal": "10",
         },
         {
@@ -222,6 +223,7 @@ db = {
             "koscher": "0",
             "volym": "40cl",
             "gluten_free": "1",
+            "lactose_free": "1",
 	        "antal": "10",
         },
         {
@@ -251,6 +253,7 @@ db = {
             "koscher": "0",
             "volym": "50cl",
             "gluten_free": "1",
+            "lactose_free": "1",
 	        "antal": "10",
         }
     ],
@@ -282,6 +285,7 @@ db = {
             "koscher": "0",
             "volym": "33cl",
             "gluten_free": "1",
+            "lactose_free": "1",
 	        "antal": "10",
 
         },
@@ -312,6 +316,7 @@ db = {
             "koscher": "0",
             "volym" : "33cl",
             "gluten_free": "0",
+            "lactose_free": "1",
 	        "antal": "10",
         },
         {
@@ -341,6 +346,7 @@ db = {
             "koscher": "0",
             "volym": "33cl",
             "gluten_free": "0",
+            "lactose_free": "1",
             "antal": "10",
 
         }
@@ -374,6 +380,7 @@ db = {
             "volym": "75cl",
             "tanniner": "5",
             "gluten_free": "1",
+            "lactose_free": "1",
 	        "antal": "10",
         },
         {
@@ -404,6 +411,7 @@ db = {
             "volym": "15cl",
             "tanniner": "4",
             "gluten_free": "1",
+            "lactose_free": "1",
 	        "antal": "10",
         },
         {
@@ -434,6 +442,7 @@ db = {
             "volym": "15cl",
             "tanniner": "1",
             "gluten_free": "1",
+            "lactose_free": "1",
 	        "antal": "10",
         },
 
@@ -465,6 +474,7 @@ db = {
             "koscher": "0",
             "volym": "25cl",
             "gluten_free": "1",
+            "lactose_free": "0",
 	        "antal": "10",
         }
     ]

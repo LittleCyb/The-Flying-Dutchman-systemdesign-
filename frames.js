@@ -134,7 +134,6 @@ function load_frame_choose(old_frame) {
 		$(table).attr("id", "table_" + i);
 		$(table).attr("ondrop","drop_ipad(event)");
 		$(table).attr("ondragover","allow_drop(event)");
-		// TODO: Språket ändrar sig ej dynamiskt!
 		$(table).text(i);
 		$(table).attr("onclick", 'load_frame_menu("choose_screen", "' + i +'")');
 		$("#choose_screen").append(table);
@@ -232,7 +231,7 @@ function load_menu_view() {
 	}
 
 	//remove menu_view_filter from standard loop (see above) to add it separately below //FIXME this removes both, otherwise we get duplicates
-	//$("#menu_view_filter").remove();
+	//$("#menu_view_filter").remove(); Is this a bug?
 
 	//add filter functionality
 	add_block("#menu_view", "div", "menu_view_filter");
@@ -264,7 +263,6 @@ function make_beverage(type, index) {
  */
 
 function load_current_order() {
-    //TODO make sure the text comes from the dictionary rather than being hardcoded in order to support translation!
 	add_block("#menu", "div", "", "menu_order");
 	add_block("#menu_order", "div", "", "menu_order_info");
 	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_name");
