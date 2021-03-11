@@ -4,7 +4,7 @@
  this js document contains the language data and related functions for the application
  */
 
-var language = 'sv'
+var language = 'sv';
 
 dict = {
     'keys': [
@@ -95,6 +95,38 @@ dict = {
         'checkbox_lactose': "Laktosfri",
         'checkbox_low_alcohol': "Låg alkoholhalt (< 4%)"
     }
+}
+
+order_info_translation = {
+    'en' : {
+        "namn": "Name",
+        "namn2": "Description",
+        "alkoholhalt": "Alcohol content",
+        "producent": "Producer",
+        "volym": "Volume",
+        "prisinklmoms": "Price (VAT included)",
+        "saljstart": "Date",
+        "tanniner": "Tannins content",
+    },
+    'sv' : {
+        "namn": "Namn",
+        "namn2": "Description",
+        "alkoholhalt": "Alkoholhalt",
+        "producent": "Producent",
+        "volym": "Volym",
+        "prisinklmoms": "Pris (inkl. moms)",
+        "saljstart": "Datum",
+        "tanniner": "Tannin innehåll",
+    }
+}
+
+/**
+    * translate_info_point
+    * @desc translates a point of information into the apporperiate language
+    * @arg info_point to be translated
+    */
+function translate_info_point(info_point) {
+    return(order_info_translation[language][info_point]);
 }
 
 flags = {

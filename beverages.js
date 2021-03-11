@@ -109,12 +109,7 @@ function get_drink_price_from_id(id) {
 
 const menu_types = ["beers", "cocktails", "wine", "vip", "filter"];
 const filter_types = ["gluten", "low_tannins", "lactose", "low_alcohol"];
-const information = {
-    "beers" : ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"],
-    "cocktails": ["namn", "alkoholhalt", "volym", "prisinklmoms"],
-    "wine": ["namn", "saljstart", "producent", "volym", "prisinklmoms", "tanniner"],
-    "vip": ["namn", "producent", "volym", "prisinklmoms"]
-}
+
 
 const menu_order_info = ["name", "amount", "price"];
 

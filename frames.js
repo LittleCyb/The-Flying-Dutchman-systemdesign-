@@ -247,7 +247,7 @@ function make_beverage(type, index) {
 
 	for(var info_point of beverages_info[type]) {
 		var data = get_drink_string(type, index, info_point);
-		var translated_info_point = info_point;
+		var translated_info_point = translate_info_point(info_point);
 		$("<div>").addClass("menu_beverage_" + info_point).text(translated_info_point + ": " + data).appendTo(div);
 	}
 
