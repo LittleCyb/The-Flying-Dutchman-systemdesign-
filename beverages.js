@@ -117,7 +117,8 @@ function get_drink_price_from_id(id) {
 }
 
 
-const menu_types = ["beers", "cocktails", "wine", "vip"];
+const menu_types = ["beers", "cocktails", "wine", "vip", "filter"];
+const filter_types = ["gluten", "low_tannins", "lactose", "low_alcohol"];
 const information = {
     "beers" : ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"],
     "cocktails": ["namn", "alkoholhalt", "volym", "prisinklmoms"],
@@ -191,7 +192,8 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "33cl",
-	    "antal": "10",
+            "gluten_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "76814",
@@ -219,7 +221,8 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "40cl",
-	    "antal": "10",
+            "gluten_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "76901",
@@ -247,7 +250,8 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "50cl",
-	    "antal": "10",
+            "gluten_free": "1",
+	        "antal": "10",
         }
     ],
     "beers" : [
@@ -277,7 +281,9 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "33cl",
-	    "antal": "10",
+            "gluten_free": "1",
+	        "antal": "10",
+
         },
         {
             "nr": "8966503",
@@ -305,7 +311,8 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym" : "33cl",
-	    "antal": "10",
+            "gluten_free": "0",
+	        "antal": "10",
         },
         {
             "nr": "8968101",
@@ -333,7 +340,9 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "33cl",
-	    "antal": "10",
+            "gluten_free": "0",
+            "antal": "10",
+
         }
     ],
     "wine" : [
@@ -364,7 +373,8 @@ db = {
             "koscher": "0",
             "volym": "75cl",
             "tanniner": "5",
-	    "antal": "10",
+            "gluten_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "8974301",
@@ -393,7 +403,8 @@ db = {
             "koscher": "0",
             "volym": "15cl",
             "tanniner": "4",
-	    "antal": "10",
+            "gluten_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "9001201",
@@ -422,7 +433,8 @@ db = {
             "koscher": "0",
             "volym": "15cl",
             "tanniner": "1",
-	    "antal": "10",
+            "gluten_free": "1",
+	        "antal": "10",
         },
 
     ],
@@ -452,7 +464,8 @@ db = {
             "ekologisk": "1",
             "koscher": "0",
             "volym": "25cl",
-	    "antal": "10",
+            "gluten_free": "1",
+	        "antal": "10",
         }
     ]
 }

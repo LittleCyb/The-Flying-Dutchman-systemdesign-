@@ -64,13 +64,13 @@ function load_frame_manager(old_frame) {
     $("#main_frame").append('<div id="manager"></div>');
     $("#manager").append('<div id="manager_left"></div>');
 
-    /* Get all the beers from the db. Each div's id will be the "artikelid" of the beer, this will 
+    /* Get all the beers from the db. Each div's id will be the "artikelid" of the beer, this will
        make it easier to manipulate the db.*/
     for (drinkType1 in db) {
 	let i=0;
 	let drinkType = drinkType1.toString();
 	$('#manager_left').append('<div class="dividing_large_text">'+drinkType+'</div>');
-	while (i < db[drinkType].length) {	    
+	while (i < db[drinkType].length) {
 	    let drinkId = getDrinkIdFromDB(drinkType, i);
 	    $("#manager_left").append('<div class="boxed" id='+drinkId+'></div>');
 	    $("#"+drinkId).append('<div class="item_text"> '+getDrinkNameFromDB(drinkType, i)+'</div>');
@@ -82,14 +82,14 @@ function load_frame_manager(old_frame) {
 	    $("#decrement_button"+drinkId).attr(
 		"onclick",'decrementItemAmount("'+drinkType+'", '+drinkId+');'+
 		    ' update_text("drink'+drinkId+'", getDrinkAmountFromDB("'+drinkType+'", '+i+'))');
-	    
+
 	    $("#flex"+drinkId).append(
 		'<div class="increment_button" id=increment_button'+drinkId+'> Increment </div>');
 	    $("#increment_button"+drinkId).attr(
 		"onclick",'incrementItemAmount("'+drinkType+'", '+drinkId+');'+
 		    ' update_text("drink'+drinkId+'", getDrinkAmountFromDB("'+drinkType+'", '+i+'))');
-	    
-	    
+
+
 	    $("#"+drinkId).append('<div class="item_text" id=drink'+drinkId+'>' +getDrinkAmountFromDB(drinkType, i)+ '</div>');
 	    i++;
 	}
@@ -110,7 +110,7 @@ function load_frame_vip_login(old_frame) {
 	$("<div id=vip_login_input>").attr("contentEditable", "true").appendTo("#vip_login");
 	$("<div id=vip_login_button>").appendTo("#vip_login");
 	update_view();
-	
+
 	$("#vip_login_button").click(function() {
 		var name = $("#vip_login_input").text();
 		alert("logged in as: " + name);
@@ -184,13 +184,18 @@ function load_frame_menu(old_frame, new_table_number) {
 	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_cocktails");
 	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_wine");
 	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_vip");
+
+	//filter dropdown
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_filter");
+
+
 	// Make categories clickable
 	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');;
 	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
 	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
-	
 	$("#login_vip").click(function() {load_frame_vip_login("menu")})
+	$("#menu_bar_filter").attr("onclick", 'display_menu_items("filter")');
 
 	load_menu_view();
 	display_menu_items("beers"); //shows beer by default
@@ -203,6 +208,7 @@ function load_frame_menu(old_frame, new_table_number) {
 	document.getElementById('purchase_button').addEventListener('click', function add() {do_action("purchase", '')}, false);
 
 	load_current_order();
+	update_order_view();
 
 	update_view();
 }
@@ -225,11 +231,20 @@ function load_menu_view() {
 		}
 	}
 
+	//remove menu_view_filter from standard loop (see above) to add it separately below //FIXME this removes both, otherwise we get duplicates
+	//$("#menu_view_filter").remove();
+
+	//add filter functionality
+	add_block("#menu_view", "div", "menu_view_filter");
+	for(const filter of filter_types) {
+		$("#menu_view_filter").append('<input id="checkbox_' + filter +'_id" type="checkbox" name="checkbox_' + filter + '">' + '<label for="checkbox_' + filter + '" class="checkbox_label" id="checkbox_' + filter + '">');
+	}
+
 	hide_menu_views();
 }
 
 function make_beverage(type, index) {
-	var div = $("<div>").addClass("menu_beverage");
+	var div = $("<div>").addClass("menu_beverage").attr("id", get_drink_id(type, index));
 
 	for(var info_point of beverages_info[type]) {
 		var data = get_drink_string(type, index, info_point);
@@ -239,7 +254,7 @@ function make_beverage(type, index) {
 	var flag_src = get_flag(get_country_of_origin(type, index));
 	var new_drink = get_drink_object(type, index);
 	$(div).append('<img class="menu_flag_icon" src="' + flag_src + '">');
-	$(div).append('<div class="add_item_button" id="'+ get_drink_id(type, index) +'">+ 1</div>').click(function() {do_action('add', new_drink)});
+	$(div).append('<div class="add_item_button">+ 1</div>').click(function() {do_action('add', new_drink)});
 	return div
 }
 
@@ -255,6 +270,7 @@ function load_current_order() {
 	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_name");
 	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_amount");
 	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_price");
+	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_remove");
 
 	update_view();
 }

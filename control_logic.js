@@ -45,13 +45,29 @@ function add_image(src, alt, id) {
   * @desc Displays chosen menu items in menu view frame
   * @arg item type to dislay
   */
- function display_menu_items(item) {
+
+function display_menu_items(item) {
  	hide_menu_views();
  	$("#menu_view_" + item).css("display", "block");
  	// Make a button appear active
  	$("#menu_bar_" + item).css("background-color", "#ffb686");
+
+    filter_items();
+
  	update_view();
  }
+
+ /**
+    * filter_items
+    * @desc looks at what filters have been applied and updates the menu view
+    */
+function filter_items() {
+    var gluten_free = $("#checkbox_gluten_id").is(":checked");
+    var low_tannins = $("#checkbox_low_tannins_id").is(":checked");
+    var lactose_free = $("#checkbox_lactose_id").is(":checked");
+    var low_alcohol = $("#checkbox_low_alcohol_id").is(":checked");
+
+}
 
 
  /**
@@ -74,6 +90,9 @@ function add_image(src, alt, id) {
  		$("#menu_bar_" + idx).css("background-color", "");
  	}
  	$("#menu_bar_order").css("background-color", "");
+
+    $("#menu_view_filter").css("display", "none");
+    $("#menu_bar_filter").css("background-color", "green");
  }
 
  //updates view with text in Swedish or English
