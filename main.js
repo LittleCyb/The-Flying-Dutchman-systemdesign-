@@ -4,8 +4,6 @@
  this js document contains what happens when the site is loaded
  */
 
-var current_table_number; // represents the current table number
-
 // ===========================================================================
 // INITIALIZATION OF HTML AND MODEL DATA.
 // ===========================================================================

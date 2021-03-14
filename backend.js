@@ -11,6 +11,10 @@ let order_id = 0;
 let stack_undo = [];
 let stack_redo = [];
 
+let current_table_number; // represents the current table number
+let order_number = 0;
+let pending_orders = [];
+
 // Class/Prototype for ordered objects
 function Order_item(id, name, price) {
     this.id = id;
@@ -19,7 +23,40 @@ function Order_item(id, name, price) {
     this.amount = 1;
 }
 
+/**
+ * @desc Class/Prototype for sent order objects
+ * @param items - list of order items
+ * @param name - name of buyer, name of VIP-member or company (table)
+ * @param credits - whether customer are going to buy in bar or not (VIP-exclusive)
+ * @constructor Order_sent
+ */
+function Order_sent(items, name, number) {
+    this.table = current_table_number;
+    this.number = get_new_order_number();
+    this.name = name;
+    this.items = items;
+}
+
 /* Order system */
+/**
+ * get_new_order_number
+ * @desc gets the next free order number
+ * @returns an order number
+ * INVARIANT: max number of orders: 50
+ */
+
+// Returns a order number for bartender
+function get_new_order_number() {
+    while (localStorage.getItem("order" + order_number) != null) {
+        order_number++;
+    }
+    if (order_number > 50) {
+        return 50;
+    }
+    else {
+        return order_number;
+    }
+}
 
 /**
  *	action_exe

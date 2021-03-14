@@ -7,13 +7,48 @@ This js document contains the beverages served at the pub.
  /**
   *	get_string_drink
   *	@desc returns information about a drink from database
+
+  *	@arg drink what kind of dring
+  *     @arg index
+  *     @arg key
+
   *	@arg drink what kind of drink
   *  @arg index
   *  @arg key
+
   */
  function get_drink_string(drink, index, key) {
  	return db[drink][index][key];
  }
+
+
+function incrementItemAmount(drinkType, id) {
+    let index = db[drinkType].findIndex(element => element.artikelid == id);
+    newAntal = parseInt(db[drinkType][index].antal) + 1;
+    db[drinkType][index].antal = newAntal.toString();
+}
+function decrementItemAmount(drinkType, id)  {
+    let index = db[drinkType].findIndex(element => element.artikelid == id);
+    newAntal = parseInt(db[drinkType][index].antal) - 1;
+    db[drinkType][index].antal = newAntal.toString();
+}
+function getDrinkIdFromDB(drinkType, nr) {
+    let wantedDrink = db[drinkType][nr];
+    return wantedDrink.artikelid;
+}
+function getDrinkNameFromDB(drinktype, nr) {
+    let wantedDrink = db[drinktype][nr];
+    return wantedDrink.namn + " " + wantedDrink.namn2;
+}
+function getDrinkAmountFromDB(drinktype, nr) {
+    let wantedDrink = db[drinktype][nr];
+    return wantedDrink.antal;
+}
+
+function update_text(id, text) {
+    $("#"+id).text(text);
+}
+
 
  /**
   *	get_drink_object
@@ -72,13 +107,9 @@ function get_drink_price_from_id(id) {
 }
 
 
-const menu_types = ["beers", "cocktails", "wine", "vip"];
-const information = {
-    "beers" : ["namn", "namn2", "producent", "alkoholhalt", "volym", "prisinklmoms"],
-    "cocktails": ["namn", "alkoholhalt", "volym", "prisinklmoms"],
-    "wine": ["namn", "saljstart", "producent", "varugrupp", "volym", "prisinklmoms", "tanniner"],
-    "vip": ["namn", "producent", "volym", "prisinklmoms"]
-}
+const menu_types = ["beers", "cocktails", "wine", "vip", "filter"];
+const filter_types = ["gluten", "low_tannins", "lactose", "low_alcohol"];
+
 
 const menu_order_info = ["name", "amount", "price"];
 
@@ -101,7 +132,6 @@ const beverages_info = {
         "namn",
         "saljstart",
         "producent",
-        "varugrupp",
         "volym",
         "prisinklmoms",
         "tanniner"
@@ -146,6 +176,38 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "33cl",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
+        }, {
+            "nr": "10001",
+            "artikelid": "25053",
+            "varnummer": "100",
+            "namn": "Braastad XO",
+            "namn2": "",
+            "prisinklmoms": "442.00",
+            "volymiml": null,
+            "prisperliter": null,
+            "saljstart": "2000-08-07",
+            "slutlev": " ",
+            "varugrupp": "Cognac",
+            "forpackning": "Flaska",
+            "forslutning": "Naturkork",
+            "ursprung": "Cognac, Fine Champagne",
+            "ursprunglandnamn": "Frankrike",
+            "producent": "Tiffon",
+            "leverantor": "Arcus Sweden AB",
+            "argang": "",
+            "provadargang": "",
+            "alkoholhalt": "40%",
+            "modul": "",
+            "sortiment": "FS",
+            "ekologisk": "0",
+            "koscher": "0",
+            "volym": "15cl",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "76814",
@@ -173,6 +235,9 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "40cl",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "76901",
@@ -200,6 +265,9 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "50cl",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
         }
     ],
     "beers" : [
@@ -229,6 +297,40 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "33cl",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
+
+        },
+        {
+            "nr": "1104203",
+            "artikelid": "828794",
+            "varnummer": "11042",
+            "namn": "Caspers Schwarz",
+            "namn2": "S:t Eriks Bryggeri",
+            "prisinklmoms": "19.90",
+            "volymiml": null,
+            "prisperliter": null,
+            "saljstart": "2014-05-02",
+            "slutlev": " ",
+            "varugrupp": "\u00c3\u2013l, M\u00c3\u00b6rk lager",
+            "forpackning": "Flaska",
+            "forslutning": "",
+            "ursprung": "",
+            "ursprunglandnamn": "Sverige",
+            "producent": "S:t Eriks Bryggeri",
+            "leverantor": "Galatea Spirits AB",
+            "argang": "",
+            "provadargang": "",
+            "alkoholhalt": "5.1%",
+            "modul": "",
+            "sortiment": "TSE",
+            "ekologisk": "0",
+            "koscher": "0",
+            "volym": "33cl",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "8966503",
@@ -256,6 +358,9 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym" : "33cl",
+            "gluten_free": "0",
+            "lactose_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "8968101",
@@ -283,9 +388,44 @@ db = {
             "ekologisk": "0",
             "koscher": "0",
             "volym": "33cl",
+            "gluten_free": "0",
+            "lactose_free": "1",
+            "antal": "10",
+
         }
     ],
     "wine" : [
+        {
+            "nr": "199401",
+            "artikelid": "858250",
+            "varnummer": "1994",
+            "namn": "Jacob's Creek UnVined",
+            "namn2": "Shiraz",
+            "prisinklmoms": "59.00",
+            "volymiml": null,
+            "prisperliter": null,
+            "saljstart": "2014-09-01",
+            "slutlev": " ",
+            "varugrupp": "Alkoholfritt, Rött",
+            "forpackning": "Flaska",
+            "forslutning": "Skruvkapsyl",
+            "ursprung": "South Eastern Australia",
+            "ursprunglandnamn": "Australien",
+            "producent": "Jacob's Creek Wines",
+            "leverantor": "Pernod Ricard Sweden AB",
+            "argang": "2013",
+            "provadargang": "2013",
+            "alkoholhalt": "0.5%",
+            "modul": "",
+            "sortiment": "FS\u00c3\u2013",
+            "ekologisk": "0",
+            "koscher": "0",
+            "volym": "30cl",
+            "tanniner": "2",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
+        },
         {
             "nr": "8970102",
             "artikelid": "326992",
@@ -313,6 +453,9 @@ db = {
             "koscher": "0",
             "volym": "75cl",
             "tanniner": "5",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "8974301",
@@ -341,6 +484,9 @@ db = {
             "koscher": "0",
             "volym": "15cl",
             "tanniner": "4",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
         },
         {
             "nr": "9001201",
@@ -369,6 +515,9 @@ db = {
             "koscher": "0",
             "volym": "15cl",
             "tanniner": "1",
+            "gluten_free": "1",
+            "lactose_free": "1",
+	        "antal": "10",
         },
 
     ],
@@ -398,6 +547,9 @@ db = {
             "ekologisk": "1",
             "koscher": "0",
             "volym": "25cl",
+            "gluten_free": "1",
+            "lactose_free": "0",
+	        "antal": "10",
         }
     ]
 }
