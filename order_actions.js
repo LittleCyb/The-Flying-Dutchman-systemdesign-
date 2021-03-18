@@ -57,7 +57,7 @@ function send_order_to_bar(name) {
  */
 function add_item_to_order(item) {
     const values = {
-        order_table: current_table_number,
+        order_table: get_current_table_number(),
         order_id: item.artikelid,
         order_name: item.namn,
         order_price: item.prisinklmoms,
@@ -119,7 +119,7 @@ function add_item_to_order(item) {
  */
  function remove_item_from_order(item_id, old_amount) {
      const values = {
-         order_table: current_table_number,
+         order_table: get_current_table_number(),
          execute: function() {
              var order = orders[this.order_table];
              var found_item = find_item_in_order(order, item_id);

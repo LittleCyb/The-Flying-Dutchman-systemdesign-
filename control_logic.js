@@ -119,6 +119,7 @@ function filter_items() {
  	$("#menu_bar_order").css("background-color", "");
 
     $("#menu_view_filter").css("display", "none");
+    $("#menu_bar_filter").css("background-color", "");
  }
 
  //updates view with text in Swedish or English
@@ -133,7 +134,7 @@ function filter_items() {
  		pic = pics[idx];
  		$("#" + pic).attr('src', get_string(pic));
  	}
- 	$("#table_number").text(language == "sv" ? "Bord: " + current_table_number : "Table: " + current_table_number);
+ 	$("#table_number").text(language == "sv" ? "Bord: " + get_current_table_number() : "Table: " + get_current_table_number());
  }
 
 // Returns name of ordered article id
