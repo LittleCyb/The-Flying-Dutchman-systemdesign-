@@ -15,15 +15,15 @@ function send_order_to_bar(name) {
         name: name,
         execute: function () {
             // Create Order_sent object and save it locally and push order to list
-            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number));
+            myJSON = JSON.stringify(new Order_sent(orders[get_current_table_number()], this.name, this.number));
             localStorage.setItem("order" + this.number, myJSON);
-            orders[current_table_number] = [];
+            orders[get_current_table_number()] = [];
             pending_orders.push(this.number);
             update_order_view();
         },
         unexecute: function () {
             var order = JSON.parse(localStorage.getItem("order" + this.number));
-            orders[current_table_number] = order.items;
+            orders[get_current_table_number()] = order.items;
             for (o in pending_orders) {
                 if (o == this.number) pending_orders.slice(o, 1);
             }
@@ -31,9 +31,9 @@ function send_order_to_bar(name) {
             update_order_view();
         },
         reexecute: function () {
-            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number));
+            myJSON = JSON.stringify(new Order_sent(orders[get_current_table_number()], this.name, this.number));
             localStorage.setItem("order" + this.number, myJSON);
-            orders[current_table_number] = [];
+            orders[get_current_table_number()] = [];
             pending_orders.push(this.number);
             update_order_view();
         }
@@ -48,7 +48,7 @@ function send_order_to_bar(name) {
  */
 function add_item_to_order(item) {
     const values = {
-        order_table: current_table_number,
+        order_table: get_current_table_number(),
         order_id: item.artikelid,
         order_name: item.namn,
         order_price: item.prisinklmoms,
@@ -110,7 +110,7 @@ function add_item_to_order(item) {
  */
  function remove_item_from_order(item_id, old_amount) {
      const values = {
-         order_table: current_table_number,
+         order_table: get_current_table_number(),
          execute: function() {
              var order = orders[this.order_table];
              var found_item = find_item_in_order(order, item_id);

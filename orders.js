@@ -8,7 +8,7 @@
      *	@desc to clear unfinished orders if user refreshes the page/exits page
      */
     function clear_orders() {
-    	orders[current_table_number] = [];
+    	orders[get_current_table_number()] = [];
     }
 
     /** get_order

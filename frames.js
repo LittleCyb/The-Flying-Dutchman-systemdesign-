@@ -114,7 +114,7 @@ function load_frame_vip_login(old_frame) {
 	$("#vip_login_button").click(function() {
 		var name = $("#vip_login_input").text();
 		alert("logged in as: " + name);
-		load_frame_menu("vip_login", current_table_number);
+		load_frame_menu("vip_login", get_current_table_number());
 	})
 }
 
@@ -165,13 +165,13 @@ function load_frame_choose(old_frame) {
  * load_frame_menu
  * @desc Creates a menu frame
  * @param old_frame Old frame to be removed
- * @param caller The table/bar on which the iPad was dropped
+ * @param new_table_number for instance of program
  */
 function load_frame_menu(old_frame, new_table_number) {
 	remove_old_frame(old_frame);
 
-	// Get number of current table
-	current_table_number = new_table_number;
+	set_current_table_number(new_table_number); //for this instance of program
+	
 	$("#table_number").show();
 	// Create frame
 	add_block("#main_frame", "div", "", "menu");
@@ -293,7 +293,7 @@ function update_order_view() {
     add_block("#menu_order", "div", "", "menu_order_body");
 
     let total_cost = 0;
-	for(item of orders[current_table_number]) {
+	for(item of orders[get_current_table_number()]) {
         create_order_item(item);
 	}
     load_total_cost(total_cost);
@@ -325,6 +325,7 @@ function create_order_item(item) {
     // Get price of total amount of item, leaving at most two decimals
     let total_price = item_price * item_amount;
     let total_roundoff = Math.round(total_price * 100)/100;
+	let table_number = get_current_table_number(); //to maintain
 
     let div_id = "item_" + item_id;
     $("#menu_order_body").append('<div id="' + div_id + '"></div>');
@@ -334,7 +335,7 @@ function create_order_item(item) {
     $("#" + div_id).append('<div class="order_item_price">' + total_roundoff + '</div>');
 
     //in order to make the remove functionality reversable/undo:able, we need to remember how many units we removed.
-    $("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[current_table_number], item_id).amount)});
+    $("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[table_number], item_id).amount)});
 
 }
 

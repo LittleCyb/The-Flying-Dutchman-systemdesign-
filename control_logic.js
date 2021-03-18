@@ -159,7 +159,7 @@ function filter_items() {
  		pic = pics[idx];
  		$("#" + pic).attr('src', get_string(pic));
  	}
- 	$("#table_number").text(language == "sv" ? "Bord: " + current_table_number : "Table: " + current_table_number);
+ 	$("#table_number").text(language == "sv" ? "Bord: " + get_current_table_number() : "Table: " + get_current_table_number());
  }
 
 // TODO: att docu

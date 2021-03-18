@@ -21,6 +21,22 @@ function Order_item(id, name, price) {
     this.amount = 1;
 }
 
+/** get_current_table_number
+  * @desc retrieves current table number from model
+  */
+
+function get_current_table_number() {
+    return current_table_number;
+}
+
+/** set_current_table_number
+  * @desc sets current table number in model
+  */
+
+function set_current_table_number(new_table_number) {
+    current_table_number = new_table_number;
+}
+
 /**
  * @desc Class/Prototype for sent order objects
  * @param items - list of order items
