@@ -14,31 +14,6 @@
  	update_view();
  }
 
-/**
- * add_block
- * @desc Creates a HTML block
- * @param src which html block to build upon
- * @param tag html tag
- * @param class class attribute
- * @param id id attribute
- */
-function add_block(src, tag, _class, id) {
-	if (_class != "") _class = 'class=' + _class;
-	let html_code = '<' + tag + ' ' + _class + ' id="' + id + '"' + '></' + tag + '>';
-	$(src).append(html_code);
-}
-
-/**
- * add_image
- * @desc Creates a HTML block
- * @param src which html block to build upon
- * @param alt describtion of image
- * @param id id attribute
- */
-function add_image(src, alt, id) {
-	let html_code = '<img src="" alt="' + alt + '" id="' + id + '">';
-	$(src).append(html_code);
-}
 
  /**
   * display_menu_items
@@ -122,7 +97,6 @@ function filter_items() {
 
 }
 
-
  /**
  *	get_country_of_origin
  *	@desc retrieves the country of origin for a given beverage
@@ -163,18 +137,27 @@ function filter_items() {
  	$("#table_number").text(language == "sv" ? "Bord: " + get_current_table_number() : "Table: " + get_current_table_number());
  }
 
-// TODO: att docu
+// Returns name of ordered article id
 function order_item_id(item) {
     return item.id;
 }
+// Returns name of ordered item
 function order_item_name(item) {
     return item.name;
 }
+// Returns price of ordered item
 function order_item_price(item) {
     return item.price;
 }
+// Returns bought amount of ordered item
 function order_item_amount(item) {
     return item.amount;
+}
+
+// Clears UNDO/REDO history
+function clear_history() {
+     stack_undo = [];
+     stack_redo = [];
 }
 
  /**
@@ -218,3 +201,8 @@ function order_item_amount(item) {
  function allow_drop(ev) {
  	ev.preventDefault();
  }
+
+ // TODO: When an order is done it should have this order id
+ function set_order_id() {
+ 	return ++order_id;
+}

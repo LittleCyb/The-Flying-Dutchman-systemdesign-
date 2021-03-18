@@ -28,8 +28,6 @@ function load_main_frame() {
 	$("#table_number").hide();
 }
 
-
-
 /**
  * load_frame_login
  * @desc Creates a login frame
@@ -141,6 +139,7 @@ function load_frame_choose(old_frame) {
 	// Add bar
 	add_block("#choose_screen", "div", "table", "table_bar");
 	$("#table_bar").text("Bar");
+	$("#table_bar").attr("onclick", 'load_frame_bar("choose_screen")');
 
 	// Add iPad
 	$('#choose_screen').append('<canvas id="ipad" width="64" height="96"> Cannot show ipad-canvas</canvas>');
@@ -170,6 +169,9 @@ function load_frame_choose(old_frame) {
 function load_frame_menu(old_frame, new_table_number) {
 	remove_old_frame(old_frame);
 
+	clear_history(); // Clear previous UNDO/REDO history
+	// Get number of current table
+	current_table_number = new_table_number;
 	set_current_table_number(new_table_number); //for this instance of program
 	
 	$("#table_number").show();
@@ -212,6 +214,43 @@ function load_frame_menu(old_frame, new_table_number) {
 	update_view();
 }
 
+/**
+ * load_frame_bar
+ * @desc Creates a bar frame
+ * @param old_frame - Old frame to be removed
+ */
+function load_frame_bar(old_frame) {
+	remove_old_frame(old_frame);
+	clear_history(); // Clear previous UNDO/REDO history
+	// Create frame
+	add_block("#main_frame", "div", "", "menu");
+	add_block("#menu", "div", "", "menu_topbar");
+
+	// frame to put items in
+	add_block("#menu", "div", "", "bar_view");
+	for (o in pending_orders) {
+		// load current pending order from file, if order is null, skip
+		var current_order = JSON.parse(localStorage.getItem("order" + o));
+		if (current_order == null) continue;
+		// add block for order
+		add_block("#bar_view", "div", "bar_order_item", "bar_order_item" + o);
+		var current = "#bar_order_item" + o
+		$(current).append('<p> Order: ' + current_order.number + ' </p>');
+		$(current).append('<p> Table: ' + current_order.table + ' </p>');
+		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
+		$(current).attr("onclick", 'update_order_view_item("order' + o + '")');
+		$(current).css("cursor", "pointer");
+	}
+	// Add REDO/UNDO buttons
+	add_block("#menu_topbar", "div", "menu_bar_item", "undo_button");
+	add_block("#menu_topbar", "div", "menu_bar_item", "redo_button");
+	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
+	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
+
+	load_current_order();
+
+	update_view();
+}
 
 /**
  * load_menu_view
@@ -301,6 +340,23 @@ function update_order_view() {
 }
 
 /**
+ * update_order_view
+ * @desc updates view of current order item
+ */
+function update_order_view_item(order) {
+	var current_order = JSON.parse(localStorage.getItem(order));
+	var current_items = current_order.items;
+	clear_menu_order_body();
+	add_block("#menu_order", "div", "", "menu_order_body");
+	let total_cost = 0;
+	for(item of current_items) {
+		create_order_item(item);
+	}
+	load_total_cost(total_cost);
+	update_view();
+}
+
+/**
     * load_total_cost
     * @desc loads total cost of order
     * @arg cost of order
@@ -328,7 +384,7 @@ function create_order_item(item) {
 	let table_number = get_current_table_number(); //to maintain
 
     let div_id = "item_" + item_id;
-    $("#menu_order_body").append('<div id="' + div_id + '"></div>');
+    $("#menu_order_body").append('<div id="' + div_id + '" class="order_item"></div>');
     $("#" + div_id).css("display", "flex");
     $("#" + div_id).append('<div class="order_item_name">' + item_name + '</div>');
     $("#" + div_id).append('<div class="order_item_amount">' + item_amount + '</div>');
@@ -350,3 +406,5 @@ function remove_old_frame(old_frame) {
 	}
 	$("#table_number").hide()
 }
+
+
