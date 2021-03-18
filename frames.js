@@ -236,6 +236,7 @@ function load_frame_bar(old_frame) {
 		$(current).append('<p> Table: ' + current_order.table + ' </p>');
 		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
 		$(current).attr("onclick", 'update_order_view_item("order' + o + '")');
+		$(current).css("cursor", "pointer");
 	}
 	// Add REDO/UNDO buttons
 	add_block("#menu_topbar", "div", "menu_bar_item", "undo_button");
