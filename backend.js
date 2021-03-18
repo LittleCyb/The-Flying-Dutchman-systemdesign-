@@ -13,7 +13,11 @@ let stack_redo = [];
 
 let current_table_number; // represents the current table number
 let order_number = 0;
-let pending_orders = [];
+
+let pending_orders = []
+if (localStorage.getItem("pending_orders") != null) {
+    pending_orders = JSON.parse(localStorage.getItem("pending_orders"));
+}
 
 // Class/Prototype for ordered objects
 function Order_item(id, name, price) {
@@ -26,13 +30,14 @@ function Order_item(id, name, price) {
 /**
  * @desc Class/Prototype for sent order objects
  * @param items - list of order items
- * @param name - name of buyer, name of VIP-member or company (table)
- * @param credits - whether customer are going to buy in bar or not (VIP-exclusive)
+ * @param name - name of buyer, name of VIP-member or company
+ * @param number - order_number
+ * @param table - which table ordered from
  * @constructor Order_sent
  */
-function Order_sent(items, name, number) {
-    this.table = current_table_number;
-    this.number = get_new_order_number();
+function Order_sent(items, name, number, table) {
+    this.table = table;
+    this.number = number;
     this.name = name;
     this.items = items;
 }
@@ -45,17 +50,14 @@ function Order_sent(items, name, number) {
  * INVARIANT: max number of orders: 50
  */
 
-// Returns a order number for bartender
+// Returns an order number for bartender
 function get_new_order_number() {
-    while (localStorage.getItem("order" + order_number) != null) {
-        order_number++;
+    var current_max = 0;
+    for (o in pending_orders) {
+        if (o > current_max) current_max = o;
     }
-    if (order_number > 50) {
-        return 50;
-    }
-    else {
-        return order_number;
-    }
+    order_number = current_max++;
+    return order_number;
 }
 
 /**

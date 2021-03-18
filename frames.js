@@ -211,6 +211,42 @@ function load_frame_menu(old_frame, new_table_number) {
 	update_view();
 }
 
+/**
+ * load_frame_bar
+ * @desc Creates a bar frame
+ * @param old_frame - Old frame to be removed
+ */
+function load_frame_bar(old_frame) {
+	remove_old_frame(old_frame);
+	// Create frame
+	add_block("#main_frame", "div", "", "menu");
+	add_block("#menu", "div", "", "menu_topbar");
+
+	// frame to put items in
+	add_block("#menu", "div", "", "bar_view");
+	for (o in pending_orders) {
+		// load current pending order from file, if order is null, skip
+		var current_order = JSON.parse(localStorage.getItem("order" + o));
+		if (current_order == null) continue;
+		// add block for order
+		add_block("#bar_view", "div", "bar_order_item", "bar_order_item" + o);
+		var current = "#bar_order_item" + o
+		$(current).append('<p> Order: ' + current_order.number + ' </p>');
+		$(current).append('<p> Table: ' + current_order.table + ' </p>');
+		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
+		$(current).attr("onclick", 'update_order_view_item("order' + o + '")');
+	}
+
+
+	add_block("#menu_topbar", "div", "menu_bar_item", "undo_button");
+	add_block("#menu_topbar", "div", "menu_bar_item", "redo_button");
+	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
+	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
+
+	load_current_order();
+
+	update_view();
+}
 
 /**
  * load_menu_view
@@ -300,6 +336,24 @@ function update_order_view(o) {
 }
 
 /**
+ * update_order_view
+ * @desc updates view of current order item
+ */
+function update_order_view_item(order) {
+	console.log(order);
+	var current_order = JSON.parse(localStorage.getItem(order));
+	var current_items = current_order.items;
+	clear_menu_order_body();
+	add_block("#menu_order", "div", "", "menu_order_body");
+	let total_cost = 0;
+	for(item of current_items) {
+		create_order_item(item);
+	}
+	load_total_cost(total_cost);
+	update_view();
+}
+
+/**
     * load_total_cost
     * @desc loads total cost of order
     * @arg cost of order
@@ -350,31 +404,3 @@ function remove_old_frame(old_frame) {
 }
 
 
-
-function load_frame_bar(old_frame) {
-	remove_old_frame(old_frame);
-	// Create frame
-	add_block("#main_frame", "div", "", "menu");
-	add_block("#menu", "div", "", "menu_topbar");
-
-	// frame to put items in
-	add_block("#menu", "div", "", "bar_view");
-	for (o in orders) {
-		add_block("#bar_view", "div", "bar_order_item", "bar_order_item" + o);
-		var current = "#bar_order_item" + o
-		$(current).append('<p> Order: ' + order_id + ' </p>');
-		$(current).append('<p> Table: ' + o + ' </p>');
-		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
-		$(current).on("click", update_order_view(o));
-	}
-
-
-	add_block("#menu_topbar", "div", "menu_bar_item", "undo_button");
-	add_block("#menu_topbar", "div", "menu_bar_item", "redo_button");
-	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
-	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
-
-	load_current_order();
-
-	update_view();
-}

@@ -6,19 +6,23 @@
 
 /**
  *	send_order_to_bar
+ *  @param name - Name of VIP member or "company"
  *	@desc adds a an item to the table's order
  */
 function send_order_to_bar(name) {
 
     const values = {
         number: get_new_order_number(),
+        table: current_table_number,
         name: name,
         execute: function () {
-            // Create Order_sent object and save it locally and push order to list
-            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number));
+            // Store order in JSON
+            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number, this.table));
             localStorage.setItem("order" + this.number, myJSON);
             orders[current_table_number] = [];
+            // Push order to list and store in JSON
             pending_orders.push(this.number);
+            localStorage.setItem("pending_orders" ,JSON.stringify(pending_orders));
             update_order_view();
         },
         unexecute: function () {
@@ -31,7 +35,7 @@ function send_order_to_bar(name) {
             update_order_view();
         },
         reexecute: function () {
-            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number));
+            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number, this.table));
             localStorage.setItem("order" + this.number, myJSON);
             orders[current_table_number] = [];
             pending_orders.push(this.number);
