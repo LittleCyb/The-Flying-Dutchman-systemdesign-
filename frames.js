@@ -168,7 +168,7 @@ function load_frame_choose(old_frame) {
  */
 function load_frame_menu(old_frame, new_table_number) {
 	remove_old_frame(old_frame);
-
+	clear_history(); // Clear previous UNDO/REDO history
 	// Get number of current table
 	current_table_number = new_table_number;
 	$("#table_number").show();
@@ -218,6 +218,7 @@ function load_frame_menu(old_frame, new_table_number) {
  */
 function load_frame_bar(old_frame) {
 	remove_old_frame(old_frame);
+	clear_history(); // Clear previous UNDO/REDO history
 	// Create frame
 	add_block("#main_frame", "div", "", "menu");
 	add_block("#menu", "div", "", "menu_topbar");
@@ -236,8 +237,7 @@ function load_frame_bar(old_frame) {
 		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
 		$(current).attr("onclick", 'update_order_view_item("order' + o + '")');
 	}
-
-
+	// Add REDO/UNDO buttons
 	add_block("#menu_topbar", "div", "menu_bar_item", "undo_button");
 	add_block("#menu_topbar", "div", "menu_bar_item", "redo_button");
 	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
@@ -340,7 +340,6 @@ function update_order_view(o) {
  * @desc updates view of current order item
  */
 function update_order_view_item(order) {
-	console.log(order);
 	var current_order = JSON.parse(localStorage.getItem(order));
 	var current_items = current_order.items;
 	clear_menu_order_body();

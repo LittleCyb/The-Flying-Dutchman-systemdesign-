@@ -1,7 +1,8 @@
+
 /*
  File: order_actions.js
  Author: TODO: add names
- this js document contains all actions related to orders
+ this js document contains order functions from customers
  */
 
 /**
