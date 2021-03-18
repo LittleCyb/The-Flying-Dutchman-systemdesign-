@@ -53,10 +53,10 @@ function Order_sent(items, name, number, table) {
 // Returns an order number for bartender
 function get_new_order_number() {
     var current_max = 0;
-    for (o in pending_orders) {
-        if (o > current_max) current_max = o;
+    for (index = 0; index < pending_orders.length; index++) {
+        if (pending_orders[index] > current_max) current_max = pending_orders[index];
     }
-    order_number = current_max++;
+    order_number = current_max + 1;
     return order_number;
 }
 

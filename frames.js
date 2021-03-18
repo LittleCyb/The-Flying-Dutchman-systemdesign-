@@ -323,12 +323,12 @@ function clear_menu_order_body() {
  * update_order_view
  * @desc updates view of current order
  */
-function update_order_view(o) {
+function update_order_view() {
     clear_menu_order_body();
     add_block("#menu_order", "div", "", "menu_order_body");
 
     let total_cost = 0;
-	for(item of orders[o]) {
+	for(item of orders[current_table_number]) {
         create_order_item(item);
 	}
     load_total_cost(total_cost);

@@ -18,8 +18,8 @@ function send_order_to_bar(name) {
         name: name,
         execute: function () {
             // Store order in JSON
-            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number, this.table));
-            localStorage.setItem("order" + this.number, myJSON);
+            let order_json = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number, this.table));
+            localStorage.setItem("order" + this.number, order_json);
             orders[current_table_number] = [];
             // Push order to list and store in JSON
             pending_orders.push(this.number);
@@ -29,15 +29,19 @@ function send_order_to_bar(name) {
         unexecute: function () {
             var order = JSON.parse(localStorage.getItem("order" + this.number));
             orders[current_table_number] = order.items;
-            for (o in pending_orders) {
-                if (o == this.number) pending_orders.slice(o, 1);
+            for (index = 0; index < pending_orders.length; index++) {
+                if (pending_orders[index] == this.number) pending_orders.splice(index, 1);
+            }
+            for (let o in pending_orders) {
+                if (o == this.number) pending_orders.splice(o++, 1);
+
             }
             localStorage.removeItem("order" + this.number);
             update_order_view();
         },
         reexecute: function () {
-            myJSON = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number, this.table));
-            localStorage.setItem("order" + this.number, myJSON);
+            let order_json = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number, this.table));
+            localStorage.setItem("order" + this.number, order_json);
             orders[current_table_number] = [];
             pending_orders.push(this.number);
             update_order_view();
@@ -68,7 +72,7 @@ function add_item_to_order(item) {
             else {
                 found_item.amount++;
             }
-            update_order_view(this.order_table);
+            update_order_view();
         },
         unexecute: function () {
             var order = orders[this.order_table];
@@ -89,7 +93,7 @@ function add_item_to_order(item) {
                     }
                 }
             }
-            update_order_view(this.order_table);
+            update_order_view();
         },
         reexecute: function () {
             var order = orders[this.order_table];
@@ -102,7 +106,7 @@ function add_item_to_order(item) {
             else {
                 found_item.amount++;
             }
-            update_order_view(this.order_table);
+            update_order_view();
         }
     };
     return values;
@@ -129,7 +133,7 @@ function add_item_to_order(item) {
                      order.splice(index, 1);
                  }
              }
-             update_order_view(this.order_table);
+             update_order_view();
          },
          unexecute: function() {
              var order = orders[this.order_table];
@@ -144,7 +148,7 @@ function add_item_to_order(item) {
              else {
                  found_item.amount += old_amount;
              }
-             update_order_view(this.order_table);
+             update_order_view();
          },
          reexecute: function() {
              var order = orders[this.order_table];
@@ -159,7 +163,7 @@ function add_item_to_order(item) {
                      order.splice(index, 1);
                  }
              }
-             update_order_view(this.order_table);
+             update_order_view();
          }
      };
      return values;
