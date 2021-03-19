@@ -21,7 +21,7 @@ A style sheet to customize and refine the appearance of the pub's application.
         margin-top: 1em;
         float: left;
         width: 60%;
-        height: 75%;
+        height: 85%;
         overflow-y: scroll;
     }
 }
@@ -191,7 +191,11 @@ img {
     }
 }
 
-
+/* Various */
+.drink_information_line {
+    padding: 0;
+    margin: 0;
+}
 
 /* Menu ID:s */
 @media only screen and (max-height: 1080px) {

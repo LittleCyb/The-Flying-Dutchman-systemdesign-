@@ -189,7 +189,6 @@ function load_frame_menu(old_frame, new_table_number) {
 	//filter dropdown
 	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_filter");
 
-
 	// Make categories clickable
 	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');;
 	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
@@ -198,7 +197,7 @@ function load_frame_menu(old_frame, new_table_number) {
 	$("#login_vip").click(function() {load_frame_vip_login("menu")})
 	$("#menu_bar_filter").attr("onclick", 'display_menu_items("filter")');
 
-	load_menu_view();
+	load_menu_view("table");
 	display_menu_items("beers"); //shows beer by default
 
 	$("#menu_bar").append('<div class="menu_bar_item" id="undo_button"></div>');
@@ -225,25 +224,29 @@ function load_frame_bar(old_frame) {
 	// Create frame
 	add_block("#main_frame", "div", "", "menu");
 	add_block("#menu", "div", "", "menu_topbar");
+	add_block("#menu", "div", "", "menu_bar");
+	// Menu categories
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_orders");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_beers");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_cocktails");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_wine");
+	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_vip");
 
-	// frame to put items in
-	add_block("#menu", "div", "", "bar_view");
-	for (o in pending_orders) {
-		// load current pending order from file, if order is null, skip
-		var current_order = JSON.parse(localStorage.getItem("order" + o));
-		if (current_order == null) continue;
-		// add block for order
-		add_block("#bar_view", "div", "bar_order_item", "bar_order_item" + o);
-		var current = "#bar_order_item" + o
-		$(current).append('<p> Order: ' + current_order.number + ' </p>');
-		$(current).append('<p> Table: ' + current_order.table + ' </p>');
-		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
-		$(current).attr("onclick", 'update_order_view_item("order' + o + '")');
-		$(current).css("cursor", "pointer");
-	}
+	// Make categories clickable
+	$("#menu_bar_orders").attr("onclick", 'display_menu_items("orders")');;
+	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');;
+	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
+	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
+	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
+
+	load_menu_view("bar");
+	load_bar_view();
+	display_menu_items("orders"); //shows beer by default
+
+
 	// Add REDO/UNDO buttons
-	add_block("#menu_topbar", "div", "menu_bar_item", "undo_button");
-	add_block("#menu_topbar", "div", "menu_bar_item", "redo_button");
+	add_block("#menu_bar", "div", "menu_bar_item", "undo_button");
+	add_block("#menu_bar", "div", "menu_bar_item", "redo_button");
 	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
 
@@ -256,32 +259,56 @@ function load_frame_bar(old_frame) {
  * load_menu_view
  * @desc loads menu view frame
  */
-function load_menu_view() {
+function load_menu_view(from) {
 	// frame to put items in
 	add_block("#menu", "div", "", "menu_view");
 	// Items
 	for(const type of menu_types) {
 		$("#menu_view").append('<div id="menu_view_' + type + '"></div>');
 		for(index in db[type]) {
-			var beverage = make_beverage(type, index);
+			var beverage = make_beverage(type, index, from);
 			$("#menu_view_" + type).append(beverage);
 			$("#menu_view" + type).append('<br>');
 		}
 	}
 
-	//remove menu_view_filter from standard loop (see above) to add it separately below //FIXME this removes both, otherwise we get duplicates
+	//TODO: remove menu_view_filter from standard loop (see above) to add it separately below //FIXME this removes both, otherwise we get duplicates
 	//$("#menu_view_filter").remove(); Is this a bug?
 
 	//add filter functionality
-	add_block("#menu_view", "div", "menu_view_filter");
-	for(const filter of filter_types) {
-		$("#menu_view_filter").append('<input id="checkbox_' + filter +'_id" type="checkbox" name="checkbox_' + filter + '">' + '<label for="checkbox_' + filter + '" class="checkbox_label" id="checkbox_' + filter + '">');
+	if (from == "table") {
+		add_block("#menu_view", "div", "menu_view_filter");
+		for(const filter of filter_types) {
+			$("#menu_view_filter").append('<input id="checkbox_' + filter +'_id" type="checkbox" name="checkbox_' + filter + '">' + '<label for="checkbox_' + filter + '" class="checkbox_label" id="checkbox_' + filter + '">');
+		}
 	}
 
 	hide_menu_views();
 }
 
-function make_beverage(type, index) {
+/**
+ * load_bar_view
+ * @desc loads bar view frames, including a list of all customer orders
+ */
+function load_bar_view() {
+	// frame to put items in
+	add_block("#menu_view", "div","", "menu_view_orders")
+	for (o in pending_orders) {
+		// load current pending order from file, if order is null, skip
+		var current_order = JSON.parse(localStorage.getItem("order" + o));
+		if (current_order == null) continue;
+		// add block for order
+		add_block("#menu_view_orders", "div", "bar_order_item", "bar_order_item" + o);
+		var current = "#bar_order_item" + o
+		$(current).append('<p> Order: ' + current_order.number + ' </p>');
+		$(current).append('<p> Table: ' + current_order.table + ' </p>');
+		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
+		$(current).attr("onclick", 'update_order_view_item("order' + o + '")');
+		$(current).css("cursor", "pointer");
+	}
+}
+
+function make_beverage(type, index, from) {
 	var div = $("<div>").addClass("menu_beverage").attr("id", get_drink_id(type, index));
 
 	for(var info_point of beverages_info[type]) {
@@ -293,7 +320,12 @@ function make_beverage(type, index) {
 	var flag_src = get_flag(get_country_of_origin(type, index));
 	var new_drink = get_drink_object(type, index);
 	$(div).append('<img class="menu_flag_icon" src="' + flag_src + '">');
-	$(div).append('<div class="add_item_button">+ 1</div>').click(function() {do_action('add', new_drink)});
+	if (from == "table") {
+		$(div).append('<div class="add_item_button">+ 1</div>').click(function() {do_action('add', new_drink)});
+	} else {
+		$(div).click(function() {show_all_info(type, index)});
+		$(div).css("cursor", "pointer");
+	}
 	return div
 }
 
@@ -320,6 +352,7 @@ function load_current_order() {
 function clear_menu_order_body() {
     if("#menu_order_body") {
         $("#menu_order_body").remove();
+		$("#drink_information").remove();
     }
 }
 
@@ -393,6 +426,22 @@ function create_order_item(item) {
     //in order to make the remove functionality reversable/undo:able, we need to remember how many units we removed.
     $("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[table_number], item_id).amount)});
 
+}
+
+/**
+ * show_all_info
+ * @desc shows all information about a drink from the bartender view
+ */
+function show_all_info(type, index) {
+	clear_menu_order_body();
+	// Add or replace drink information block
+	add_block("#menu_order", "div", "", "drink_information");
+	// Add drink information block
+	var drink = get_drink_object(type, index);
+	$("#drink_information").append('<p>' + get_string("drink_info") + '</p>');
+	for (entry in drink) {
+		$("#drink_information").append('<p class="drink_information_line">' + entry + ': ' + drink[entry] + '</p>');
+	}
 }
 
 /**
