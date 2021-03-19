@@ -17,6 +17,7 @@ dict = {
         'menu_bar_vip',
         'menu_bar_order',
         'menu_bar_filter',
+        'menu_bar_orders',
         'menu_order_remove',
         'login_manager',
         'login_vip',
@@ -32,7 +33,8 @@ dict = {
         'checkbox_gluten',
         'checkbox_low_tannins',
         'checkbox_lactose',
-        'checkbox_low_alcohol'
+        'checkbox_low_alcohol',
+        'drink_info'
     ],
     'pics': [
     	'language',
@@ -49,6 +51,7 @@ dict = {
         'menu_bar_wine': "Wine",
         'menu_bar_vip': "VIP",
         'menu_bar_filter': "Filter",
+        'menu_bar_orders': "Orders",
         'login_manager': "Login as manager",
         'login_vip': "VIP login",
         'menu_order_name': "Name",
@@ -64,7 +67,8 @@ dict = {
         'checkbox_gluten': "Gluten-free",
         'checkbox_low_tannins': "Low tannins content (< 3/5)",
         'checkbox_lactose': "Lactose-free",
-        'checkbox_low_alcohol': "Low alcohol content (< 4%)"
+        'checkbox_low_alcohol': "Low alcohol content (< 4%)",
+        'drink_info' : "Drink information"
     },
 
     'sv' : {
@@ -78,6 +82,7 @@ dict = {
         'menu_bar_wine': "Vin",
         'menu_bar_vip': "VIP",
         'menu_bar_filter': "Filtrera",
+        'menu_bar_orders': "Kundordrar",
         'login_manager': "Logga in som manager",
         'login_vip': "VIP login",
         'menu_order_name': "Namn",
@@ -93,7 +98,8 @@ dict = {
         'checkbox_gluten': "Glutenfri",
         'checkbox_low_tannins': "Lågt innehåll av tanniner (< 3/5)",
         'checkbox_lactose': "Laktosfri",
-        'checkbox_low_alcohol': "Låg alkoholhalt (< 4%)"
+        'checkbox_low_alcohol': "Låg alkoholhalt (< 4%)",
+        'drink_info' : "Information om drink"
     }
 }
 

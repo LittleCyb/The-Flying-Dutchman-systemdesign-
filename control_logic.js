@@ -116,8 +116,10 @@ function filter_items() {
  		$("#menu_view_" + idx).css("display", "none");
  		$("#menu_bar_" + idx).css("background-color", "");
  	}
- 	$("#menu_bar_order").css("background-color", "");
+ 	$("#menu_view_orders").css("display", "none");
+ 	$("#menu_bar_orders").css("background-color", "");
 
+ 	$("#menu_bar_order").css("background-color", "");
     $("#menu_view_filter").css("display", "none");
     $("#menu_bar_filter").css("background-color", "");
  }
