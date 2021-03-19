@@ -329,18 +329,6 @@ function make_beverage(type, index, from) {
 	return div
 }
 
-function show_all_info(type, index) {
-	clear_menu_order_body();
-	// Add or replace drink information block
-	add_block("#menu_order", "div", "", "drink_information");
-
-	var drink = get_drink_object(type, index);
-	$("#drink_information").append('<p>' + get_string("drink_info") + '</p>');
-	for (entry in drink) {
-		$("#drink_information").append('<p class="drink_information_line">' + entry + ': ' + drink[entry] + '</p>');
-	}
-}
-
 /**
  * load_current_order
  * @desc loads the current order for the selected VIP customer (TODO) or current table.
@@ -438,6 +426,22 @@ function create_order_item(item) {
     //in order to make the remove functionality reversable/undo:able, we need to remember how many units we removed.
     $("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[table_number], item_id).amount)});
 
+}
+
+/**
+ * show_all_info
+ * @desc shows all information about a drink from the bartender view
+ */
+function show_all_info(type, index) {
+	clear_menu_order_body();
+	// Add or replace drink information block
+	add_block("#menu_order", "div", "", "drink_information");
+	// Add drink information block
+	var drink = get_drink_object(type, index);
+	$("#drink_information").append('<p>' + get_string("drink_info") + '</p>');
+	for (entry in drink) {
+		$("#drink_information").append('<p class="drink_information_line">' + entry + ': ' + drink[entry] + '</p>');
+	}
 }
 
 /**
