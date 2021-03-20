@@ -19,12 +19,39 @@ if (localStorage.getItem("pending_orders") != null) {
     pending_orders = JSON.parse(localStorage.getItem("pending_orders"));
 }
 
-// Class/Prototype for ordered objects
+/**
+ * @desc Class/Prototype for ordered items
+ * @param id - product id
+ * @param name - name of item
+ * @param price - price of item
+ * @constructor Order_sent
+ */
 function Order_item(id, name, price) {
     this.id = id;
     this.name = name;
     this.price = parseFloat(price);
     this.amount = 1;
+}
+
+/**
+ * @desc Class/Prototype for sent order objects
+ * @param items - list of order items
+ * @param name - name of buyer, name of VIP-member or company
+ * @param number - order_number
+ * @param table - which table ordered from
+ * @constructor Order_sent
+ */
+function Order_sent(items, name, number, table) {
+    this.table = table;
+    this.number = number;
+    this.name = name;
+    this.items = items;
+}
+
+// Clears UNDO/REDO history
+function clear_history() {
+    stack_undo = [];
+    stack_redo = [];
 }
 
 /** get_current_table_number
@@ -41,21 +68,6 @@ function get_current_table_number() {
 
 function set_current_table_number(new_table_number) {
     current_table_number = new_table_number;
-}
-
-/**
- * @desc Class/Prototype for sent order objects
- * @param items - list of order items
- * @param name - name of buyer, name of VIP-member or company
- * @param number - order_number
- * @param table - which table ordered from
- * @constructor Order_sent
- */
-function Order_sent(items, name, number, table) {
-    this.table = table;
-    this.number = number;
-    this.name = name;
-    this.items = items;
 }
 
 /* Order system */
@@ -119,5 +131,21 @@ function action_redo() {
     }
 }
 
+// Returns name of ordered article id
+function order_item_id(item) {
+    return item.id;
+}
+// Returns name of ordered item
+function order_item_name(item) {
+    return item.name;
+}
+// Returns price of ordered item
+function order_item_price(item) {
+    return item.price;
+}
+// Returns bought amount of ordered item
+function order_item_amount(item) {
+    return item.amount;
+}
 
 /* END OF FILE */
