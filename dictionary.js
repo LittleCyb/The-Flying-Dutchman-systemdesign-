@@ -37,7 +37,8 @@ dict = {
         'checkbox_low_tannins',
         'checkbox_lactose',
         'checkbox_low_alcohol',
-        'drink_info'
+        'drink_info',
+        'drink_amount_text'
     ],
     'pics': [
     	'language',
@@ -73,7 +74,8 @@ dict = {
         'checkbox_low_tannins': "Low tannins content (< 3/5)",
         'checkbox_lactose': "Lactose-free",
         'checkbox_low_alcohol': "Low alcohol content (< 4%)",
-        'drink_info' : "Drink information"
+        'drink_info' : "Drink information",
+        'drink_amount_text': "Amount: "
     },
 
     'sv' : {
@@ -106,7 +108,8 @@ dict = {
         'checkbox_low_tannins': "Lågt innehåll av tanniner (< 3/5)",
         'checkbox_lactose': "Laktosfri",
         'checkbox_low_alcohol': "Låg alkoholhalt (< 4%)",
-        'drink_info' : "Information om drink"
+        'drink_info' : "Information om drink",
+        'drink_amount_text': "Antal: "
     }
 }
 

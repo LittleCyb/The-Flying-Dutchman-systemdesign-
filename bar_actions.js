@@ -4,7 +4,7 @@
  this js document contains bar functions from bartender
  */
 
-function bar_order_remove(order) {
+function decline_order(order) {
 
     const values = {
         name: order,

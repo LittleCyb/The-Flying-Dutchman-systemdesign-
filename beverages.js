@@ -21,6 +21,11 @@ This js document contains the beverages served at the pub.
  	return db[drink][index][key];
  }
 
+ // Return both the key and container
+function get_drink_string_full(drink, index, key) {
+    return key + " : " + db[drink][index][key];
+}
+
 
 function incrementItemAmount(drinkType, id) {
     let index = db[drinkType].findIndex(element => element.artikelid == id);

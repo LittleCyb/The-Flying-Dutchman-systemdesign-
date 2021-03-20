@@ -71,6 +71,10 @@
     if (fun == 'purchase') {
     	action_exe(send_order_to_bar());
 	}
+
+     if (fun == 'decline_order') {
+         action_exe(decline_order(arg1));
+     }
  }
 
  /* drag-n-drop */

@@ -103,7 +103,7 @@ function display_menu_items(item) {
 
 /**
  * clear_menu_order_body
- * @desc clear menu_order_body in order to update the content to current order in orderds.js
+ * @desc clear menu_order_body in order to update the content to current order in orders.js
  */
 function clear_menu_order_body() {
     if("#menu_order_body") {

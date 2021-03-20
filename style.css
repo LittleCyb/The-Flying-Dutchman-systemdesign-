@@ -330,7 +330,12 @@ img {
 
 /* Bartender ID */
 
-
+#drink_info {
+    font-weight: bold;
+}
+#drink_amount_text {
+    font-weight: bold;
+}
 
 /* Login ID:s */
 @media only screen and (max-height: 1080px) {
