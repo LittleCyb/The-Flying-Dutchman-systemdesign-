@@ -7,6 +7,7 @@
 /* DATA STRUCTURES */
 
 let order_id = 0;
+let current_order = "";
 
 let stack_undo = [];
 let stack_redo = [];
@@ -17,6 +18,16 @@ let order_number = 0;
 let pending_orders = []
 if (localStorage.getItem("pending_orders") != null) {
     pending_orders = JSON.parse(localStorage.getItem("pending_orders"));
+}
+
+// Set which order is currently selected
+function set_current_order(order) {
+    current_order = order;
+}
+
+// Get which order is currently selected
+function get_current_order() {
+    return current_order;
 }
 
 /**

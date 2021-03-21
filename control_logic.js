@@ -73,8 +73,13 @@
 	}
 
      if (fun == 'decline_order') {
-         action_exe(decline_order(arg1));
+         action_exe(decline_order());
      }
+ }
+
+ function do_choose_bar_order(order) {
+     set_current_order(order);
+     update_order_view_item(order);
  }
 
  /* drag-n-drop */

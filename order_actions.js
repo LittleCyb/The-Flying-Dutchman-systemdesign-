@@ -37,6 +37,7 @@ function send_order_to_bar(name) {
 
             }
             localStorage.removeItem("order" + this.number);
+            localStorage.setItem("pending_orders" ,JSON.stringify(pending_orders));
             update_order_view();
         },
         reexecute: function () {
@@ -44,6 +45,7 @@ function send_order_to_bar(name) {
             localStorage.setItem("order" + this.number, order_json);
             orders[current_table_number] = [];
             pending_orders.push(this.number);
+            localStorage.setItem("pending_orders" ,JSON.stringify(pending_orders));
             update_order_view();
         }
     };

@@ -111,3 +111,8 @@ function clear_menu_order_body() {
         $("#drink_information").remove();
     }
 }
+
+function update_bar_order_list() {
+    $("#menu_view_orders").remove();
+    load_bar_view();
+}
