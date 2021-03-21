@@ -2,8 +2,32 @@
  File: main.js
  Author: TODO: add names
  this js document contains the control logic
- */
+*/
 
+function grey_away(id) {
+    $('#'+id).css({
+	"background-color": "",
+	"opacity": "1"
+    });
+    
+}
+function grey_out(id) {
+    $('#'+id).css({
+	"background-color": "#808080",
+	"opacity": "0.5"
+    });
+}
+
+function hide_unhide(drinkType, id) {
+    let index = db[drinkType].findIndex(element => element.artikelid == id);
+    if (!db[drinkType][index].gömd) {
+	db[drinkType][index].gömd = true;
+	grey_out(id);
+    } else {
+	db[drinkType][index].gömd = false;
+	grey_away(id);
+    }
+}
 
  /**
  *	change_language_control
