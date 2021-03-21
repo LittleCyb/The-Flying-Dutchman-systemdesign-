@@ -26,6 +26,14 @@ $(document).ready(function() {
 	load_frame_login();
 });
 
+/* Execute two functions */
+function update_amount(drinkId, drinkType, amount, func, i) {
+    orderItem(drinkType, drinkId, amount);
+    update_text("drink"+drinkId, func(drinkType, i));
+}
+function update_text(id, text) {
+    $("#"+id).text(text);
+}
 /**
  * add_block
  * @desc Creates a HTML block
