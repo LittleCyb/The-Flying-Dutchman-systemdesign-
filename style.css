@@ -328,7 +328,58 @@ img {
     justify-content: space-evenly;
 }
 
+/* Bartender ID */
 
+#drink_info {
+    font-weight: bold;
+}
+#drink_amount_text {
+    font-weight: bold;
+}
+
+/* Login ID:s */
+@media only screen and (max-height: 1080px) {
+    #menu_bar_left {
+        display: flex;
+        justify-content: flex-start;
+        width: 65%;
+        flex-direction: row;
+
+    }
+}
+
+
+@media only screen and (min-height: 1081px) {
+    #menu_bar_left {
+        display: flex;
+        justify-content: flex-start;
+        width: 54.5%;
+        flex-direction: row;
+
+    }
+}
+#menu_bar_right {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    padding-left: 2%;
+}
+
+#undo_button {
+    background-color: orangered;
+}
+
+#redo_button {
+    background-color: orangered;
+}
+
+#accept_order_button {
+    background-color: lawngreen;
+}
+
+#decline_order_button {
+    background-color: yellow;
+}
 
 /* Login ID:s */
 @media only screen and (max-height: 1080px) {

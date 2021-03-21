@@ -1,7 +1,8 @@
 /*
- File: frames.js
+ File: view_frames.js
  Author: TODO: add names
- This js document contains the functions associated with generating frames for the application.
+ Main view file, contains all functions for generating different frames
+ for the application.
  */
 
  /**
@@ -207,6 +208,7 @@ function load_frame_menu(old_frame, new_table_number) {
 	$("#menu_bar").append('<div class="menu_bar_item" id="purchase_button"></div>');
 	document.getElementById('purchase_button').addEventListener('click', function add() {do_action("purchase", '')}, false);
 
+	add_block("#menu", "div", "", "menu_order");
 	load_current_order();
 	update_order_view();
 
@@ -225,31 +227,34 @@ function load_frame_bar(old_frame) {
 	add_block("#main_frame", "div", "", "menu");
 	add_block("#menu", "div", "", "menu_topbar");
 	add_block("#menu", "div", "", "menu_bar");
+	add_block("#menu_bar", "div", "", "menu_bar_left");
+	add_block("#menu_bar", "div", "", "menu_bar_right");
 	// Menu categories
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_orders");
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_beers");
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_cocktails");
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_wine");
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_vip");
-
-	// Make categories clickable
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_orders");
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_beers");
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_cocktails");
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_wine");
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_vip");
+	// Action buttons
+	add_block("#menu_bar_right", "div", "menu_bar_item", "undo_button");
+	add_block("#menu_bar_right", "div", "menu_bar_item", "redo_button");
+	add_block("#menu_bar_right", "div", "menu_bar_item", "accept_order_button")
+	add_block("#menu_bar_right", "div", "menu_bar_item", "decline_order_button");
+	// Make buttons clickable
 	$("#menu_bar_orders").attr("onclick", 'display_menu_items("orders")');;
 	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');;
 	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
 	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
+	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
+	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
+	document.getElementById('decline_order_button').addEventListener('click', function add() {do_action("decline_order", '')}, false);
 
 	load_menu_view("bar");
 	load_bar_view();
 	display_menu_items("orders"); //shows beer by default
 
-
-	// Add REDO/UNDO buttons
-	add_block("#menu_bar", "div", "menu_bar_item", "undo_button");
-	add_block("#menu_bar", "div", "menu_bar_item", "redo_button");
-	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
-	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
-
+	add_block("#menu", "div", "", "menu_order");
 	load_current_order();
 
 	update_view();
@@ -293,9 +298,9 @@ function load_menu_view(from) {
 function load_bar_view() {
 	// frame to put items in
 	add_block("#menu_view", "div","", "menu_view_orders")
-	for (o in pending_orders) {
+	for (let o = 0; o < pending_orders.length; o++) {
 		// load current pending order from file, if order is null, skip
-		var current_order = JSON.parse(localStorage.getItem("order" + o));
+		var current_order = JSON.parse(localStorage.getItem("order" + pending_orders[o]));
 		if (current_order == null) continue;
 		// add block for order
 		add_block("#menu_view_orders", "div", "bar_order_item", "bar_order_item" + o);
@@ -303,7 +308,7 @@ function load_bar_view() {
 		$(current).append('<p> Order: ' + current_order.number + ' </p>');
 		$(current).append('<p> Table: ' + current_order.table + ' </p>');
 		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
-		$(current).attr("onclick", 'update_order_view_item("order' + o + '")');
+		$(current).attr("onclick", 'do_choose_bar_order("order' + pending_orders[o] + '")');
 		$(current).css("cursor", "pointer");
 	}
 }
@@ -335,7 +340,6 @@ function make_beverage(type, index, from) {
  */
 
 function load_current_order() {
-	add_block("#menu", "div", "", "menu_order");
 	add_block("#menu_order", "div", "", "menu_order_info");
 	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_name");
 	add_block("#menu_order_info", "div", "menu_order_info", "menu_order_amount");
@@ -346,23 +350,13 @@ function load_current_order() {
 }
 
 /**
- * clear_menu_order_body
- * @desc clear menu_order_body in order to update the content to current order in orderds.js
- */
-function clear_menu_order_body() {
-    if("#menu_order_body") {
-        $("#menu_order_body").remove();
-		$("#drink_information").remove();
-    }
-}
-
-/**
  * update_order_view
  * @desc updates view of current order
  */
 function update_order_view() {
-    clear_menu_order_body();
+	clear_menu_order_body();
     add_block("#menu_order", "div", "", "menu_order_body");
+	if ($("#menu_order_info").length == 0) load_current_order();
 
     let total_cost = 0;
 	for(item of orders[get_current_table_number()]) {
@@ -374,12 +368,16 @@ function update_order_view() {
 
 /**
  * update_order_view
- * @desc updates view of current order item
+ * @desc updates view of current order with a specific item in mind (used in bar)
  */
 function update_order_view_item(order) {
 	var current_order = JSON.parse(localStorage.getItem(order));
 	var current_items = current_order.items;
 	clear_menu_order_body();
+	$("#decline_order_button").css("display", "flex");
+	$("#accept_order_button").css("display", "flex");
+	if ($("#menu_order_info").length == 0) load_current_order();
+
 	add_block("#menu_order", "div", "", "menu_order_body");
 	let total_cost = 0;
 	for(item of current_items) {
@@ -434,14 +432,23 @@ function create_order_item(item) {
  */
 function show_all_info(type, index) {
 	clear_menu_order_body();
+	$("#decline_order_button").css("display", "none");
+	$("#accept_order_button").css("display", "none");
+	$("#menu_order_info").remove();
 	// Add or replace drink information block
 	add_block("#menu_order", "div", "", "drink_information");
 	// Add drink information block
 	var drink = get_drink_object(type, index);
-	$("#drink_information").append('<p>' + get_string("drink_info") + '</p>');
+	add_block("#drink_information", "p", "drink_information_line", "drink_info");
+	add_block("#drink_information", "span", "", "drink_amount_text");
+	add_block("#drink_information", "span", "", "drink_amount");
+	$("#drink_amount").text(get_drink_string(type,index,"antal"));
 	for (entry in drink) {
-		$("#drink_information").append('<p class="drink_information_line">' + entry + ': ' + drink[entry] + '</p>');
+		if (entry != "antal") {
+			$("#drink_information").append('<p class="drink_information_line">' + get_drink_string_full(type, index, entry) + '</p>');
+		}
 	}
+	update_view()
 }
 
 /**
@@ -455,5 +462,4 @@ function remove_old_frame(old_frame) {
 	}
 	$("#table_number").hide()
 }
-
 
