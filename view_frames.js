@@ -16,6 +16,9 @@ function load_topbar_language() {
     $("#language_bar").append('<div id="login_from_menu">back to login</div>');
     $("#login_from_menu").attr("onclick", 'load_frame_login("menu")');
 
+    $("#language_bar").append('<div id="login_from_menu_manager">back to login manager</div>');
+    $("#login_from_menu_manager").attr("onclick", 'load_frame_login("manager")');
+
    	add_image("#language_bar", "Current language", "language");
    	$("#language").attr("onclick", 'change_language_control()');
 }
