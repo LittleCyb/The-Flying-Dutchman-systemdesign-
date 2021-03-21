@@ -27,14 +27,9 @@ function get_drink_string_full(drink, index, key) {
 }
 
 
-function incrementItemAmount(drinkType, id) {
+function orderItem(drinkType, id, amount) {
     let index = db[drinkType].findIndex(element => element.artikelid == id);
-    newAntal = parseInt(db[drinkType][index].antal) + 1;
-    db[drinkType][index].antal = newAntal.toString();
-}
-function decrementItemAmount(drinkType, id)  {
-    let index = db[drinkType].findIndex(element => element.artikelid == id);
-    newAntal = parseInt(db[drinkType][index].antal) - 1;
+    newAntal = parseInt(db[drinkType][index].antal) + amount;
     db[drinkType][index].antal = newAntal.toString();
 }
 function getDrinkIdFromDB(drinkType, nr) {
@@ -48,10 +43,6 @@ function getDrinkNameFromDB(drinktype, nr) {
 function getDrinkAmountFromDB(drinktype, nr) {
     let wantedDrink = db[drinktype][nr];
     return wantedDrink.antal;
-}
-
-function update_text(id, text) {
-    $("#"+id).text(text);
 }
 
 
@@ -221,7 +212,8 @@ db = {
             "volym": "33cl",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         }, {
             "nr": "10001",
             "artikelid": "25053",
@@ -250,7 +242,8 @@ db = {
             "volym": "15cl",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         },
         {
             "nr": "76814",
@@ -280,7 +273,8 @@ db = {
             "volym": "40cl",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         },
         {
             "nr": "76901",
@@ -310,7 +304,8 @@ db = {
             "volym": "50cl",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         }
     ],
     "beers" : [
@@ -342,7 +337,8 @@ db = {
             "volym": "33cl",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
 
         },
         {
@@ -373,7 +369,8 @@ db = {
             "volym": "33cl",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         },
         {
             "nr": "8966503",
@@ -403,7 +400,8 @@ db = {
             "volym" : "33cl",
             "gluten_free": "0",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         },
         {
             "nr": "8968101",
@@ -434,6 +432,7 @@ db = {
             "gluten_free": "0",
             "lactose_free": "1",
             "antal": "10",
+	    "gömd": false,
 
         }
     ],
@@ -467,7 +466,8 @@ db = {
             "tanniner": "2",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         },
         {
             "nr": "8970102",
@@ -498,7 +498,8 @@ db = {
             "tanniner": "5",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         },
         {
             "nr": "8974301",
@@ -529,7 +530,8 @@ db = {
             "tanniner": "4",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         },
         {
             "nr": "9001201",
@@ -560,7 +562,8 @@ db = {
             "tanniner": "1",
             "gluten_free": "1",
             "lactose_free": "1",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         },
 
     ],
@@ -592,7 +595,8 @@ db = {
             "volym": "25cl",
             "gluten_free": "1",
             "lactose_free": "0",
-	        "antal": "10",
+	    "antal": "10",
+	    "gömd": false,
         }
     ]
 }

@@ -61,35 +61,47 @@ function load_frame_manager(old_frame) {
     // adds new content to main_frame
     $("#main_frame").append('<img id="logo" src="">');
     $("#main_frame").append('<div id="manager"></div>');
-    $("#manager").append('<div id="manager_left"></div>');
 
     /* Get all the beers from the db. Each div's id will be the "artikelid" of the beer, this will
        make it easier to manipulate the db.*/
     for (drinkType1 in db) {
+	let largeAmount = 50;
 	let i=0;
 	let drinkType = drinkType1.toString();
-	$('#manager_left').append('<div class="dividing_large_text">'+drinkType+'</div>');
+	$('#manager').append('<div class="drinktype_container" id='+drinkType+'></div>');
+	$('#'+drinkType).append('<div class="dividing_large_text">'+drinkType+'</div>');
 	while (i < db[drinkType].length) {
 	    let drinkId = getDrinkIdFromDB(drinkType, i);
-	    $("#manager_left").append('<div class="boxed" id='+drinkId+'></div>');
-	    $("#"+drinkId).append('<div class="item_text"> '+getDrinkNameFromDB(drinkType, i)+'</div>');
-				  //getDrinkNameFromDB(""+drinkType, i) + " ");
+	    $("#"+drinkType).append('<div class="boxed" id='+drinkId+'></div>');
+	    $("#"+drinkId).append('<div class="item_top_row" id=top'+drinkId+'></div>');
+	    $("#top"+drinkId).append('<div class="item_text_top"> '+getDrinkNameFromDB(drinkType, i)+'</div>');
+	    $("#top"+drinkId).append('<div class="item_hide_button" id="hide_button'+drinkId+'"> </div>');
+	    $('<img class="item_hide_image" src="eye.svg"/>').appendTo($('#hide_button'+drinkId));
+	    $("#hide_button"+drinkId).attr("onclick",'hide_unhide("'+drinkType+'", '+drinkId+')');
+	    //
 	    $("#"+drinkId).append('<div class="flex_button_container" id=flex'+drinkId+'> </div>');
 
+	    // Decrement button
 	    $("#flex"+drinkId).append(
-		'<div class="increment_button" id=decrement_button'+drinkId+'> Decrement </div>');
+		'<div class="manager_button" id=decrement_button'+drinkId+'> Decrement </div>');
 	    $("#decrement_button"+drinkId).attr(
-		"onclick",'decrementItemAmount("'+drinkType+'", '+drinkId+');'+
-		    ' update_text("drink'+drinkId+'", getDrinkAmountFromDB("'+drinkType+'", '+i+'))');
-
+		"onclick", 'update_amount('+drinkId+', "'+drinkType+'", -1, getDrinkAmountFromDB,'+i+')');
+	    
+	    // Larger order button
 	    $("#flex"+drinkId).append(
-		'<div class="increment_button" id=increment_button'+drinkId+'> Increment </div>');
+		'<div class="manager_button" id=large_order_button'+drinkId+'> Order '+largeAmount+' </div>');
+	    $("#large_order_button"+drinkId).attr(
+		"onclick",'setTimeout(function() {update_amount('+drinkId+', "'+drinkType+'", '+largeAmount+', getDrinkAmountFromDB, '+i+')}, 1000)');
+
+	    // Increment button
+	    $("#flex"+drinkId).append(
+		'<div class="manager_button" id=increment_button'+drinkId+'> Increment </div>');
 	    $("#increment_button"+drinkId).attr(
-		"onclick",'incrementItemAmount("'+drinkType+'", '+drinkId+');'+
+		"onclick",'orderItem("'+drinkType+'", '+drinkId+', +1);'+
 		    ' update_text("drink'+drinkId+'", getDrinkAmountFromDB("'+drinkType+'", '+i+'))');
 
 
-	    $("#"+drinkId).append('<div class="item_text" id=drink'+drinkId+'>' +getDrinkAmountFromDB(drinkType, i)+ '</div>');
+	    $("#"+drinkId).append('<div class="item_text_bottom" id=drink'+drinkId+'>' +getDrinkAmountFromDB(drinkType, i)+ '</div>');
 	    i++;
 	}
     }
