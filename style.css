@@ -504,20 +504,8 @@ img {
     display: flex;
     justify-content: center;
     border: 1px solid black;
-    margin-left: 30%;
-    margin-top: 5px;
-    padding: 1em;
-    border-radius: 5px;
-    height: 2em;
-    cursor: pointer;
-}
-
-#login_from_menu_manager {
-    background-color: #ffd29a;
-    display: flex;
-    justify-content: center;
-    border: 1px solid black;
-    margin-right: 35%;
+    margin-left: 40%;
+    margin-right: 40%;
     margin-top: 5px;
     padding: 1em;
     border-radius: 5px;
