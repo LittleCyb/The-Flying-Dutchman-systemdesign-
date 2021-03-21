@@ -35,7 +35,13 @@ function load_main_frame() {
  * @param old_frame Old frame to be removed
  */
 function load_frame_login(old_frame) {
+    if ($('#manager').length) {
+	remove_old_frame("manager");
+    }
+    else {
 	remove_old_frame(old_frame);
+    }
+
 	// Create frame
 	add_block('#main_frame', "div", "", "login");
 	add_block('#login', "div", "", "login_topbar");

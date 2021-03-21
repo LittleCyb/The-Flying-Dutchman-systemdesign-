@@ -513,7 +513,6 @@ img {
     cursor: pointer;
 }
 
-
 /* manager ID:s */
 
 #manager {
@@ -526,8 +525,8 @@ img {
     overflow: auto;
 }
 .drinktype_container {
-    padding: 1em 1em;
-    width: 45%;
+    padding: 1% 1%;
+    width: 48%;
 }
 
 /* Manager classes */
@@ -568,6 +567,7 @@ img {
     height: 10%
     padding: 2px 2px;
     background-color: #ffd29a;
+    cursor: pointer;
 }
 .item_hide_button:hover {
     background-color: #ffb686
@@ -594,6 +594,7 @@ img {
     width: auto;
     padding: 5px;
     background-color: #ffd29a;
+    cursor: pointer;
 }
 
 .manager_button:hover {
