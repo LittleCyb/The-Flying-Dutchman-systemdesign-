@@ -22,14 +22,9 @@ This js document contains the beverages served at the pub.
  }
 
 
-function incrementItemAmount(drinkType, id) {
+function orderItem(drinkType, id, amount) {
     let index = db[drinkType].findIndex(element => element.artikelid == id);
-    newAntal = parseInt(db[drinkType][index].antal) + 1;
-    db[drinkType][index].antal = newAntal.toString();
-}
-function decrementItemAmount(drinkType, id)  {
-    let index = db[drinkType].findIndex(element => element.artikelid == id);
-    newAntal = parseInt(db[drinkType][index].antal) - 1;
+    newAntal = parseInt(db[drinkType][index].antal) + amount;
     db[drinkType][index].antal = newAntal.toString();
 }
 function getDrinkIdFromDB(drinkType, nr) {
@@ -43,10 +38,6 @@ function getDrinkNameFromDB(drinktype, nr) {
 function getDrinkAmountFromDB(drinktype, nr) {
     let wantedDrink = db[drinktype][nr];
     return wantedDrink.antal;
-}
-
-function update_text(id, text) {
-    $("#"+id).text(text);
 }
 
 
