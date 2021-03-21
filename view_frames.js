@@ -217,17 +217,17 @@ function load_frame_menu(old_frame, new_table_number) {
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
 	$("#login_vip").click(function() {load_frame_vip_login("menu")})
 	$("#menu_bar_filter").attr("onclick", 'display_menu_items("filter")');
-
+	// Load menu items
 	load_menu_view("table");
 	display_menu_items("beers"); //shows beer by default
-
+	// Make customer order buttons
 	$("#menu_bar_right").append('<div class="menu_bar_item" id="undo_button"></div>');
 	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
 	$("#menu_bar_right").append('<div class="menu_bar_item" id="redo_button"></div>');
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
 	$("#menu_bar_right").append('<div class="menu_bar_item" id="purchase_button"></div>');
 	document.getElementById('purchase_button').addEventListener('click', function add() {do_action("purchase", 'Company')}, false);
-
+	// Load order
 	add_block("#menu", "div", "", "menu_order");
 	load_current_order();
 	update_order_view();
@@ -270,8 +270,10 @@ function load_frame_bar(old_frame) {
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
 	document.getElementById('decline_order_button').addEventListener('click', function add() {do_action("decline_order", '')}, false);
 	document.getElementById('accept_order_button').addEventListener('click', function add() {do_action("accept_order", '')}, false);
+	$("#decline_order_button").css("display", "none");
+	$("#accept_order_button").css("display", "none");
 
-
+	// Load some contents
 	load_menu_view("bar");
 	load_bar_view();
 	display_menu_items("orders"); //shows beer by default
