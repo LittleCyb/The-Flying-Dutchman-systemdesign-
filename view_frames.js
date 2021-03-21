@@ -193,14 +193,16 @@ function load_frame_menu(old_frame, new_table_number) {
 	add_block("#menu", "div", "", "menu_topbar");
 	add_block("#menu_topbar", "span", "", "login_vip");
 	add_block("#menu", "div", "", "menu_bar");
+	add_block("#menu_bar", "div", "", "menu_bar_left");
+	add_block("#menu_bar", "div", "", "menu_bar_right");
 	// Menu categories
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_beers");
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_cocktails");
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_wine");
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_vip");
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_beers");
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_cocktails");
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_wine");
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_vip");
 
 	//filter dropdown
-	add_block("#menu_bar", "div", "menu_bar_item", "menu_bar_filter");
+	add_block("#menu_bar_left", "div", "menu_bar_item", "menu_bar_filter");
 
 	// Make categories clickable
 	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');;
@@ -213,12 +215,12 @@ function load_frame_menu(old_frame, new_table_number) {
 	load_menu_view("table");
 	display_menu_items("beers"); //shows beer by default
 
-	$("#menu_bar").append('<div class="menu_bar_item" id="undo_button"></div>');
+	$("#menu_bar_right").append('<div class="menu_bar_item" id="undo_button"></div>');
 	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
-	$("#menu_bar").append('<div class="menu_bar_item" id="redo_button"></div>');
+	$("#menu_bar_right").append('<div class="menu_bar_item" id="redo_button"></div>');
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
-	$("#menu_bar").append('<div class="menu_bar_item" id="purchase_button"></div>');
-	document.getElementById('purchase_button').addEventListener('click', function add() {do_action("purchase", '')}, false);
+	$("#menu_bar_right").append('<div class="menu_bar_item" id="purchase_button"></div>');
+	document.getElementById('purchase_button').addEventListener('click', function add() {do_action("purchase", 'Company')}, false);
 
 	add_block("#menu", "div", "", "menu_order");
 	load_current_order();
@@ -375,6 +377,11 @@ function update_order_view() {
     let total_cost = 0;
 	for(item of orders[get_current_table_number()]) {
         create_order_item(item);
+	}
+	if (orders[get_current_table_number()].length == 0) {
+		$("#purchase_button").css("display", "none");
+	} else {
+		$("#purchase_button").css("display", "flex");
 	}
     load_total_cost(total_cost);
 	update_view();

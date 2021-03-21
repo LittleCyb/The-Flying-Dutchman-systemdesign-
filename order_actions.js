@@ -11,45 +11,17 @@
  *	@desc adds a an item to the table's order
  */
 function send_order_to_bar(name) {
-
-    const values = {
-        number: get_new_order_number(),
-        table: current_table_number,
-        name: name,
-        execute: function () {
-            // Store order in JSON
-            let order_json = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number, this.table));
-            localStorage.setItem("order" + this.number, order_json);
-            orders[current_table_number] = [];
-            // Push order to list and store in JSON
-            pending_orders.push(this.number);
-            localStorage.setItem("pending_orders" ,JSON.stringify(pending_orders));
-            update_order_view();
-        },
-        unexecute: function () {
-            var order = JSON.parse(localStorage.getItem("order" + this.number));
-            orders[current_table_number] = order.items;
-            for (index = 0; index < pending_orders.length; index++) {
-                if (pending_orders[index] == this.number) pending_orders.splice(index, 1);
-            }
-            for (let o in pending_orders) {
-                if (o == this.number) pending_orders.splice(o++, 1);
-
-            }
-            localStorage.removeItem("order" + this.number);
-            localStorage.setItem("pending_orders" ,JSON.stringify(pending_orders));
-            update_order_view();
-        },
-        reexecute: function () {
-            let order_json = JSON.stringify(new Order_sent(orders[current_table_number], this.name, this.number, this.table));
-            localStorage.setItem("order" + this.number, order_json);
-            orders[current_table_number] = [];
-            pending_orders.push(this.number);
-            localStorage.setItem("pending_orders" ,JSON.stringify(pending_orders));
-            update_order_view();
-        }
-    };
-    return values;
+    let number = get_new_order_number();
+    let table = current_table_number;
+    // Store order in JSON
+    let order_json = JSON.stringify(new Order_sent(orders[table], name, number, table));
+    localStorage.setItem("order" + number, order_json);
+    orders[table] = []; // Clear order at current table
+    // Push order to list and store in JSON
+    pending_orders.push(number);
+    localStorage.setItem("pending_orders" ,JSON.stringify(pending_orders));
+    update_order_view();
+    clear_history() // Clear UNDO/REDO history
 }
 
 /**

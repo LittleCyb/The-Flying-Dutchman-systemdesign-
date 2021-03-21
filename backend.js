@@ -16,6 +16,8 @@ let current_table_number; // represents the current table number
 let order_number = 0;
 
 let pending_orders = []
+
+// Search for local pending_orders file, if it exists it replaces pending_orders
 if (localStorage.getItem("pending_orders") != null) {
     pending_orders = JSON.parse(localStorage.getItem("pending_orders"));
 }
