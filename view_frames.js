@@ -249,6 +249,8 @@ function load_frame_bar(old_frame) {
 	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
 	document.getElementById('decline_order_button').addEventListener('click', function add() {do_action("decline_order", '')}, false);
+	document.getElementById('accept_order_button').addEventListener('click', function add() {do_action("accept_order", '')}, false);
+
 
 	load_menu_view("bar");
 	load_bar_view();

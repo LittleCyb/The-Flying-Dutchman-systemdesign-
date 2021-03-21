@@ -111,6 +111,44 @@ function get_drink_price_from_id(id) {
    return drink["prisinklmoms"];
 }
 
+/**
+ * get_drink_amount_from_id
+ * @desc returns a drink's amount from item id
+ * @arg id
+ */
+function get_drink_amount_from_id(id) {
+    // we want to make sure we iterate over the drinks
+    for (let drink_type of Object.keys(db)) {
+        for (index in db[drink_type]) {
+            if (db[drink_type][index]["artikelid"] == id) {
+                return parseInt(db[drink_type][index]["antal"]);
+            }
+        }
+    }
+    console.log("Error: couldn't fint drink with that id in database.");
+    return 0;
+}
+
+/**
+ * change_drink_amount_from_id
+ * @desc changes the amount of a drink from item id
+ * @arg id
+ * @arg amount
+ */
+function change_drink_amount_from_id(id, amount) {
+    // we want to make sure we iterate over the drinks
+    for (let drink_type of Object.keys(db)) {
+        for (index in db[drink_type]) {
+            if (db[drink_type][index]["artikelid"] == id) {
+                var new_amount = parseInt(db[drink_type][index]["antal"]) + amount;
+                db[drink_type][index]["antal"] = new_amount;
+                return;
+            }
+        }
+    }
+    console.log("Error: couldn't fint drink with that id in database.");
+}
+
 
 const menu_types = ["beers", "cocktails", "wine", "vip", "filter"];
 const filter_types = ["gluten", "low_tannins", "lactose", "low_alcohol"];
