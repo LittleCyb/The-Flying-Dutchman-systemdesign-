@@ -249,6 +249,8 @@ function load_frame_bar(old_frame) {
 	document.getElementById('undo_button').addEventListener('click', function add() {do_action('undo', '')}, false);
 	document.getElementById('redo_button').addEventListener('click', function add() {do_action("redo", '')}, false);
 	document.getElementById('decline_order_button').addEventListener('click', function add() {do_action("decline_order", '')}, false);
+	document.getElementById('accept_order_button').addEventListener('click', function add() {do_action("accept_order", '')}, false);
+
 
 	load_menu_view("bar");
 	load_bar_view();
@@ -373,6 +375,7 @@ function update_order_view() {
 function update_order_view_item(order) {
 	var current_order = JSON.parse(localStorage.getItem(order));
 	var current_items = current_order.items;
+
 	clear_menu_order_body();
 	$("#decline_order_button").css("display", "flex");
 	$("#accept_order_button").css("display", "flex");
@@ -380,9 +383,17 @@ function update_order_view_item(order) {
 
 	add_block("#menu_order", "div", "", "menu_order_body");
 	let total_cost = 0;
+	var can_perform_order = true;
 	for(item of current_items) {
-		create_order_item(item);
+		var created_item = create_order_item(item);
+		// Check if amount exists for each item
+		var item_amount = get_drink_amount_from_id(order_item_id(item));
+		if (item_amount < item.amount) {
+			can_perform_order = false;
+			$("#" + created_item).css("color", "red");
+		}
 	}
+	if (can_perform_order == false) $("#accept_order_button").css("display", "none");
 	load_total_cost(total_cost);
 	update_view();
 }
@@ -423,7 +434,7 @@ function create_order_item(item) {
 
     //in order to make the remove functionality reversable/undo:able, we need to remember how many units we removed.
     $("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[table_number], item_id).amount)});
-
+	return div_id;
 }
 
 /**

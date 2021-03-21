@@ -75,6 +75,9 @@
      if (fun == 'decline_order') {
          action_exe(decline_order());
      }
+     if (fun == 'accept_order') {
+         action_exe(accept_order());
+     }
  }
 
  function do_choose_bar_order(order) {
