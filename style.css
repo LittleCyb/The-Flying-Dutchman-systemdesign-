@@ -99,6 +99,18 @@ img {
 
 }
 
+.menu_beverage:active {
+    animation-name: buy_animation;
+    animation-duration: 0.4s;
+}
+
+@keyframes buy_animation{
+    from {background-color: rgba(255,255,0,0.4);;}
+    to {
+        background-color: rgba(255,255,255,0.4);
+    }
+}
+
 .menu_order_info {
     display: flex;
     margin-right: 1em;
@@ -204,7 +216,19 @@ img {
         margin: auto;
         width: 97.5%;
         height: 80%;
+
     }
+}
+
+#menu {
+    animation-name: menu_animation;
+    animation-duration: 0.666s;
+}
+
+
+@keyframes menu_animation{
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
 #table_number {
@@ -389,7 +413,7 @@ img {
         width: 60%;
         max-width: 640px;
         margin: auto;
-        margin-top: 200px;
+        margin-top: 150px;
         height: 320px;
         animation-name: login_animation;
         animation-duration: 1s;
@@ -403,7 +427,7 @@ img {
         width: 60%;
         max-width: 640px;
         margin: auto;
-        margin-top: 200px;
+        margin-top: 150px;
         height: 320px;
         animation-name: login_animation;
         animation-duration: 1s;
@@ -411,14 +435,8 @@ img {
 }
 
 @keyframes login_animation{
-    from {
-        margin-top: 0;
-        opacity: 0;
-    }
-    to {
-        margin-top: 200px;
-        opacity: 1;
-    }
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
 #login_button {
@@ -512,19 +530,22 @@ img {
     margin: 1em;
 }
 
-/* FIXME only for testing purposes*/
-#login_from_menu {
+#logout {
     background-color: #ffd29a;
-    display: flex;
+    display: block;
     justify-content: center;
+    position: absolute;
+    top: 25px;
     border: 1px solid black;
-    margin-left: 40%;
-    margin-right: 40%;
-    margin-top: 5px;
+    margin-left: 47.5%;
     padding: 1em;
     border-radius: 5px;
-    height: 2em;
+    height: 1em;
     cursor: pointer;
+}
+
+#logout:hover {
+    background-color: #ffb686
 }
 
 /* manager ID:s */
@@ -645,9 +666,12 @@ img {
     	width: 97.5%;
     	margin: auto;
     	height: 80%;
-        animation-name: choose_animation;
-        animation-duration: 0.75s;
     }
+}
+
+#choose_screen {
+    animation-name: choose_animation;
+    animation-duration: 0.75s;
 }
 
 @keyframes choose_animation{
