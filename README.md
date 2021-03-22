@@ -2,8 +2,9 @@
 
 Författare: Gideon Landeman, Simon Jaklovsky and Victor Hwasser.
 
-### Back to login - knapp
-Vi har lämnat kvar en knapp med texten "back to login" för att underlätta debuggning/genomgång av programmet. Den är dock endast ämnad för att gå tillbaka till login ifrån manager/bartender/menyn, alltså inte "välj bord menyn". 
+### Logout-knapp
+Bra att använda vid testing/debugging av applikationen. 
+Ex: Bord4 lägger beställning -> logga ut -> logga in som bartender och se att ordern har tagits emot.
 
 ### Vår process
 Vårt fokus låg vid att först implementera "course ased requirements", "manager", "bartender" och "normal". Eftersom vi såg dem som grundpelaran för ett funktionellt system. Dock började vi projektet med att designa dels hur vi ville att applikationen skulle se ut, men även hur en potentiell användare skulle tänkas navigera systemet. Följande fråga häjlpte också i designprocessen, "Vad vill en kund/bartender/manager göra?", sedan kunde vi utgå därifrån för att bestämma vilka skärmar som behövde utformas för att ta en användare ifrån start till sitt mål.
