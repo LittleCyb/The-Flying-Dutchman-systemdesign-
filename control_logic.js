@@ -1,10 +1,9 @@
 /*
  File: main.js
- Author: TODO: add names
+ Author: Victor Hwasser, Gideon Landeman, Simon Jaklovsky
  this js document contains the control logic
 */
 
- /**
  *	change_language_control
  *	@desc updates language
  */
