@@ -33,9 +33,12 @@ function filter_items() {
         for(drink of db[key]) {
             var artikelid = drink["artikelid"];
             $("#" + artikelid).css("display", "block");
+	    if (drink["gömd"]) {
+		$("#" + artikelid).css("display", "none");
+	    }
         }
     }
-
+    
     if(gluten_free) {
         for(const key in db) {
             for(drink of db[key]) {
