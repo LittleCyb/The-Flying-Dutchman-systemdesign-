@@ -1,6 +1,6 @@
 /*
  File: view_frames.js
- Author: TODO: add names
+ Author: Gideon Landeman, Simon Jaklovsky, Victor Hwasser
  Main view file, contains all functions for generating different frames
  for the application.
  */
@@ -92,7 +92,7 @@ function load_frame_manager(old_frame) {
 		'<div class="manager_button" id=decrement_button'+drinkId+'> Decrement </div>');
 	    $("#decrement_button"+drinkId).attr(
 		"onclick", 'update_amount('+drinkId+', "'+drinkType+'", -1, getDrinkAmountFromDB,'+i+')');
-	    
+
 	    // Larger order button
 	    $("#flex"+drinkId).append(
 		'<div class="manager_button" id=large_order_button'+drinkId+'> Order '+largeAmount+' </div>');
@@ -108,7 +108,7 @@ function load_frame_manager(old_frame) {
 
 
 	    $("#"+drinkId).append('<div class="item_text_bottom" id=drink'+drinkId+'>' +getDrinkAmountFromDB(drinkType, i)+ '</div>');
-	    
+
 	    update_hidden_view(drinkType, i);
 	    i++;
 	}
@@ -143,6 +143,7 @@ function load_frame_vip_login(old_frame) {
  * @param old_frame Old frame to be removed
  */
 function load_frame_choose(old_frame) {
+	$("login").attr("animation-name", "login_animation_out");
 	remove_old_frame(old_frame);
 	// Create frame
 	add_block("#main_frame", "div", "", "choose_screen");
@@ -194,7 +195,7 @@ function load_frame_menu(old_frame, new_table_number) {
 	// Get number of current table
 	current_table_number = new_table_number;
 	set_current_table_number(new_table_number); //for this instance of program
-	
+
 	$("#table_number").show();
 	// Create frame
 	add_block("#main_frame", "div", "", "menu");
@@ -329,7 +330,7 @@ function load_bar_view() {
 		var current = "#bar_order_item" + o
 		$(current).append('<p> Order: ' + current_order.number + ' </p>');
 		$(current).append('<p> Table: ' + current_order.table + ' </p>');
-		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
+		$(current).append('<p> Customer: ' + current_order.name + ' </p>');
 		$(current).attr("onclick", 'do_choose_bar_order("order' + pending_orders[o] + '")');
 		$(current).css("cursor", "pointer");
 	}
@@ -350,6 +351,8 @@ function make_beverage(type, index, from) {
 	if (from == "table") {
 		$(div).append('<div class="add_item_button">+ 1</div>').click(function() {do_action('add', new_drink)});
 	} else {
+		var current_amount = parseInt(getDrinkAmountFromDB(type,index));
+		if (current_amount <= 5) $(div).css("background-color", "rgba(255,0,0,0.4)");
 		$(div).click(function() {show_all_info(type, index)});
 		$(div).css("cursor", "pointer");
 	}
@@ -438,7 +441,7 @@ function load_total_cost(cost) {
 
 /**
     * create_order_item
-    * @desc creates an order item
+    * @desc creates an order item for the bartender
 */
 function create_order_item(item) {
     let item_id     = order_item_id(item);
@@ -458,7 +461,7 @@ function create_order_item(item) {
     $("#" + div_id).append('<div class="order_item_price">' + total_roundoff + '</div>');
 
     //in order to make the remove functionality reversable/undo:able, we need to remember how many units we removed.
-    if (get_current_order() == null) {
+    if (get_current_order() == "") {
 		$("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[table_number], item_id).amount)});
 	} else {
 		$("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove_from_bar', get_current_order(), item)});
@@ -473,6 +476,7 @@ function create_order_item(item) {
  */
 function show_all_info(type, index) {
 	clear_menu_order_body();
+	set_current_order("");
 	$("#decline_order_button").css("display", "none");
 	$("#accept_order_button").css("display", "none");
 	$("#menu_order_info").remove();
@@ -491,16 +495,3 @@ function show_all_info(type, index) {
 	}
 	update_view()
 }
-
-/**
- * remove_old_frame(old_frame)
- * @desc removes old frame
- * @param old_frame to remove
- */
-function remove_old_frame(old_frame) {
-	if (old_frame) {
-		$("#" + old_frame).remove();
-	}
-	$("#table_number").hide()
-}
-

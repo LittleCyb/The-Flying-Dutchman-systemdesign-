@@ -1,7 +1,7 @@
 
 /*
  File: order_actions.js
- Author: TODO: add names
+ Author: Simon Jaklovksy, Gideon Landeman, Victor Hwasser
  this js document contains order functions from customers
  */
 

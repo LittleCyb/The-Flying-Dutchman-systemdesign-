@@ -1,7 +1,7 @@
 /*
 File: style.css
 Version 0.5
-Author: TODO: add our names
+Author: Gideon Landeman, Simon Jaklovsky, Victor Hwasser
 A style sheet to customize and refine the appearance of the pub's application.
 */
 
@@ -328,16 +328,6 @@ img {
     justify-content: space-evenly;
 }
 
-/* Bartender ID */
-
-#drink_info {
-    font-weight: bold;
-}
-#drink_amount_text {
-    font-weight: bold;
-}
-
-/* Login ID:s */
 @media only screen and (max-height: 1080px) {
     #menu_bar_left {
         display: flex;
@@ -373,6 +363,15 @@ img {
     background-color: tomato;
 }
 
+/* Bartender ID */
+
+#drink_info {
+    font-weight: bold;
+}
+#drink_amount_text {
+    font-weight: bold;
+}
+
 #accept_order_button {
     background-color: lawngreen;
 }
@@ -392,6 +391,8 @@ img {
         margin: auto;
         margin-top: 200px;
         height: 320px;
+        animation-name: login_animation;
+        animation-duration: 1s;
     }
 }
 
@@ -404,6 +405,19 @@ img {
         margin: auto;
         margin-top: 200px;
         height: 320px;
+        animation-name: login_animation;
+        animation-duration: 1s;
+    }
+}
+
+@keyframes login_animation{
+    from {
+        margin-top: 0;
+        opacity: 0;
+    }
+    to {
+        margin-top: 200px;
+        opacity: 1;
     }
 }
 
@@ -523,7 +537,22 @@ img {
     margin: 20px auto;
     height: 70%;
     overflow: auto;
+
+    animation-name: manager_animation;
+    animation-duration: 0.75s;
 }
+
+@keyframes manager_animation{
+    from {
+        margin-top: -200px;
+        opacity: 0;
+    }
+    to {
+        margin-top: 20px;
+        opacity: 1;
+    }
+}
+
 .drinktype_container {
     padding: 1% 1%;
     width: 48%;
@@ -532,7 +561,7 @@ img {
 /* Manager classes */
 .item_top_row {
     display: flex;
-    
+
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: flex-start;
@@ -616,6 +645,19 @@ img {
     	width: 97.5%;
     	margin: auto;
     	height: 80%;
+        animation-name: choose_animation;
+        animation-duration: 0.75s;
+    }
+}
+
+@keyframes choose_animation{
+    from {
+        margin-top: -200px;
+        opacity: 0;
+    }
+    to {
+        margin-top: 0;
+        opacity: 1;
     }
 }
 

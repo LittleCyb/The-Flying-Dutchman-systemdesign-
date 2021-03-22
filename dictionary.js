@@ -1,6 +1,6 @@
 /*
  File: dictionary.js
- Author: TODO: add names
+ Author: Simon Jaklovksy, Gideon Landeman, Victor Hwasser
  this js document contains the language data and related functions for the application
  */
 

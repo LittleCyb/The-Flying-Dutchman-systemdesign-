@@ -1,6 +1,6 @@
 /*
  File: main.js
- Author: TODO: add names
+ Author: Simon Jaklovksy, Gideon Landeman, Victor Hwasser
  this js document contains what happens when the site is loaded
  */
 

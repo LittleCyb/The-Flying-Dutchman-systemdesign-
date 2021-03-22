@@ -1,63 +1,10 @@
 /*
  File: main.js
- Author: TODO: add names
+ Author: Victor Hwasser, Gideon Landeman, Simon Jaklovsky
  this js document contains the control logic
 */
 
- /**
- *	update_hidden_view
- *	@desc Updates view depending on if drink is hidden or not
- *      @arg drinkType of the drink
- *      @arg index of drink in given drinkType category
- */
-function update_hidden_view(drinkType, index) {
-    if (getDrinkHiddenStatus(drinkType, index)) {
-	grey_out(get_drink_id(drinkType, index));
-    }
-}
-
- /**
- *	grey_away
- *	@desc Removes grey out of a div
- *      @arg id of the div to remove grey out effect from
- */
-function grey_away(id) {
-    $('#'+id).css({
-	"background-color": "",
-	"opacity": "1"
-    });
-}
-
- /**
- *	grey_out
- *	@desc Adds "grey out" effect to div
- *      @arg id of the div to add grey out effect on
- */
-function grey_out(id) {
-    $('#'+id).css({
-	"background-color": "#808080",
-	"opacity": "0.5"
-    });
-}
-
- /**
- *	hide_unhide
- *	@desc Toggles hidden status of drink and adds or removes grey out effect 
- *      @arg drinkType of the drink to be toggled
- *      @arg id of the drink to be toggled
- */
-function hide_unhide(drinkType, id) {
-    let index = db[drinkType].findIndex(element => element.artikelid == id);
-    if (!db[drinkType][index].gömd) {
-	db[drinkType][index].gömd = true;
-	grey_out(id); // can be improved MVC-wise
-    } else {
-	db[drinkType][index].gömd = false;
-	grey_away(id); // can be improved MVC-wise
-    }
-}
-
- /**
+/*
  *	change_language_control
  *	@desc updates language
  */
@@ -74,23 +21,6 @@ function hide_unhide(drinkType, id) {
  */
  function get_country_of_origin(type, index) {
  	return get_drink_string(type, index, "ursprunglandnamn");
- }
-
- /**
- *	hide_menu_views
- * @desc hides all menu views
- */
- function hide_menu_views() {
- 	for(idx in db) {
- 		$("#menu_view_" + idx).css("display", "none");
- 		$("#menu_bar_" + idx).css("background-color", "");
- 	}
- 	$("#menu_view_orders").css("display", "none");
- 	$("#menu_bar_orders").css("background-color", "");
-
- 	$("#menu_bar_order").css("background-color", "");
-    $("#menu_view_filter").css("display", "none");
-    $("#menu_bar_filter").css("background-color", "");
  }
 
 

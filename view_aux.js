@@ -1,6 +1,6 @@
 /*
  File: view_frames.js
- Author: TODO: add names
+ Author: Gideon Landeman, Simon Jaklovsky, Victor Hwasser
  All auxillary functions for the view
  */
 
@@ -38,7 +38,7 @@ function filter_items() {
 	    }
         }
     }
-    
+
     if(gluten_free) {
         for(const key in db) {
             for(drink of db[key]) {
@@ -100,7 +100,6 @@ function display_menu_items(item) {
     $("#menu_bar_" + item).css("background-color", "#ffb686");
 
     filter_items();
-
     update_view();
 }
 
@@ -122,4 +121,57 @@ function clear_menu_order_body() {
 function update_bar_order_list() {
     $("#menu_view_orders").remove();
     load_bar_view();
+}
+
+/**
+ * remove_old_frame(old_frame)
+ * @desc removes old frame
+ * @param old_frame to remove
+ */
+function remove_old_frame(old_frame) {
+    if (old_frame) {
+        $("#" + old_frame).remove();
+    }
+    $("#table_number").hide()
+}
+
+/**
+ *	hide_menu_views
+ * @desc hides all menu views
+ */
+function hide_menu_views() {
+    for(idx in db) {
+        $("#menu_view_" + idx).css("display", "none");
+        $("#menu_bar_" + idx).css("background-color", "");
+    }
+    $("#menu_view_orders").css("display", "none");
+    $("#menu_bar_orders").css("background-color", "");
+
+    $("#menu_bar_order").css("background-color", "");
+    $("#menu_view_filter").css("display", "none");
+    $("#menu_bar_filter").css("background-color", "");
+}
+
+/**
+ *	grey_away
+ *	@desc Removes grey out of a div
+ *      @arg id of the div to remove grey out effect from
+ */
+function grey_away(id) {
+    $('#'+id).css({
+        "background-color": "",
+        "opacity": "1"
+    });
+}
+
+/**
+ *	grey_out
+ *	@desc Adds "grey out" effect to div
+ *      @arg id of the div to add grey out effect on
+ */
+function grey_out(id) {
+    $('#'+id).css({
+        "background-color": "#808080",
+        "opacity": "0.5"
+    });
 }
