@@ -1,7 +1,7 @@
 /*
 File: style.css
 Version 0.5
-Author: TODO: add our names
+Author: Gideon Landeman, Simon Jaklovsky, Victor Hwasser
 A style sheet to customize and refine the appearance of the pub's application.
 */
 
@@ -532,7 +532,7 @@ img {
 /* Manager classes */
 .item_top_row {
     display: flex;
-    
+
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: flex-start;

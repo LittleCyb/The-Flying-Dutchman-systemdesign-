@@ -1,6 +1,6 @@
 /*
  File: main.js
- Author: TODO: add names
+ Author: Victor Hwasser, Gideon Landeman, Simon Jaklovsky
  this js document contains the control logic
 */
 
@@ -13,7 +13,7 @@
 function update_hidden_view(drinkType, index) {
     if (getDrinkHiddenStatus(drinkType, index)) {
 	grey_out(get_drink_id(drinkType, index));
-    } 
+    }
 }
 
  /**
@@ -42,7 +42,7 @@ function grey_out(id) {
 
  /**
  *	hide_unhide
- *	@desc Toggles hidden status of drink and adds or removes grey out effect 
+ *	@desc Toggles hidden status of drink and adds or removes grey out effect
  *      @arg drinkType of the drink to be toggled
  *      @arg id of the drink to be toggled
  */

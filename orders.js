@@ -1,6 +1,6 @@
 /*
     File: orders.js
-    Author: TODO: add names
+    Author: Gideon Landeman, Simon Jaklovsky, Victor Hwasser
     Keeps track off all pending orders
     */
 

@@ -1,6 +1,6 @@
 /*
  File: bar_actions.js
- Author: TODO: add names
+ Author: Simon Jaklovksy, Gideon Landeman, Victor Hwasser
  this js document contains bar functions from bartender
  */
 

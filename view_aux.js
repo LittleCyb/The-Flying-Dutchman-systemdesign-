@@ -1,6 +1,6 @@
 /*
  File: view_frames.js
- Author: TODO: add names
+ Author: Gideon Landeman, Simon Jaklovsky, Victor Hwasser
  All auxillary functions for the view
  */
 
@@ -38,7 +38,7 @@ function filter_items() {
 	    }
         }
     }
-    
+
     if(gluten_free) {
         for(const key in db) {
             for(drink of db[key]) {
