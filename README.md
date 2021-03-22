@@ -69,7 +69,7 @@ be shown
 
 COURSE BASED REQUIREMENTS (A)
 1. The system should be implemented using MVC
-2. The system should provide two distinct interface languages
+2. The system should provide two distinct interface languages (works in 95% of the application)
 3. The system should implement Drag and Drop for a suitable action
 4. The system should implement an UNDO/REDO functionality
 5. The system should be possible to resize between the bartender view (27”) to table
