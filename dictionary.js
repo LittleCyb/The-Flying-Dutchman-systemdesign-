@@ -138,7 +138,7 @@ order_info_translation = {
 
 /**
     * translate_info_point
-    * @desc translates a point of information into the apporperiate language
+    * @desc translates a point of information into the appropriate language
     * @arg info_point to be translated
     */
 function translate_info_point(info_point) {
