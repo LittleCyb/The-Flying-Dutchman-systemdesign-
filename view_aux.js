@@ -77,7 +77,7 @@ function filter_items() {
             for(drink of db[key]) {
                 const temp = drink["alkoholhalt"];
                 var alkoholhalt = temp.slice(0, -1);
-                if(parseInt(alkoholhalt) > 4) { //annars kan vi få "10" > "4" == falskt
+                if(parseInt(alkoholhalt) > 4) {
                     var artikelid = drink["artikelid"];
                     $("#" + artikelid).css("display", "none");
                 }

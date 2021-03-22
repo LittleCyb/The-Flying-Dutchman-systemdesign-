@@ -263,8 +263,8 @@ function load_frame_bar(old_frame) {
 	add_block("#menu_bar_right", "div", "menu_bar_item", "accept_order_button")
 	add_block("#menu_bar_right", "div", "menu_bar_item", "decline_order_button");
 	// Make buttons clickable
-	$("#menu_bar_orders").attr("onclick", 'display_menu_items("orders")');;
-	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');;
+	$("#menu_bar_orders").attr("onclick", 'display_menu_items("orders")');
+	$("#menu_bar_beers").attr("onclick", 'display_menu_items("beers")');
 	$("#menu_bar_cocktails").attr("onclick", 'display_menu_items("cocktails")');
 	$("#menu_bar_wine").attr("onclick", 'display_menu_items("wine")');
 	$("#menu_bar_vip").attr("onclick", 'display_menu_items("vip")');
@@ -291,7 +291,7 @@ function load_frame_bar(old_frame) {
  * @desc loads menu view frame
  */
 function load_menu_view(from) {
-	// frame to put items in
+	// Add frame to put items in
 	add_block("#menu", "div", "", "menu_view");
 	// Items
 	for(const type of menu_types) {
@@ -302,10 +302,6 @@ function load_menu_view(from) {
 			$("#menu_view" + type).append('<br>');
 		}
 	}
-
-	//TODO: remove menu_view_filter from standard loop (see above) to add it separately below //FIXME this removes both, otherwise we get duplicates
-	//$("#menu_view_filter").remove(); Is this a bug?
-
 	//add filter functionality
 	if (from == "table") {
 		add_block("#menu_view", "div", "menu_view_filter");

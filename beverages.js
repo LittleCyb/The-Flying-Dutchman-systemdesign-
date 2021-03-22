@@ -130,7 +130,6 @@ function get_drink_amount_from_id(id) {
  * @arg amount
  */
 function change_drink_amount_from_id(id, amount) {
-    // we want to make sure we iterate over the drinks
     for (let drink_type of Object.keys(db)) {
         for (index in db[drink_type]) {
             if (db[drink_type][index]["artikelid"] == id) {

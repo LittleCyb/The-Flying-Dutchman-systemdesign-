@@ -13,7 +13,7 @@
 function update_hidden_view(drinkType, index) {
     if (getDrinkHiddenStatus(drinkType, index)) {
 	grey_out(get_drink_id(drinkType, index));
-    } 
+    }
 }
 
  /**
@@ -137,21 +137,13 @@ function hide_unhide(drinkType, id) {
  function drop_ipad(ev) {
  	ev.preventDefault();
  	ev.target.onclick();
- 	// Get data from temp drag-buffer, might be used later
- 	//var data = ev.dataTransfer.getData("text");
- 	//ev.target.appendChild(document.getElementById(data));
  }
 
- function drag_ipad(ev) {
- 	// Move data to temp drag-buffer, might be used later
- 	//ev.dataTransfer.setData("text", ev.target.id);
- }
 
  function allow_drop(ev) {
  	ev.preventDefault();
  }
 
- // TODO: When an order is done it should have this order id
  function set_order_id() {
  	return ++order_id;
 }
