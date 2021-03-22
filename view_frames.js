@@ -11,13 +11,20 @@
   */
 function load_topbar_language() {
 	add_block("body","div","","language_bar");
-
-    /*FIXME (for testing purposes, remove later)*/
-    $("#language_bar").append('<div id="login_from_menu">back to login</div>');
-    $("#login_from_menu").attr("onclick", 'load_frame_login("menu")');
-
    	add_image("#language_bar", "Current language", "language");
    	$("#language").attr("onclick", 'change_language_control()');
+}
+
+function logout_button() {
+	$("body").append('<div id="logout"></div>');
+	$("#logout").attr("onclick", 'logout()');
+}
+
+function logout() {
+	$("#manager").remove();
+	$("#choose_screen").remove();
+	$("#menu").remove();
+	load_frame_login()
 }
 
 function load_main_frame() {
@@ -34,14 +41,7 @@ function load_main_frame() {
  * @desc Creates a login frame
  * @param old_frame Old frame to be removed
  */
-function load_frame_login(old_frame) {
-    if ($('#manager').length) {
-	remove_old_frame("manager");
-    }
-    else {
-	remove_old_frame(old_frame);
-    }
-
+function load_frame_login() {
 	// Create frame
 	add_block('#main_frame', "div", "", "login");
 	add_block('#login', "div", "", "login_topbar");
@@ -53,6 +53,7 @@ function load_frame_login(old_frame) {
 	$("#login_manager").attr("onclick", 'load_frame_manager("login")');
 	$("#login_button").attr("onclick", 'load_frame_choose("login")');
 	$("#login_input").attr("contentEditable", "true");
+	$("#logout").css("display", "none");
 
 	update_view();
 }
@@ -64,6 +65,7 @@ function load_frame_login(old_frame) {
  */
 function load_frame_manager(old_frame) {
     remove_old_frame(old_frame);
+	$("#logout").css("display", "block");
     // adds new content to main_frame
     $("#main_frame").append('<img id="logo" src="">');
     $("#main_frame").append('<div id="manager"></div>');
@@ -144,6 +146,7 @@ function load_frame_vip_login(old_frame) {
  */
 function load_frame_choose(old_frame) {
 	$("login").attr("animation-name", "login_animation_out");
+	$("#logout").css("display", "block");
 	remove_old_frame(old_frame);
 	// Create frame
 	add_block("#main_frame", "div", "", "choose_screen");

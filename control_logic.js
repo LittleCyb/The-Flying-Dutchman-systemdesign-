@@ -4,6 +4,7 @@
  this js document contains the control logic
 */
 
+/*
  *	change_language_control
  *	@desc updates language
  */

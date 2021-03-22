@@ -22,6 +22,7 @@
 $(document).ready(function() {
 	clear_orders(); //so a new instance gets doesn't have old order information. Might remove if we add functionality with BAR menu being able to delete orders. //FIXME in that case
 	load_topbar_language();
+	logout_button()
 	load_main_frame();
 	load_frame_login();
 });
