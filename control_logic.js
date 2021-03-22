@@ -76,23 +76,6 @@ function hide_unhide(drinkType, id) {
  	return get_drink_string(type, index, "ursprunglandnamn");
  }
 
- /**
- *	hide_menu_views
- * @desc hides all menu views
- */
- function hide_menu_views() {
- 	for(idx in db) {
- 		$("#menu_view_" + idx).css("display", "none");
- 		$("#menu_bar_" + idx).css("background-color", "");
- 	}
- 	$("#menu_view_orders").css("display", "none");
- 	$("#menu_bar_orders").css("background-color", "");
-
- 	$("#menu_bar_order").css("background-color", "");
-    $("#menu_view_filter").css("display", "none");
-    $("#menu_bar_filter").css("background-color", "");
- }
-
 
  /**
   *	do_action

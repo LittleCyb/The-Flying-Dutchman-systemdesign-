@@ -100,7 +100,6 @@ function display_menu_items(item) {
     $("#menu_bar_" + item).css("background-color", "#ffb686");
 
     filter_items();
-
     update_view();
 }
 
@@ -122,4 +121,33 @@ function clear_menu_order_body() {
 function update_bar_order_list() {
     $("#menu_view_orders").remove();
     load_bar_view();
+}
+
+/**
+ * remove_old_frame(old_frame)
+ * @desc removes old frame
+ * @param old_frame to remove
+ */
+function remove_old_frame(old_frame) {
+    if (old_frame) {
+        $("#" + old_frame).remove();
+    }
+    $("#table_number").hide()
+}
+
+/**
+ *	hide_menu_views
+ * @desc hides all menu views
+ */
+function hide_menu_views() {
+    for(idx in db) {
+        $("#menu_view_" + idx).css("display", "none");
+        $("#menu_bar_" + idx).css("background-color", "");
+    }
+    $("#menu_view_orders").css("display", "none");
+    $("#menu_bar_orders").css("background-color", "");
+
+    $("#menu_bar_order").css("background-color", "");
+    $("#menu_view_filter").css("display", "none");
+    $("#menu_bar_filter").css("background-color", "");
 }
