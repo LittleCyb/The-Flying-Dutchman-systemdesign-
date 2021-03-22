@@ -133,11 +133,12 @@ function change_drink_amount_from_id(id, amount) {
             if (db[drink_type][index]["artikelid"] == id) {
                 var new_amount = parseInt(db[drink_type][index]["antal"]) + amount;
                 db[drink_type][index]["antal"] = new_amount;
-                return;
+                return new_amount;
             }
         }
     }
     console.log("Error: couldn't fint drink with that id in database.");
+    return 0;
 }
 
 

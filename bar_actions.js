@@ -74,7 +74,8 @@ function accept_order() {
             var list_of_items = this.container.items;
             for (let i = 0; i < list_of_items.length; i++) {
                 var item = list_of_items[i];
-                change_drink_amount_from_id(item.id, -1 * item.amount);
+                var new_amount = change_drink_amount_from_id(item.id, -1 * item.amount);
+                if (new_amount <= 5) $("#" + item.id).css("background-color", "rgba(255, 0, 0, 0.4");
             }
             // Remove JSON object from from both storage and list
             localStorage.removeItem(this.name);
@@ -96,7 +97,8 @@ function accept_order() {
             var list_of_items = this.container.items;
             for (let i = 0; i < list_of_items.length; i++) {
                 var item = list_of_items[i];
-                change_drink_amount_from_id(item.id, item.amount);
+                var new_amount = change_drink_amount_from_id(item.id, item.amount);
+                if (new_amount > 5) $("#" + item.id).css("background-color", "rgba(255, 255, 255, 0.4");
             }
             // Put order back, both JSON file and entry in pending_orders list
             let order_json = JSON.stringify(this.container);
@@ -112,7 +114,8 @@ function accept_order() {
             var list_of_items = this.container.items;
             for (let i = 0; i < list_of_items.length; i++) {
                 var item = list_of_items[i];
-                change_drink_amount_from_id(item.id, -1 * item.amount);
+                var new_amount = change_drink_amount_from_id(item.id, -1 * item.amount);
+                if (new_amount <= 5) $("#" + item.id).css("background-color", "rgba(255, 0, 0, 0.4");
             }
             // Remove JSON object from from both storage and list
             localStorage.removeItem(this.name);
