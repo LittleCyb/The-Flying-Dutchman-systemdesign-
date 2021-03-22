@@ -4,8 +4,10 @@
  this js document contains bar functions from bartender
  */
 
-
-// Decline order, removing it from list of pending orders
+/**
+ *	accept_order
+ *	@desc Decline order, removing it from list of pending orders
+ */
 function decline_order() {
 
     const values = {
@@ -57,7 +59,10 @@ function decline_order() {
     return values;
 }
 
-// Accept order, removing it from list of pending orders and withdrawing amount
+/**
+ *	accept_order
+ *	@desc Accept order, removing it from list of pending orders and withdrawing amount
+ */
 function accept_order() {
 
     const values = {
@@ -122,6 +127,61 @@ function accept_order() {
             // Since order is removed from selection, its buttons should be removed
             $("#decline_order_button").css("display", "none");
             $("#accept_order_button").css("display", "none");
+        }
+    };
+    return values;
+}
+
+/**
+ *	remove_from_bar
+ *	@desc removes item from order in the bartender view
+ *  @arg which order to remove from
+ *	@arg item to remove from order
+ */
+function remove_from_bar(order, item) {
+    const values = {
+        order: order,
+        item: item,
+        execute: function() {
+            var order_container = JSON.parse(localStorage.getItem(this.order));
+            var order_items = order_container.items;
+            //remove item from order
+            for (let index = 0; index < order_items.length; index++) {
+                if (order_items[index].id == this.item.id) {
+                    order_items.splice(index, 1);
+                }
+            }
+            // Store updated item list
+            order_container.items = order_items;
+            let order_json = JSON.stringify(order_container);
+            localStorage.setItem(this.order, order_json);
+            update_order_view_item(this.order);
+        },
+        unexecute: function() {
+            var order_container = JSON.parse(localStorage.getItem(this.order));
+            var order_items = order_container.items;
+            // push item to order
+            order_items.push(this.item);
+            // Store updated item list
+            order_container.items = order_items;
+            let order_json = JSON.stringify(order_container);
+            localStorage.setItem(this.order, order_json);
+            update_order_view_item(this.order);
+        },
+        reexecute: function() {
+            var order_container = JSON.parse(localStorage.getItem(this.order));
+            var order_items = order_container.items;
+            //remove item from order
+            for (let index = 0; index < order_items.length; index++) {
+                if (order_items[index].id == this.item.id) {
+                    order_items.splice(index, 1);
+                }
+            }
+            // Store updated item list
+            order_container.items = order_items;
+            let order_json = JSON.stringify(order_container);
+            localStorage.setItem(this.order, order_json);
+            update_order_view_item(this.order);
         }
     };
     return values;

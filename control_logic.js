@@ -95,12 +95,15 @@ function hide_unhide(drinkType, id) {
     if (fun == 'purchase') {
     	send_order_to_bar(arg1);
 	}
-
+    // Bar functions
      if (fun == 'decline_order') {
          action_exe(decline_order());
      }
      if (fun == 'accept_order') {
          action_exe(accept_order());
+     }
+     if (fun == "remove_from_bar") {
+         action_exe(remove_from_bar(arg1, arg2));
      }
  }
 

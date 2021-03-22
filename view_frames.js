@@ -187,7 +187,7 @@ function load_frame_choose(old_frame) {
  */
 function load_frame_menu(old_frame, new_table_number) {
 	remove_old_frame(old_frame);
-
+	set_current_order(""); // Remove current order from bar
 	clear_history(); // Clear previous UNDO/REDO history
 	// Get number of current table
 	current_table_number = new_table_number;
@@ -458,7 +458,12 @@ function create_order_item(item) {
     $("#" + div_id).append('<div class="order_item_price">' + total_roundoff + '</div>');
 
     //in order to make the remove functionality reversable/undo:able, we need to remember how many units we removed.
-    $("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[table_number], item_id).amount)});
+    if (get_current_order() == null) {
+		$("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[table_number], item_id).amount)});
+	} else {
+		$("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove_from_bar', get_current_order(), item)});
+	}
+
 	return div_id;
 }
 
