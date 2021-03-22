@@ -7,15 +7,17 @@
 /* DATA STRUCTURES */
 
 let order_id = 0;
-let current_order = ""; // name of current order
+let current_order = ""; // name of current order from bar view
 
+// UNDO/REDO stacks
 let stack_undo = [];
 let stack_redo = [];
 
 let current_table_number; // represents the current table number
-let order_number = 0;
 
-let pending_orders = []
+let order_number = 0; // Id of current order
+
+let pending_orders = [] // All orders sent to bartender
 
 // Search for local pending_orders file, if it exists it replaces pending_orders
 if (localStorage.getItem("pending_orders") != null) {
@@ -159,6 +161,35 @@ function order_item_price(item) {
 // Returns bought amount of ordered item
 function order_item_amount(item) {
     return item.amount;
+}
+
+/**
+ *	update_hidden_view
+ *	@desc Updates view depending on if drink is hidden or not
+ *      @arg drinkType of the drink
+ *      @arg index of drink in given drinkType category
+ */
+function update_hidden_view(drinkType, index) {
+    if (getDrinkHiddenStatus(drinkType, index)) {
+        grey_out(get_drink_id(drinkType, index));
+    }
+}
+
+/**
+ *	hide_unhide
+ *	@desc Toggles hidden status of drink and adds or removes grey out effect
+ *      @arg drinkType of the drink to be toggled
+ *      @arg id of the drink to be toggled
+ */
+function hide_unhide(drinkType, id) {
+    let index = db[drinkType].findIndex(element => element.artikelid == id);
+    if (!db[drinkType][index].gömd) {
+        db[drinkType][index].gömd = true;
+        grey_out(id);
+    } else {
+        db[drinkType][index].gömd = false;
+        grey_away(id);
+    }
 }
 
 /* END OF FILE */

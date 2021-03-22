@@ -151,3 +151,27 @@ function hide_menu_views() {
     $("#menu_view_filter").css("display", "none");
     $("#menu_bar_filter").css("background-color", "");
 }
+
+/**
+ *	grey_away
+ *	@desc Removes grey out of a div
+ *      @arg id of the div to remove grey out effect from
+ */
+function grey_away(id) {
+    $('#'+id).css({
+        "background-color": "",
+        "opacity": "1"
+    });
+}
+
+/**
+ *	grey_out
+ *	@desc Adds "grey out" effect to div
+ *      @arg id of the div to add grey out effect on
+ */
+function grey_out(id) {
+    $('#'+id).css({
+        "background-color": "#808080",
+        "opacity": "0.5"
+    });
+}
