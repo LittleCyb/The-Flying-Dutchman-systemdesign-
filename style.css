@@ -216,9 +216,13 @@ img {
         margin: auto;
         width: 97.5%;
         height: 80%;
-        animation-name: menu_animation;
-        animation-duration: 0.666s;
+
     }
+}
+
+#menu {
+    animation-name: menu_animation;
+    animation-duration: 0.666s;
 }
 
 
@@ -662,9 +666,12 @@ img {
     	width: 97.5%;
     	margin: auto;
     	height: 80%;
-        animation-name: choose_animation;
-        animation-duration: 0.75s;
     }
+}
+
+#choose_screen {
+    animation-name: choose_animation;
+    animation-duration: 0.75s;
 }
 
 @keyframes choose_animation{
