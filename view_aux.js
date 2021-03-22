@@ -115,6 +115,10 @@ function clear_menu_order_body() {
     }
 }
 
+/**
+ * update_bar_order_list
+ * @desc Update all the orders to the left for the bartender view
+ */
 function update_bar_order_list() {
     $("#menu_view_orders").remove();
     load_bar_view();

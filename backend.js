@@ -7,7 +7,7 @@
 /* DATA STRUCTURES */
 
 let order_id = 0;
-let current_order = "";
+let current_order = ""; // name of current order
 
 let stack_undo = [];
 let stack_redo = [];
