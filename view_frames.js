@@ -354,6 +354,8 @@ function make_beverage(type, index, from) {
 	if (from == "table") {
 		$(div).append('<div class="add_item_button">+ 1</div>').click(function() {do_action('add', new_drink)});
 	} else {
+		var current_amount = parseInt(getDrinkAmountFromDB(type,index));
+		if (current_amount <= 5) $(div).css("background-color", "rgba(255,0,0,0.4)");
 		$(div).click(function() {show_all_info(type, index)});
 		$(div).css("cursor", "pointer");
 	}
@@ -462,7 +464,7 @@ function create_order_item(item) {
     $("#" + div_id).append('<div class="order_item_price">' + total_roundoff + '</div>');
 
     //in order to make the remove functionality reversable/undo:able, we need to remember how many units we removed.
-    if (get_current_order() == null) {
+    if (get_current_order() == "") {
 		$("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove', item_id, find_item_in_order(orders[table_number], item_id).amount)});
 	} else {
 		$("#" + div_id).append('<div class="order_item_remove">X</div>').click(function() {do_action('remove_from_bar', get_current_order(), item)});
@@ -477,6 +479,7 @@ function create_order_item(item) {
  */
 function show_all_info(type, index) {
 	clear_menu_order_body();
+	set_current_order("");
 	$("#decline_order_button").css("display", "none");
 	$("#accept_order_button").css("display", "none");
 	$("#menu_order_info").remove();
@@ -494,17 +497,5 @@ function show_all_info(type, index) {
 		}
 	}
 	update_view()
-}
-
-/**
- * remove_old_frame(old_frame)
- * @desc removes old frame
- * @param old_frame to remove
- */
-function remove_old_frame(old_frame) {
-	if (old_frame) {
-		$("#" + old_frame).remove();
-	}
-	$("#table_number").hide()
 }
 
