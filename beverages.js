@@ -44,6 +44,9 @@ function getDrinkAmountFromDB(drinktype, nr) {
     let wantedDrink = db[drinktype][nr];
     return wantedDrink.antal;
 }
+function getDrinkHiddenStatus(drinktype, nr) {
+    return db[drinktype][nr].gömd;
+}
 
 
  /**
