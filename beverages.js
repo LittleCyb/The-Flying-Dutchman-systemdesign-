@@ -1,6 +1,6 @@
 /*
  File: beverages.js
- Author: TODO: add names
+ Author: Simon Jaklovksy, Gideon Landeman, Victor Hwasser
 This js document contains the beverages served at the pub.
  */
 

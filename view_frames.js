@@ -1,6 +1,6 @@
 /*
  File: view_frames.js
- Author: TODO: add names
+ Author: Gideon Landeman, Simon Jaklovsky, Victor Hwasser
  Main view file, contains all functions for generating different frames
  for the application.
  */
@@ -92,7 +92,7 @@ function load_frame_manager(old_frame) {
 		'<div class="manager_button" id=decrement_button'+drinkId+'> Decrement </div>');
 	    $("#decrement_button"+drinkId).attr(
 		"onclick", 'update_amount('+drinkId+', "'+drinkType+'", -1, getDrinkAmountFromDB,'+i+')');
-	    
+
 	    // Larger order button
 	    $("#flex"+drinkId).append(
 		'<div class="manager_button" id=large_order_button'+drinkId+'> Order '+largeAmount+' </div>');
@@ -108,7 +108,7 @@ function load_frame_manager(old_frame) {
 
 
 	    $("#"+drinkId).append('<div class="item_text_bottom" id=drink'+drinkId+'>' +getDrinkAmountFromDB(drinkType, i)+ '</div>');
-	    
+
 	    update_hidden_view(drinkType, i);
 	    i++;
 	}
@@ -194,7 +194,7 @@ function load_frame_menu(old_frame, new_table_number) {
 	// Get number of current table
 	current_table_number = new_table_number;
 	set_current_table_number(new_table_number); //for this instance of program
-	
+
 	$("#table_number").show();
 	// Create frame
 	add_block("#main_frame", "div", "", "menu");
@@ -498,4 +498,3 @@ function show_all_info(type, index) {
 	}
 	update_view()
 }
-
