@@ -143,7 +143,7 @@ function add_item_to_order(item) {
      return values;
  }
 
-/* AUXILARY FUNCTIONS */
+/* AUXILIARY FUNCTIONS */
 
 /**
  *	find_item_in_order

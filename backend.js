@@ -125,7 +125,6 @@ function action_undo() {
         stack_redo.push(action);
     }
     else {
-        // TODO: Maybe some place on site to view program messages?
         console.log("Nothing to undo!");
     }
 }
@@ -141,7 +140,6 @@ function action_redo() {
         stack_undo.push(action);
     }
     else {
-        // TODO: Maybe some place on site to view program messages?
         console.log("Nothing to redo!");
     }
 }
