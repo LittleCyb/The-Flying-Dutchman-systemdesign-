@@ -108,6 +108,8 @@ function load_frame_manager(old_frame) {
 
 
 	    $("#"+drinkId).append('<div class="item_text_bottom" id=drink'+drinkId+'>' +getDrinkAmountFromDB(drinkType, i)+ '</div>');
+	    
+	    update_hidden_view(drinkType, i);
 	    i++;
 	}
     }
