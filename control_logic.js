@@ -50,10 +50,10 @@ function hide_unhide(drinkType, id) {
     let index = db[drinkType].findIndex(element => element.artikelid == id);
     if (!db[drinkType][index].gömd) {
 	db[drinkType][index].gömd = true;
-	grey_out(id);
+	grey_out(id); // can be improved MVC-wise
     } else {
 	db[drinkType][index].gömd = false;
-	grey_away(id);
+	grey_away(id); // can be improved MVC-wise
     }
 }
 
