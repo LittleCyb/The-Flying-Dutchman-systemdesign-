@@ -143,6 +143,7 @@ function load_frame_vip_login(old_frame) {
  * @param old_frame Old frame to be removed
  */
 function load_frame_choose(old_frame) {
+	$("login").attr("animation-name", "login_animation_out");
 	remove_old_frame(old_frame);
 	// Create frame
 	add_block("#main_frame", "div", "", "choose_screen");
@@ -333,7 +334,7 @@ function load_bar_view() {
 		var current = "#bar_order_item" + o
 		$(current).append('<p> Order: ' + current_order.number + ' </p>');
 		$(current).append('<p> Table: ' + current_order.table + ' </p>');
-		$(current).append('<p> Type: ' + "Company/Single" + ' </p>');
+		$(current).append('<p> Customer: ' + current_order.name + ' </p>');
 		$(current).attr("onclick", 'do_choose_bar_order("order' + pending_orders[o] + '")');
 		$(current).css("cursor", "pointer");
 	}
@@ -444,7 +445,7 @@ function load_total_cost(cost) {
 
 /**
     * create_order_item
-    * @desc creates an order item
+    * @desc creates an order item for the bartender
 */
 function create_order_item(item) {
     let item_id     = order_item_id(item);
