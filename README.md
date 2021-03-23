@@ -14,7 +14,7 @@ Vårt fokus låg vid att först implementera "course ased requirements", "manage
 Vårt projekt levererar på följande punkter utifrån kravspecifikationen (A - avklarat, X - inte klar). 
 
 ### Clockify
-Vår klockify står på 140 timmar. Mycket på grund av att vi inte varit "fullt bemannade". 
+Vår klockify står på 140 timmar. Att notera är att vi inte varit "fullt bemannade". 
 
 
 NORMAL (A)
