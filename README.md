@@ -9,13 +9,12 @@ Ex: Bord4 lägger beställning -> logga ut -> logga in som bartender och se att 
 ### Vår process
 Vårt fokus låg vid att först implementera "course ased requirements", "manager", "bartender" och "normal". Eftersom vi såg dem som grundpelaran för ett funktionellt system. Dock började vi projektet med att designa dels hur vi ville att applikationen skulle se ut, men även hur en potentiell användare skulle tänkas navigera systemet. Följande fråga häjlpte också i designprocessen, "Vad vill en kund/bartender/manager göra?", sedan kunde vi utgå därifrån för att bestämma vilka skärmar som behövde utformas för att ta en användare ifrån start till sitt mål.
 
-
-### Avvikelser ifrån kravspecifikationen
-Vårt projekt levererar på följande punkter utifrån kravspecifikationen (A - avklarat, X - inte klar). 
-
 ### Clockify
 Vår klockify står på 140 timmar. Att notera är att vi inte varit "fullt bemannade". 
 ![](https://github.com/LittleCyb/The-Flying-Dutchman-systemdesign-/blob/main/Screenshot%20from%202021-03-23%2017-32-54.png)
+
+### Avvikelser ifrån kravspecifikationen
+Vårt projekt levererar på följande punkter utifrån kravspecifikationen (A - avklarat, X - inte klar). 
 
 NORMAL (A)
 1. Order drinks
