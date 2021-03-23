@@ -24,6 +24,7 @@ function logout() {
 	$("#manager").remove();
 	$("#choose_screen").remove();
 	$("#menu").remove();
+	$("#table_number").css("display", "none");
 	load_frame_login()
 }
 
