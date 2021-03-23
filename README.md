@@ -15,7 +15,7 @@ Vårt projekt levererar på följande punkter utifrån kravspecifikationen (A - 
 
 ### Clockify
 Vår klockify står på 140 timmar. Att notera är att vi inte varit "fullt bemannade". 
-
+![](https://github.com/LittleCyb/The-Flying-Dutchman-systemdesign-/blob/main/Screenshot%20from%202021-03-23%2017-32-54.png)
 
 NORMAL (A)
 1. Order drinks
